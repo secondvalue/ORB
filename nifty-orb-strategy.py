@@ -107,11 +107,11 @@ file_handler = logging.FileHandler(
     f'logs/nifty_orb_{dt.now().strftime("%Y%m%d_%H%M%S")}.log',
     encoding='utf-8'
 )
-file_handler.setFormatter(logging.Formatter('%(asctime)s - %(levelname)s - %(message)s'))
+file_handler.setFormatter(logging.Formatter('%(asctime)s - %(levelname)s - %(message)s', datefmt='%Y-%m-%d %I:%M:%S %p'))
 
 # StreamHandler with UTF-8 encoding for Windows compatibility
 stream_handler = logging.StreamHandler(sys.stdout)
-stream_handler.setFormatter(logging.Formatter('%(asctime)s - %(levelname)s - %(message)s'))
+stream_handler.setFormatter(logging.Formatter('%(asctime)s - %(levelname)s - %(message)s', datefmt='%Y-%m-%d %I:%M:%S %p'))
 
 logging.basicConfig(
     level=getattr(logging, CONFIG['LOG_LEVEL']),
