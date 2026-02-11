@@ -736,7 +736,7 @@ class NiftyORBStrategy:
                 'entry_price': entry_price,
                 'stop_loss': stop_loss,
                 'target': target,
-                'target': target,
+
                 'max_price': entry_price, # Track High for Trailing SL
                 'entry_time': get_ist_time(),
                 'spot_price': spot_price,

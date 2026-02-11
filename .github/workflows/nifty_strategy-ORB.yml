@@ -1,15 +1,8 @@
 name: Nifty ORB Strategy
 
 on:
-  schedule:
-    # Runs at 9:14 AM IST (03:44 UTC) Mon-Fri
-    - cron: '44 3 * * 1-5'
   workflow_dispatch:
-    inputs:
-      execute_trades:
-        description: 'Set to true to execute REAL trades (requires valid token)'
-        required: false
-        default: 'false'
+    # Manual trigger only - no inputs needed
 
 jobs:
   run-strategy:
@@ -18,6 +11,15 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v3
+
+    - name: Display IST time
+      run: |
+        echo "==========================================="
+        echo "🚀 Nifty Options Trading Bot Starting..."
+        echo "==========================================="
+        echo "UTC Time: $(date -u)"
+        echo "IST Time: $(TZ='Asia/Kolkata' date)"
+        echo "==========================================="
 
     - name: Set up Python 3.10
       uses: actions/setup-python@v4
@@ -43,14 +45,6 @@ jobs:
         if [ -n "$DISCORD_WEBHOOK_URL" ]; then
           sed -i "s|'DISCORD_WEBHOOK_URL': .*|'DISCORD_WEBHOOK_URL': '$DISCORD_WEBHOOK_URL',|" nifty-orb-strategy.py
           echo "✅ Injected Discord Webhook"
-        fi
-        
-        # Determine Execution Mode (Live vs Paper)
-        # Default is False (Paper) unless manually triggered with 'true'
-        EXECUTE_TRADES="${{ github.event.inputs.execute_trades }}"
-        if [ "$EXECUTE_TRADES" == "true" ]; then
-           sed -i "s/'EXECUTE_TRADES': False/'EXECUTE_TRADES': True/" nifty-orb-strategy.py
-           echo "⚠️  LIVE TRADING ENABLED"
         fi
 
     - name: Run Strategy
