@@ -94,6 +94,14 @@ if sys.platform == 'win32':
     sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8', errors='replace')
     sys.stderr = io.TextIOWrapper(sys.stderr.buffer, encoding='utf-8', errors='replace')
 
+# Custom IST Time for Logging
+def ist_converter(*args):
+    utc_dt = datetime.datetime.utcnow()
+    ist_dt = utc_dt + datetime.timedelta(hours=5, minutes=30)
+    return ist_dt.timetuple()
+
+logging.Formatter.converter = ist_converter
+
 # Configure logging with UTF-8 encoding for console output
 file_handler = logging.FileHandler(
     f'logs/nifty_orb_{dt.now().strftime("%Y%m%d_%H%M%S")}.log',
