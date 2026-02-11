@@ -1,0 +1,13 @@
+# Python Generated Files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Strategy Logs and Data
+logs/
+trades/
+*.csv
+*.log
+
+# Environment Variables
+.env
