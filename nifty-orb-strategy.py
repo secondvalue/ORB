@@ -349,6 +349,12 @@ def encode_symbol(sym: str) -> str:
     """URL encode symbol for API calls"""
     return sym.replace('|', '%7C').replace(' ', '%20')
 
+def get_ist_time() -> datetime.datetime:
+    """Get current time in IST (UTC+5:30)"""
+    utc_now = datetime.datetime.utcnow()
+    ist_now = utc_now + datetime.timedelta(hours=5, minutes=30)
+    return ist_now
+
 def get_next_weekly_expiry(weekday_target=1) -> str:
     """
     Returns next weekly expiry date (default: Tuesday for NIFTY 50)
@@ -359,7 +365,8 @@ def get_next_weekly_expiry(weekday_target=1) -> str:
     Returns:
         Expiry date in YYMMDD format (e.g., '250206')
     """
-    today = datetime.datetime.now()
+    today = get_ist_time()
+    
     
     # Calculate days until next target weekday
     days_ahead = (weekday_target - today.weekday()) % 7
@@ -388,7 +395,7 @@ def get_next_weekly_expiry_full(weekday_target=1) -> str:
     Returns:
         Expiry date in YYYY-MM-DD format (e.g., '2025-02-06')
     """
-    today = datetime.datetime.now()
+    today = get_ist_time()
     days_ahead = (weekday_target - today.weekday()) % 7
     
     if days_ahead == 0:
@@ -729,8 +736,9 @@ class NiftyORBStrategy:
                 'entry_price': entry_price,
                 'stop_loss': stop_loss,
                 'target': target,
+                'target': target,
                 'max_price': entry_price, # Track High for Trailing SL
-                'entry_time': dt.now(),
+                'entry_time': get_ist_time(),
                 'spot_price': spot_price,
                 'quantity': self.lot_size
             }
@@ -870,7 +878,7 @@ class NiftyORBStrategy:
             return
         
         try:
-            exit_time = dt.now()
+            exit_time = get_ist_time()
             
             # Get final price
             quote = self.api.get_quote(self.position['symbol'])
@@ -998,7 +1006,7 @@ class NiftyORBStrategy:
         
         try:
             while True:
-                now = dt.now()
+                now = get_ist_time()
                 current_time = now.time()
                 
                 # ============================================================
