@@ -1,0 +1,13 @@
+2026-02-06 13:09:05,716 - INFO - 📅 Auto-calculated Nifty weekly expiry (Tuesday): 2026-02-10 (260210)
+2026-02-06 13:09:05,717 - INFO - 🧪 SANDBOX MODE - Using Upstox Sandbox Environment
+2026-02-06 13:09:05,717 - INFO -    ✓ 24/7 Testing Available
+2026-02-06 13:09:05,717 - INFO -    ✓ No Real Funds Required
+2026-02-06 13:09:05,717 - INFO - Upstox API initialized with base URL: https://api-sandbox.upstox.com
+2026-02-06 13:09:05,718 - INFO - Testing API connection...
+2026-02-06 13:09:06,423 - ERROR - HTTP 404: {"status":"error","errors":[{"errorCode":"UDAPI100060","message":"Resource not Found.","propertyPath":null,"invalidValue":null,"error_code":"UDAPI100060","property_path":null,"invalid_value":null}]}
+2026-02-06 13:09:06,430 - ERROR - ❌ Failed to connect to Upstox API. Check your token.
+2026-02-06 13:09:06,430 - ERROR - 💡 Possible reasons:
+2026-02-06 13:09:06,431 - ERROR -    1. Access token has expired (tokens typically expire daily)
+2026-02-06 13:09:06,431 - ERROR -    2. Invalid or incorrect token format
+2026-02-06 13:09:06,431 - ERROR -    3. Network connectivity issues
+2026-02-06 13:09:06,432 - ERROR -    4. Market is closed (API may not return data)

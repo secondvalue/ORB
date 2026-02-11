@@ -1,0 +1,1222 @@
+2026-02-10 12:24:23,519 - INFO - 📅 Auto-calculated Nifty weekly expiry (Tuesday): 2026-02-10 (260210)
+2026-02-10 12:24:23,521 - INFO - Upstox API initialized
+2026-02-10 12:24:23,521 - INFO - Testing API connection...
+2026-02-10 12:24:24,739 - INFO - ✓ API connected. Nifty: 25959.85
+2026-02-10 12:24:24,740 - INFO - Strategy initialized - PAPER TRADING
+2026-02-10 12:24:24,741 - INFO - 
+================================================================================
+2026-02-10 12:24:24,741 - INFO - 🚀 NIFTY 50 ORB STRATEGY - STARTED
+2026-02-10 12:24:24,741 - INFO - ================================================================================
+2026-02-10 12:24:24,742 - INFO - Expiry Date:      260210
+2026-02-10 12:24:24,750 - INFO - ORB Period:       09:15 - 09:30
+2026-02-10 12:24:24,751 - INFO - Stop Loss:        10% (Safety Net)
+2026-02-10 12:24:24,751 - INFO - Target:           10% (Fixed)
+2026-02-10 12:24:24,752 - INFO - Lot Size:         65
+2026-02-10 12:24:24,753 - INFO - Execution Mode:   📝 PAPER TRADING
+2026-02-10 12:24:24,755 - INFO - ================================================================================
+
+2026-02-10 12:24:24,756 - INFO - 📥 Loading option contracts...
+2026-02-10 12:24:24,757 - INFO - Fetching option contracts for expiry: 2026-02-10
+2026-02-10 12:24:25,579 - INFO - ✓ Fetched 196 option contracts
+2026-02-10 12:24:25,582 - INFO - ✓ Ready with 196 contracts
+2026-02-10 12:24:25,583 - INFO - 📊 Calculating ORB levels...
+2026-02-10 12:24:26,704 - INFO - Fetched 189 candles
+2026-02-10 12:24:26,714 - INFO - 
+======================================================================
+2026-02-10 12:24:26,714 - INFO - ✅ ORB LEVELS FORMED
+2026-02-10 12:24:26,715 - INFO - ======================================================================
+2026-02-10 12:24:26,715 - INFO - High:  25934.95
+2026-02-10 12:24:26,715 - INFO - Low:   25870.45
+2026-02-10 12:24:26,715 - INFO - Range: 64.50 (0.25%)
+2026-02-10 12:24:26,715 - INFO - ======================================================================
+
+2026-02-10 12:24:33,834 - INFO - 🚀 BULLISH BREAKOUT CONFIRMED (Price: 25958.6 > ORB High: 25934.95)
+2026-02-10 12:24:33,835 - INFO - ✅ CE 25950 -> NIFTY 25950 CE 10 FEB 26
+2026-02-10 12:24:35,115 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:24:35,117 - INFO - 
+======================================================================
+2026-02-10 12:24:35,118 - INFO - 🎯 POSITION ENTRY
+2026-02-10 12:24:35,119 - INFO - ======================================================================
+2026-02-10 12:24:35,119 - INFO - Symbol:      NIFTY 25950 CE 10 FEB 26
+2026-02-10 12:24:35,120 - INFO - Instrument:  NSE_FO|42544
+2026-02-10 12:24:35,120 - INFO - Type:        CE (CALL)
+2026-02-10 12:24:35,121 - INFO - Strike:      25950
+2026-02-10 12:24:35,122 - INFO - Spot Price:  25958.6
+2026-02-10 12:24:35,122 - INFO - Entry Price: ₹32.80
+2026-02-10 12:24:35,123 - INFO - Target:      ₹52.80 (+20.00 pts)
+2026-02-10 12:24:35,124 - INFO - Stop Loss:   ₹22.80 (-10.00 pts)
+2026-02-10 12:24:35,124 - INFO - ℹ️  NOTE: Min SL Floor Applied (10 pts)
+2026-02-10 12:24:35,125 - INFO - ℹ️  NOTE: Min Target Floor Applied (20 pts)
+2026-02-10 12:24:35,125 - INFO - Exit Condition: TARGET 🎯 OR TRAILING SL 🛑
+2026-02-10 12:24:35,126 - INFO - Quantity:    65 lots
+2026-02-10 12:24:35,126 - INFO - Entry Time:  12:24:35
+2026-02-10 12:24:35,127 - INFO - ======================================================================
+
+2026-02-10 12:24:35,128 - INFO - 📝 PAPER TRADE - No real order placed
+2026-02-10 12:24:43,547 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:24:43,552 - INFO -   Price: ₹32.50 | SL: ₹22.80 | P&L: -0.91%
+2026-02-10 12:24:46,854 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:24:46,857 - INFO -   Price: ₹32.35 | SL: ₹22.80 | P&L: -1.37%
+2026-02-10 12:24:49,917 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:24:49,919 - INFO -   Price: ₹32.45 | SL: ₹22.80 | P&L: -1.07%
+2026-02-10 12:24:52,831 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:24:52,834 - INFO -   Price: ₹32.45 | SL: ₹22.80 | P&L: -1.07%
+2026-02-10 12:24:55,818 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:24:55,820 - INFO -   Price: ₹32.55 | SL: ₹22.80 | P&L: -0.76%
+2026-02-10 12:24:58,712 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:24:58,716 - INFO -   Price: ₹32.25 | SL: ₹22.80 | P&L: -1.68%
+2026-02-10 12:25:01,633 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:25:01,635 - INFO -   Price: ₹32.00 | SL: ₹22.80 | P&L: -2.44%
+2026-02-10 12:25:04,406 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:25:04,409 - INFO -   Price: ₹31.80 | SL: ₹22.80 | P&L: -3.05%
+2026-02-10 12:25:07,153 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:25:07,156 - INFO -   Price: ₹31.35 | SL: ₹22.80 | P&L: -4.42%
+2026-02-10 12:25:10,288 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:25:10,291 - INFO -   Price: ₹31.70 | SL: ₹22.80 | P&L: -3.35%
+2026-02-10 12:25:12,998 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:25:13,000 - INFO -   Price: ₹32.10 | SL: ₹22.80 | P&L: -2.13%
+2026-02-10 12:25:16,898 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:25:16,902 - INFO -   Price: ₹31.80 | SL: ₹22.80 | P&L: -3.05%
+2026-02-10 12:25:20,122 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:25:20,124 - INFO -   Price: ₹31.40 | SL: ₹22.80 | P&L: -4.27%
+2026-02-10 12:25:23,849 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:25:23,852 - INFO -   Price: ₹31.45 | SL: ₹22.80 | P&L: -4.12%
+2026-02-10 12:25:27,848 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:25:27,852 - INFO -   Price: ₹31.25 | SL: ₹22.80 | P&L: -4.73%
+2026-02-10 12:25:31,870 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:25:31,875 - INFO -   Price: ₹31.45 | SL: ₹22.80 | P&L: -4.12%
+2026-02-10 12:25:34,610 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:25:34,613 - INFO -   Price: ₹31.60 | SL: ₹22.80 | P&L: -3.66%
+2026-02-10 12:25:37,544 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:25:37,547 - INFO -   Price: ₹31.55 | SL: ₹22.80 | P&L: -3.81%
+2026-02-10 12:25:40,528 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:25:40,532 - INFO -   Price: ₹31.35 | SL: ₹22.80 | P&L: -4.42%
+2026-02-10 12:25:43,310 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:25:43,314 - INFO -   Price: ₹31.10 | SL: ₹22.80 | P&L: -5.18%
+2026-02-10 12:25:46,298 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:25:46,301 - INFO -   Price: ₹31.25 | SL: ₹22.80 | P&L: -4.73%
+2026-02-10 12:25:49,147 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:25:49,150 - INFO -   Price: ₹31.45 | SL: ₹22.80 | P&L: -4.12%
+2026-02-10 12:25:51,998 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:25:52,001 - INFO -   Price: ₹31.30 | SL: ₹22.80 | P&L: -4.57%
+2026-02-10 12:25:54,738 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:25:54,740 - INFO -   Price: ₹31.25 | SL: ₹22.80 | P&L: -4.73%
+2026-02-10 12:25:57,615 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:25:57,619 - INFO -   Price: ₹31.10 | SL: ₹22.80 | P&L: -5.18%
+2026-02-10 12:26:00,643 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:26:00,645 - INFO -   Price: ₹30.65 | SL: ₹22.80 | P&L: -6.55%
+2026-02-10 12:26:03,471 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:26:03,474 - INFO -   Price: ₹30.40 | SL: ₹22.80 | P&L: -7.32%
+2026-02-10 12:26:06,207 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:26:06,210 - INFO -   Price: ₹30.30 | SL: ₹22.80 | P&L: -7.62%
+2026-02-10 12:26:09,016 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:26:09,020 - INFO -   Price: ₹30.10 | SL: ₹22.80 | P&L: -8.23%
+2026-02-10 12:26:12,851 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:26:12,854 - INFO -   Price: ₹30.00 | SL: ₹22.80 | P&L: -8.54%
+2026-02-10 12:26:15,941 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:26:15,945 - INFO -   Price: ₹30.40 | SL: ₹22.80 | P&L: -7.32%
+2026-02-10 12:26:18,994 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:26:18,997 - INFO -   Price: ₹29.95 | SL: ₹22.80 | P&L: -8.69%
+2026-02-10 12:26:22,041 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:26:22,045 - INFO -   Price: ₹30.30 | SL: ₹22.80 | P&L: -7.62%
+2026-02-10 12:26:25,026 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:26:25,028 - INFO -   Price: ₹30.25 | SL: ₹22.80 | P&L: -7.77%
+2026-02-10 12:26:27,855 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:26:27,858 - INFO -   Price: ₹30.20 | SL: ₹22.80 | P&L: -7.93%
+2026-02-10 12:26:30,657 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:26:30,660 - INFO -   Price: ₹30.00 | SL: ₹22.80 | P&L: -8.54%
+2026-02-10 12:26:33,489 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:26:33,492 - INFO -   Price: ₹30.00 | SL: ₹22.80 | P&L: -8.54%
+2026-02-10 12:26:36,415 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:26:36,419 - INFO -   Price: ₹30.30 | SL: ₹22.80 | P&L: -7.62%
+2026-02-10 12:26:39,212 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:26:39,214 - INFO -   Price: ₹30.75 | SL: ₹22.80 | P&L: -6.25%
+2026-02-10 12:26:42,092 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:26:42,095 - INFO -   Price: ₹30.30 | SL: ₹22.80 | P&L: -7.62%
+2026-02-10 12:26:44,950 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:26:44,953 - INFO -   Price: ₹29.85 | SL: ₹22.80 | P&L: -8.99%
+2026-02-10 12:26:47,815 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:26:47,818 - INFO -   Price: ₹29.90 | SL: ₹22.80 | P&L: -8.84%
+2026-02-10 12:26:50,778 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:26:50,780 - INFO -   Price: ₹29.40 | SL: ₹22.80 | P&L: -10.37%
+2026-02-10 12:26:53,649 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:26:53,652 - INFO -   Price: ₹29.55 | SL: ₹22.80 | P&L: -9.91%
+2026-02-10 12:26:56,593 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:26:56,596 - INFO -   Price: ₹29.40 | SL: ₹22.80 | P&L: -10.37%
+2026-02-10 12:26:59,426 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:26:59,429 - INFO -   Price: ₹29.30 | SL: ₹22.80 | P&L: -10.67%
+2026-02-10 12:27:02,411 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:27:02,414 - INFO -   Price: ₹29.55 | SL: ₹22.80 | P&L: -9.91%
+2026-02-10 12:27:05,183 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:27:05,186 - INFO -   Price: ₹29.70 | SL: ₹22.80 | P&L: -9.45%
+2026-02-10 12:27:07,997 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:27:08,000 - INFO -   Price: ₹29.85 | SL: ₹22.80 | P&L: -8.99%
+2026-02-10 12:27:10,853 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:27:10,856 - INFO -   Price: ₹29.50 | SL: ₹22.80 | P&L: -10.06%
+2026-02-10 12:27:14,170 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:27:14,176 - INFO -   Price: ₹29.95 | SL: ₹22.80 | P&L: -8.69%
+2026-02-10 12:27:17,104 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:27:17,106 - INFO -   Price: ₹29.65 | SL: ₹22.80 | P&L: -9.60%
+2026-02-10 12:27:19,855 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:27:19,858 - INFO -   Price: ₹29.75 | SL: ₹22.80 | P&L: -9.30%
+2026-02-10 12:27:22,563 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:27:22,566 - INFO -   Price: ₹29.40 | SL: ₹22.80 | P&L: -10.37%
+2026-02-10 12:27:26,348 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:27:26,351 - INFO -   Price: ₹29.35 | SL: ₹22.80 | P&L: -10.52%
+2026-02-10 12:27:29,332 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:27:29,334 - INFO -   Price: ₹29.95 | SL: ₹22.80 | P&L: -8.69%
+2026-02-10 12:27:32,310 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:27:32,313 - INFO -   Price: ₹30.35 | SL: ₹22.80 | P&L: -7.47%
+2026-02-10 12:27:35,454 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:27:35,457 - INFO -   Price: ₹30.25 | SL: ₹22.80 | P&L: -7.77%
+2026-02-10 12:27:38,607 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:27:38,611 - INFO -   Price: ₹30.50 | SL: ₹22.80 | P&L: -7.01%
+2026-02-10 12:27:41,488 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:27:41,492 - INFO -   Price: ₹30.30 | SL: ₹22.80 | P&L: -7.62%
+2026-02-10 12:27:44,160 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:27:44,163 - INFO -   Price: ₹30.20 | SL: ₹22.80 | P&L: -7.93%
+2026-02-10 12:27:47,158 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:27:47,163 - INFO -   Price: ₹30.45 | SL: ₹22.80 | P&L: -7.16%
+2026-02-10 12:27:49,968 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:27:49,971 - INFO -   Price: ₹29.90 | SL: ₹22.80 | P&L: -8.84%
+2026-02-10 12:27:52,965 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:27:52,968 - INFO -   Price: ₹29.20 | SL: ₹22.80 | P&L: -10.98%
+2026-02-10 12:27:55,945 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:27:55,948 - INFO -   Price: ₹29.05 | SL: ₹22.80 | P&L: -11.43%
+2026-02-10 12:27:59,018 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:27:59,022 - INFO -   Price: ₹29.10 | SL: ₹22.80 | P&L: -11.28%
+2026-02-10 12:28:01,849 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:28:01,852 - INFO -   Price: ₹28.75 | SL: ₹22.80 | P&L: -12.35%
+2026-02-10 12:28:04,772 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:28:04,774 - INFO -   Price: ₹28.60 | SL: ₹22.80 | P&L: -12.80%
+2026-02-10 12:28:07,955 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:28:07,958 - INFO -   Price: ₹29.35 | SL: ₹22.80 | P&L: -10.52%
+2026-02-10 12:28:10,820 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:28:10,823 - INFO -   Price: ₹29.80 | SL: ₹22.80 | P&L: -9.15%
+2026-02-10 12:28:13,626 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:28:13,628 - INFO -   Price: ₹30.25 | SL: ₹22.80 | P&L: -7.77%
+2026-02-10 12:28:16,396 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:28:16,399 - INFO -   Price: ₹30.00 | SL: ₹22.80 | P&L: -8.54%
+2026-02-10 12:28:19,290 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:28:19,293 - INFO -   Price: ₹29.95 | SL: ₹22.80 | P&L: -8.69%
+2026-02-10 12:28:22,147 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:28:22,149 - INFO -   Price: ₹30.20 | SL: ₹22.80 | P&L: -7.93%
+2026-02-10 12:28:24,925 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:28:24,929 - INFO -   Price: ₹30.20 | SL: ₹22.80 | P&L: -7.93%
+2026-02-10 12:28:28,087 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:28:28,090 - INFO -   Price: ₹30.25 | SL: ₹22.80 | P&L: -7.77%
+2026-02-10 12:28:30,872 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:28:30,875 - INFO -   Price: ₹30.00 | SL: ₹22.80 | P&L: -8.54%
+2026-02-10 12:28:33,667 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:28:33,669 - INFO -   Price: ₹30.30 | SL: ₹22.80 | P&L: -7.62%
+2026-02-10 12:28:36,677 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:28:36,680 - INFO -   Price: ₹30.30 | SL: ₹22.80 | P&L: -7.62%
+2026-02-10 12:28:39,551 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:28:39,555 - INFO -   Price: ₹29.95 | SL: ₹22.80 | P&L: -8.69%
+2026-02-10 12:28:42,533 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:28:42,537 - INFO -   Price: ₹29.65 | SL: ₹22.80 | P&L: -9.60%
+2026-02-10 12:28:45,764 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:28:45,767 - INFO -   Price: ₹29.30 | SL: ₹22.80 | P&L: -10.67%
+2026-02-10 12:28:48,939 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:28:48,941 - INFO -   Price: ₹29.80 | SL: ₹22.80 | P&L: -9.15%
+2026-02-10 12:28:52,118 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:28:52,121 - INFO -   Price: ₹30.10 | SL: ₹22.80 | P&L: -8.23%
+2026-02-10 12:28:54,857 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:28:54,860 - INFO -   Price: ₹30.10 | SL: ₹22.80 | P&L: -8.23%
+2026-02-10 12:28:57,749 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:28:57,752 - INFO -   Price: ₹30.15 | SL: ₹22.80 | P&L: -8.08%
+2026-02-10 12:29:00,524 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:29:00,527 - INFO -   Price: ₹30.00 | SL: ₹22.80 | P&L: -8.54%
+2026-02-10 12:29:03,488 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:29:03,491 - INFO -   Price: ₹29.90 | SL: ₹22.80 | P&L: -8.84%
+2026-02-10 12:29:06,502 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:29:06,504 - INFO -   Price: ₹29.70 | SL: ₹22.80 | P&L: -9.45%
+2026-02-10 12:29:09,489 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:29:09,492 - INFO -   Price: ₹29.70 | SL: ₹22.80 | P&L: -9.45%
+2026-02-10 12:29:12,267 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:29:12,270 - INFO -   Price: ₹29.60 | SL: ₹22.80 | P&L: -9.76%
+2026-02-10 12:29:15,050 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:29:15,054 - INFO -   Price: ₹29.45 | SL: ₹22.80 | P&L: -10.21%
+2026-02-10 12:29:17,981 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:29:17,984 - INFO -   Price: ₹29.35 | SL: ₹22.80 | P&L: -10.52%
+2026-02-10 12:29:21,111 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:29:21,114 - INFO -   Price: ₹29.00 | SL: ₹22.80 | P&L: -11.59%
+2026-02-10 12:29:24,065 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:29:24,068 - INFO -   Price: ₹29.25 | SL: ₹22.80 | P&L: -10.82%
+2026-02-10 12:29:26,950 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:29:26,953 - INFO -   Price: ₹29.15 | SL: ₹22.80 | P&L: -11.13%
+2026-02-10 12:29:29,737 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:29:29,741 - INFO -   Price: ₹29.20 | SL: ₹22.80 | P&L: -10.98%
+2026-02-10 12:29:32,679 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:29:32,681 - INFO -   Price: ₹28.85 | SL: ₹22.80 | P&L: -12.04%
+2026-02-10 12:29:35,502 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:29:35,506 - INFO -   Price: ₹28.90 | SL: ₹22.80 | P&L: -11.89%
+2026-02-10 12:29:38,295 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:29:38,297 - INFO -   Price: ₹28.50 | SL: ₹22.80 | P&L: -13.11%
+2026-02-10 12:29:41,142 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:29:41,144 - INFO -   Price: ₹29.45 | SL: ₹22.80 | P&L: -10.21%
+2026-02-10 12:29:43,971 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:29:43,973 - INFO -   Price: ₹29.25 | SL: ₹22.80 | P&L: -10.82%
+2026-02-10 12:29:46,836 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:29:46,838 - INFO -   Price: ₹29.20 | SL: ₹22.80 | P&L: -10.98%
+2026-02-10 12:29:49,666 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:29:49,670 - INFO -   Price: ₹28.95 | SL: ₹22.80 | P&L: -11.74%
+2026-02-10 12:29:52,858 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:29:52,861 - INFO -   Price: ₹28.45 | SL: ₹22.80 | P&L: -13.26%
+2026-02-10 12:29:55,713 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:29:55,716 - INFO -   Price: ₹28.40 | SL: ₹22.80 | P&L: -13.41%
+2026-02-10 12:29:58,906 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:29:58,909 - INFO -   Price: ₹28.55 | SL: ₹22.80 | P&L: -12.96%
+2026-02-10 12:30:01,729 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:30:01,731 - INFO -   Price: ₹28.75 | SL: ₹22.80 | P&L: -12.35%
+2026-02-10 12:30:05,331 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:30:05,334 - INFO -   Price: ₹29.05 | SL: ₹22.80 | P&L: -11.43%
+2026-02-10 12:30:09,839 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:30:09,841 - INFO -   Price: ₹29.60 | SL: ₹22.80 | P&L: -9.76%
+2026-02-10 12:30:12,508 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:30:12,510 - INFO -   Price: ₹29.20 | SL: ₹22.80 | P&L: -10.98%
+2026-02-10 12:30:15,167 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:30:15,170 - INFO -   Price: ₹29.50 | SL: ₹22.80 | P&L: -10.06%
+2026-02-10 12:30:18,145 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:30:18,147 - INFO -   Price: ₹29.30 | SL: ₹22.80 | P&L: -10.67%
+2026-02-10 12:30:20,771 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:30:20,778 - INFO -   Price: ₹29.10 | SL: ₹22.80 | P&L: -11.28%
+2026-02-10 12:30:23,383 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:30:23,386 - INFO -   Price: ₹28.95 | SL: ₹22.80 | P&L: -11.74%
+2026-02-10 12:30:25,976 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:30:25,979 - INFO -   Price: ₹28.80 | SL: ₹22.80 | P&L: -12.20%
+2026-02-10 12:30:28,682 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:30:28,684 - INFO -   Price: ₹28.50 | SL: ₹22.80 | P&L: -13.11%
+2026-02-10 12:30:31,246 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:30:31,248 - INFO -   Price: ₹28.45 | SL: ₹22.80 | P&L: -13.26%
+2026-02-10 12:30:33,871 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:30:33,874 - INFO -   Price: ₹28.45 | SL: ₹22.80 | P&L: -13.26%
+2026-02-10 12:30:36,767 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:30:36,769 - INFO -   Price: ₹28.05 | SL: ₹22.80 | P&L: -14.48%
+2026-02-10 12:30:39,545 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:30:39,546 - INFO -   Price: ₹28.50 | SL: ₹22.80 | P&L: -13.11%
+2026-02-10 12:30:42,830 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:30:42,833 - INFO -   Price: ₹28.45 | SL: ₹22.80 | P&L: -13.26%
+2026-02-10 12:30:45,756 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:30:45,757 - INFO -   Price: ₹28.70 | SL: ₹22.80 | P&L: -12.50%
+2026-02-10 12:30:48,354 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:30:48,357 - INFO -   Price: ₹28.70 | SL: ₹22.80 | P&L: -12.50%
+2026-02-10 12:30:50,961 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:30:50,963 - INFO -   Price: ₹28.75 | SL: ₹22.80 | P&L: -12.35%
+2026-02-10 12:30:53,550 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:30:53,552 - INFO -   Price: ₹28.80 | SL: ₹22.80 | P&L: -12.20%
+2026-02-10 12:30:56,183 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:30:56,185 - INFO -   Price: ₹28.85 | SL: ₹22.80 | P&L: -12.04%
+2026-02-10 12:30:59,196 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:30:59,199 - INFO -   Price: ₹28.75 | SL: ₹22.80 | P&L: -12.35%
+2026-02-10 12:31:03,245 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:31:03,248 - INFO -   Price: ₹28.25 | SL: ₹22.80 | P&L: -13.87%
+2026-02-10 12:31:06,302 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:31:06,305 - INFO -   Price: ₹27.85 | SL: ₹22.80 | P&L: -15.09%
+2026-02-10 12:31:09,119 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:31:09,121 - INFO -   Price: ₹28.05 | SL: ₹22.80 | P&L: -14.48%
+2026-02-10 12:31:11,811 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:31:11,814 - INFO -   Price: ₹28.60 | SL: ₹22.80 | P&L: -12.80%
+2026-02-10 12:31:14,787 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:31:14,789 - INFO -   Price: ₹29.00 | SL: ₹22.80 | P&L: -11.59%
+2026-02-10 12:31:17,742 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:31:17,745 - INFO -   Price: ₹28.95 | SL: ₹22.80 | P&L: -11.74%
+2026-02-10 12:31:20,884 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:31:20,892 - INFO -   Price: ₹28.65 | SL: ₹22.80 | P&L: -12.65%
+2026-02-10 12:31:23,954 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:31:23,956 - INFO -   Price: ₹28.35 | SL: ₹22.80 | P&L: -13.57%
+2026-02-10 12:31:27,150 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:31:27,152 - INFO -   Price: ₹28.50 | SL: ₹22.80 | P&L: -13.11%
+2026-02-10 12:31:30,247 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:31:30,249 - INFO -   Price: ₹28.65 | SL: ₹22.80 | P&L: -12.65%
+2026-02-10 12:31:33,303 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:31:33,306 - INFO -   Price: ₹28.65 | SL: ₹22.80 | P&L: -12.65%
+2026-02-10 12:31:36,240 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:31:36,242 - INFO -   Price: ₹28.50 | SL: ₹22.80 | P&L: -13.11%
+2026-02-10 12:31:39,482 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:31:39,485 - INFO -   Price: ₹28.60 | SL: ₹22.80 | P&L: -12.80%
+2026-02-10 12:31:42,132 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:31:42,134 - INFO -   Price: ₹28.55 | SL: ₹22.80 | P&L: -12.96%
+2026-02-10 12:31:44,768 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:31:44,771 - INFO -   Price: ₹28.70 | SL: ₹22.80 | P&L: -12.50%
+2026-02-10 12:31:47,344 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:31:47,347 - INFO -   Price: ₹28.35 | SL: ₹22.80 | P&L: -13.57%
+2026-02-10 12:31:49,906 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:31:49,908 - INFO -   Price: ₹28.45 | SL: ₹22.80 | P&L: -13.26%
+2026-02-10 12:31:52,494 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:31:52,497 - INFO -   Price: ₹28.90 | SL: ₹22.80 | P&L: -11.89%
+2026-02-10 12:31:55,139 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:31:55,142 - INFO -   Price: ₹29.35 | SL: ₹22.80 | P&L: -10.52%
+2026-02-10 12:31:57,810 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:31:57,812 - INFO -   Price: ₹29.45 | SL: ₹22.80 | P&L: -10.21%
+2026-02-10 12:32:00,532 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:32:00,534 - INFO -   Price: ₹29.35 | SL: ₹22.80 | P&L: -10.52%
+2026-02-10 12:32:03,099 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:32:03,101 - INFO -   Price: ₹29.20 | SL: ₹22.80 | P&L: -10.98%
+2026-02-10 12:32:05,666 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:32:05,669 - INFO -   Price: ₹29.05 | SL: ₹22.80 | P&L: -11.43%
+2026-02-10 12:32:08,229 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:32:08,230 - INFO -   Price: ₹29.10 | SL: ₹22.80 | P&L: -11.28%
+2026-02-10 12:32:10,812 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:32:10,813 - INFO -   Price: ₹29.00 | SL: ₹22.80 | P&L: -11.59%
+2026-02-10 12:32:13,426 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:32:13,428 - INFO -   Price: ₹28.85 | SL: ₹22.80 | P&L: -12.04%
+2026-02-10 12:32:16,114 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:32:16,116 - INFO -   Price: ₹28.85 | SL: ₹22.80 | P&L: -12.04%
+2026-02-10 12:32:18,769 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:32:18,772 - INFO -   Price: ₹28.90 | SL: ₹22.80 | P&L: -11.89%
+2026-02-10 12:32:21,351 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:32:21,353 - INFO -   Price: ₹29.00 | SL: ₹22.80 | P&L: -11.59%
+2026-02-10 12:32:23,958 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:32:23,961 - INFO -   Price: ₹29.00 | SL: ₹22.80 | P&L: -11.59%
+2026-02-10 12:32:26,623 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:32:26,626 - INFO -   Price: ₹28.85 | SL: ₹22.80 | P&L: -12.04%
+2026-02-10 12:32:29,250 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:32:29,253 - INFO -   Price: ₹29.00 | SL: ₹22.80 | P&L: -11.59%
+2026-02-10 12:32:32,006 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:32:32,009 - INFO -   Price: ₹28.80 | SL: ₹22.80 | P&L: -12.20%
+2026-02-10 12:32:34,650 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:32:34,651 - INFO -   Price: ₹29.00 | SL: ₹22.80 | P&L: -11.59%
+2026-02-10 12:32:37,250 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:32:37,252 - INFO -   Price: ₹29.15 | SL: ₹22.80 | P&L: -11.13%
+2026-02-10 12:32:39,897 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:32:39,899 - INFO -   Price: ₹28.85 | SL: ₹22.80 | P&L: -12.04%
+2026-02-10 12:32:42,531 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:32:42,532 - INFO -   Price: ₹28.90 | SL: ₹22.80 | P&L: -11.89%
+2026-02-10 12:32:45,173 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:32:45,175 - INFO -   Price: ₹28.95 | SL: ₹22.80 | P&L: -11.74%
+2026-02-10 12:32:47,756 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:32:47,758 - INFO -   Price: ₹28.80 | SL: ₹22.80 | P&L: -12.20%
+2026-02-10 12:32:50,424 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:32:50,426 - INFO -   Price: ₹29.05 | SL: ₹22.80 | P&L: -11.43%
+2026-02-10 12:32:53,267 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:32:53,269 - INFO -   Price: ₹28.55 | SL: ₹22.80 | P&L: -12.96%
+2026-02-10 12:32:56,186 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:32:56,187 - INFO -   Price: ₹28.30 | SL: ₹22.80 | P&L: -13.72%
+2026-02-10 12:32:58,872 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:32:58,877 - INFO -   Price: ₹28.50 | SL: ₹22.80 | P&L: -13.11%
+2026-02-10 12:33:01,507 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:33:01,509 - INFO -   Price: ₹28.35 | SL: ₹22.80 | P&L: -13.57%
+2026-02-10 12:33:04,084 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:33:04,086 - INFO -   Price: ₹28.80 | SL: ₹22.80 | P&L: -12.20%
+2026-02-10 12:33:06,709 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:33:06,712 - INFO -   Price: ₹28.90 | SL: ₹22.80 | P&L: -11.89%
+2026-02-10 12:33:09,297 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:33:09,300 - INFO -   Price: ₹28.95 | SL: ₹22.80 | P&L: -11.74%
+2026-02-10 12:33:11,864 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:33:11,866 - INFO -   Price: ₹29.10 | SL: ₹22.80 | P&L: -11.28%
+2026-02-10 12:33:14,477 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:33:14,479 - INFO -   Price: ₹28.90 | SL: ₹22.80 | P&L: -11.89%
+2026-02-10 12:33:17,049 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:33:17,051 - INFO -   Price: ₹28.85 | SL: ₹22.80 | P&L: -12.04%
+2026-02-10 12:33:19,629 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:33:19,631 - INFO -   Price: ₹28.55 | SL: ₹22.80 | P&L: -12.96%
+2026-02-10 12:33:22,309 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:33:22,312 - INFO -   Price: ₹28.45 | SL: ₹22.80 | P&L: -13.26%
+2026-02-10 12:33:24,960 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:33:24,963 - INFO -   Price: ₹28.20 | SL: ₹22.80 | P&L: -14.02%
+2026-02-10 12:33:27,702 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:33:27,705 - INFO -   Price: ₹28.45 | SL: ₹22.80 | P&L: -13.26%
+2026-02-10 12:33:30,645 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:33:30,646 - INFO -   Price: ₹28.75 | SL: ₹22.80 | P&L: -12.35%
+2026-02-10 12:33:33,319 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:33:33,322 - INFO -   Price: ₹28.80 | SL: ₹22.80 | P&L: -12.20%
+2026-02-10 12:33:35,984 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:33:35,986 - INFO -   Price: ₹28.80 | SL: ₹22.80 | P&L: -12.20%
+2026-02-10 12:33:38,679 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:33:38,681 - INFO -   Price: ₹28.65 | SL: ₹22.80 | P&L: -12.65%
+2026-02-10 12:33:41,393 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:33:41,394 - INFO -   Price: ₹28.95 | SL: ₹22.80 | P&L: -11.74%
+2026-02-10 12:33:44,565 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:33:44,568 - INFO -   Price: ₹28.80 | SL: ₹22.80 | P&L: -12.20%
+2026-02-10 12:33:47,318 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:33:47,320 - INFO -   Price: ₹28.85 | SL: ₹22.80 | P&L: -12.04%
+2026-02-10 12:33:50,012 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:33:50,014 - INFO -   Price: ₹28.75 | SL: ₹22.80 | P&L: -12.35%
+2026-02-10 12:33:52,685 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:33:52,686 - INFO -   Price: ₹28.60 | SL: ₹22.80 | P&L: -12.80%
+2026-02-10 12:33:55,403 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:33:55,405 - INFO -   Price: ₹28.40 | SL: ₹22.80 | P&L: -13.41%
+2026-02-10 12:33:58,123 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:33:58,126 - INFO -   Price: ₹28.55 | SL: ₹22.80 | P&L: -12.96%
+2026-02-10 12:34:01,061 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:34:01,064 - INFO -   Price: ₹28.60 | SL: ₹22.80 | P&L: -12.80%
+2026-02-10 12:34:03,679 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:34:03,681 - INFO -   Price: ₹28.45 | SL: ₹22.80 | P&L: -13.26%
+2026-02-10 12:34:06,295 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:34:06,296 - INFO -   Price: ₹28.40 | SL: ₹22.80 | P&L: -13.41%
+2026-02-10 12:34:08,977 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:34:08,979 - INFO -   Price: ₹28.50 | SL: ₹22.80 | P&L: -13.11%
+2026-02-10 12:34:11,647 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:34:11,648 - INFO -   Price: ₹28.45 | SL: ₹22.80 | P&L: -13.26%
+2026-02-10 12:34:14,277 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:34:14,279 - INFO -   Price: ₹28.40 | SL: ₹22.80 | P&L: -13.41%
+2026-02-10 12:34:16,866 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:34:16,868 - INFO -   Price: ₹28.55 | SL: ₹22.80 | P&L: -12.96%
+2026-02-10 12:34:19,504 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:34:19,506 - INFO -   Price: ₹28.40 | SL: ₹22.80 | P&L: -13.41%
+2026-02-10 12:34:22,081 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:34:22,084 - INFO -   Price: ₹28.20 | SL: ₹22.80 | P&L: -14.02%
+2026-02-10 12:34:24,787 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:34:24,790 - INFO -   Price: ₹28.30 | SL: ₹22.80 | P&L: -13.72%
+2026-02-10 12:34:27,383 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:34:27,386 - INFO -   Price: ₹28.15 | SL: ₹22.80 | P&L: -14.18%
+2026-02-10 12:34:30,032 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:34:30,035 - INFO -   Price: ₹28.20 | SL: ₹22.80 | P&L: -14.02%
+2026-02-10 12:34:32,740 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:34:32,742 - INFO -   Price: ₹28.25 | SL: ₹22.80 | P&L: -13.87%
+2026-02-10 12:34:35,362 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:34:35,363 - INFO -   Price: ₹28.15 | SL: ₹22.80 | P&L: -14.18%
+2026-02-10 12:34:37,976 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:34:37,978 - INFO -   Price: ₹28.40 | SL: ₹22.80 | P&L: -13.41%
+2026-02-10 12:34:40,635 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:34:40,637 - INFO -   Price: ₹28.35 | SL: ₹22.80 | P&L: -13.57%
+2026-02-10 12:34:43,266 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:34:43,267 - INFO -   Price: ₹28.25 | SL: ₹22.80 | P&L: -13.87%
+2026-02-10 12:34:46,015 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:34:46,016 - INFO -   Price: ₹28.75 | SL: ₹22.80 | P&L: -12.35%
+2026-02-10 12:34:48,682 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:34:48,684 - INFO -   Price: ₹28.55 | SL: ₹22.80 | P&L: -12.96%
+2026-02-10 12:34:51,386 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:34:51,389 - INFO -   Price: ₹27.55 | SL: ₹22.80 | P&L: -16.01%
+2026-02-10 12:34:53,992 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:34:53,995 - INFO -   Price: ₹27.60 | SL: ₹22.80 | P&L: -15.85%
+2026-02-10 12:34:56,815 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:34:56,817 - INFO -   Price: ₹28.05 | SL: ₹22.80 | P&L: -14.48%
+2026-02-10 12:34:59,427 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:34:59,428 - INFO -   Price: ₹28.55 | SL: ₹22.80 | P&L: -12.96%
+2026-02-10 12:35:02,140 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:35:02,142 - INFO -   Price: ₹28.05 | SL: ₹22.80 | P&L: -14.48%
+2026-02-10 12:35:05,075 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:35:05,078 - INFO -   Price: ₹28.05 | SL: ₹22.80 | P&L: -14.48%
+2026-02-10 12:35:07,832 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:35:07,833 - INFO -   Price: ₹28.00 | SL: ₹22.80 | P&L: -14.63%
+2026-02-10 12:35:10,996 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:35:10,998 - INFO -   Price: ₹28.10 | SL: ₹22.80 | P&L: -14.33%
+2026-02-10 12:35:13,617 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:35:13,620 - INFO -   Price: ₹27.80 | SL: ₹22.80 | P&L: -15.24%
+2026-02-10 12:35:16,245 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:35:16,247 - INFO -   Price: ₹27.35 | SL: ₹22.80 | P&L: -16.62%
+2026-02-10 12:35:18,829 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:35:18,831 - INFO -   Price: ₹27.00 | SL: ₹22.80 | P&L: -17.68%
+2026-02-10 12:35:21,438 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:35:21,439 - INFO -   Price: ₹27.65 | SL: ₹22.80 | P&L: -15.70%
+2026-02-10 12:35:24,118 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:35:24,120 - INFO -   Price: ₹27.60 | SL: ₹22.80 | P&L: -15.85%
+2026-02-10 12:35:26,763 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:35:26,765 - INFO -   Price: ₹27.55 | SL: ₹22.80 | P&L: -16.01%
+2026-02-10 12:35:29,502 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:35:29,505 - INFO -   Price: ₹27.55 | SL: ₹22.80 | P&L: -16.01%
+2026-02-10 12:35:32,185 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:35:32,187 - INFO -   Price: ₹27.50 | SL: ₹22.80 | P&L: -16.16%
+2026-02-10 12:35:34,890 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:35:34,891 - INFO -   Price: ₹27.50 | SL: ₹22.80 | P&L: -16.16%
+2026-02-10 12:35:37,544 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:35:37,547 - INFO -   Price: ₹27.85 | SL: ₹22.80 | P&L: -15.09%
+2026-02-10 12:35:40,207 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:35:40,209 - INFO -   Price: ₹27.70 | SL: ₹22.80 | P&L: -15.55%
+2026-02-10 12:35:42,835 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:35:42,838 - INFO -   Price: ₹27.45 | SL: ₹22.80 | P&L: -16.31%
+2026-02-10 12:35:45,522 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:35:45,525 - INFO -   Price: ₹27.90 | SL: ₹22.80 | P&L: -14.94%
+2026-02-10 12:35:48,116 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:35:48,117 - INFO -   Price: ₹27.65 | SL: ₹22.80 | P&L: -15.70%
+2026-02-10 12:35:50,867 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:35:50,872 - INFO -   Price: ₹27.95 | SL: ₹22.80 | P&L: -14.79%
+2026-02-10 12:35:53,605 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:35:53,608 - INFO -   Price: ₹27.75 | SL: ₹22.80 | P&L: -15.40%
+2026-02-10 12:35:56,366 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:35:56,367 - INFO -   Price: ₹27.85 | SL: ₹22.80 | P&L: -15.09%
+2026-02-10 12:36:00,018 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:36:00,020 - INFO -   Price: ₹27.90 | SL: ₹22.80 | P&L: -14.94%
+2026-02-10 12:36:02,702 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:36:02,704 - INFO -   Price: ₹27.65 | SL: ₹22.80 | P&L: -15.70%
+2026-02-10 12:36:05,400 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:36:05,402 - INFO -   Price: ₹28.25 | SL: ₹22.80 | P&L: -13.87%
+2026-02-10 12:36:08,244 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:36:08,246 - INFO -   Price: ₹27.85 | SL: ₹22.80 | P&L: -15.09%
+2026-02-10 12:36:11,476 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:36:11,477 - INFO -   Price: ₹27.95 | SL: ₹22.80 | P&L: -14.79%
+2026-02-10 12:36:14,082 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:36:14,084 - INFO -   Price: ₹27.90 | SL: ₹22.80 | P&L: -14.94%
+2026-02-10 12:36:16,732 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:36:16,733 - INFO -   Price: ₹28.05 | SL: ₹22.80 | P&L: -14.48%
+2026-02-10 12:36:19,389 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:36:19,391 - INFO -   Price: ₹28.10 | SL: ₹22.80 | P&L: -14.33%
+2026-02-10 12:36:21,981 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:36:21,984 - INFO -   Price: ₹27.95 | SL: ₹22.80 | P&L: -14.79%
+2026-02-10 12:36:24,948 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:36:24,951 - INFO -   Price: ₹28.15 | SL: ₹22.80 | P&L: -14.18%
+2026-02-10 12:36:27,596 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:36:27,598 - INFO -   Price: ₹28.05 | SL: ₹22.80 | P&L: -14.48%
+2026-02-10 12:36:30,311 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:36:30,314 - INFO -   Price: ₹28.00 | SL: ₹22.80 | P&L: -14.63%
+2026-02-10 12:36:32,993 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:36:32,995 - INFO -   Price: ₹28.00 | SL: ₹22.80 | P&L: -14.63%
+2026-02-10 12:36:35,671 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:36:35,673 - INFO -   Price: ₹27.80 | SL: ₹22.80 | P&L: -15.24%
+2026-02-10 12:36:38,361 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:36:38,363 - INFO -   Price: ₹27.05 | SL: ₹22.80 | P&L: -17.53%
+2026-02-10 12:36:41,509 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:36:41,511 - INFO -   Price: ₹25.40 | SL: ₹22.80 | P&L: -22.56%
+2026-02-10 12:36:44,120 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:36:44,123 - INFO -   Price: ₹26.60 | SL: ₹22.80 | P&L: -18.90%
+2026-02-10 12:36:46,835 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:36:46,836 - INFO -   Price: ₹26.05 | SL: ₹22.80 | P&L: -20.58%
+2026-02-10 12:36:49,683 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:36:49,686 - INFO -   Price: ₹25.00 | SL: ₹22.80 | P&L: -23.78%
+2026-02-10 12:36:52,331 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:36:52,332 - INFO -   Price: ₹26.15 | SL: ₹22.80 | P&L: -20.27%
+2026-02-10 12:36:55,054 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:36:55,056 - INFO -   Price: ₹26.25 | SL: ₹22.80 | P&L: -19.97%
+2026-02-10 12:36:57,726 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:36:57,728 - INFO -   Price: ₹26.30 | SL: ₹22.80 | P&L: -19.82%
+2026-02-10 12:37:00,525 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:37:00,527 - INFO -   Price: ₹26.20 | SL: ₹22.80 | P&L: -20.12%
+2026-02-10 12:37:03,145 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:37:03,147 - INFO -   Price: ₹26.80 | SL: ₹22.80 | P&L: -18.29%
+2026-02-10 12:37:05,821 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:37:05,823 - INFO -   Price: ₹26.60 | SL: ₹22.80 | P&L: -18.90%
+2026-02-10 12:37:08,557 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:37:08,560 - INFO -   Price: ₹26.70 | SL: ₹22.80 | P&L: -18.60%
+2026-02-10 12:37:11,230 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:37:11,232 - INFO -   Price: ₹26.20 | SL: ₹22.80 | P&L: -20.12%
+2026-02-10 12:37:13,877 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:37:13,880 - INFO -   Price: ₹26.50 | SL: ₹22.80 | P&L: -19.21%
+2026-02-10 12:37:16,637 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:37:16,640 - INFO -   Price: ₹26.20 | SL: ₹22.80 | P&L: -20.12%
+2026-02-10 12:37:19,259 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:37:19,261 - INFO -   Price: ₹26.30 | SL: ₹22.80 | P&L: -19.82%
+2026-02-10 12:37:21,851 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:37:21,855 - INFO -   Price: ₹26.55 | SL: ₹22.80 | P&L: -19.05%
+2026-02-10 12:37:24,538 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:37:24,541 - INFO -   Price: ₹26.80 | SL: ₹22.80 | P&L: -18.29%
+2026-02-10 12:37:27,128 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:37:27,130 - INFO -   Price: ₹26.85 | SL: ₹22.80 | P&L: -18.14%
+2026-02-10 12:37:29,728 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:37:29,730 - INFO -   Price: ₹26.80 | SL: ₹22.80 | P&L: -18.29%
+2026-02-10 12:37:32,298 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:37:32,300 - INFO -   Price: ₹26.50 | SL: ₹22.80 | P&L: -19.21%
+2026-02-10 12:37:34,902 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:37:34,905 - INFO -   Price: ₹26.45 | SL: ₹22.80 | P&L: -19.36%
+2026-02-10 12:37:37,669 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:37:37,672 - INFO -   Price: ₹26.70 | SL: ₹22.80 | P&L: -18.60%
+2026-02-10 12:37:40,262 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:37:40,264 - INFO -   Price: ₹26.40 | SL: ₹22.80 | P&L: -19.51%
+2026-02-10 12:37:42,899 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:37:42,902 - INFO -   Price: ₹26.55 | SL: ₹22.80 | P&L: -19.05%
+2026-02-10 12:37:45,631 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:37:45,633 - INFO -   Price: ₹26.10 | SL: ₹22.80 | P&L: -20.43%
+2026-02-10 12:37:48,293 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:37:48,295 - INFO -   Price: ₹26.25 | SL: ₹22.80 | P&L: -19.97%
+2026-02-10 12:37:50,959 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:37:50,961 - INFO -   Price: ₹26.45 | SL: ₹22.80 | P&L: -19.36%
+2026-02-10 12:37:53,538 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:37:53,541 - INFO -   Price: ₹26.40 | SL: ₹22.80 | P&L: -19.51%
+2026-02-10 12:37:56,175 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:37:56,177 - INFO -   Price: ₹26.10 | SL: ₹22.80 | P&L: -20.43%
+2026-02-10 12:37:58,827 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:37:58,829 - INFO -   Price: ₹26.05 | SL: ₹22.80 | P&L: -20.58%
+2026-02-10 12:38:01,456 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:38:01,458 - INFO -   Price: ₹25.85 | SL: ₹22.80 | P&L: -21.19%
+2026-02-10 12:38:04,059 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:38:04,062 - INFO -   Price: ₹25.65 | SL: ₹22.80 | P&L: -21.80%
+2026-02-10 12:38:06,743 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:38:06,746 - INFO -   Price: ₹25.90 | SL: ₹22.80 | P&L: -21.04%
+2026-02-10 12:38:09,347 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:38:09,349 - INFO -   Price: ₹25.90 | SL: ₹22.80 | P&L: -21.04%
+2026-02-10 12:38:11,984 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:38:11,987 - INFO -   Price: ₹25.75 | SL: ₹22.80 | P&L: -21.49%
+2026-02-10 12:38:14,609 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:38:14,612 - INFO -   Price: ₹25.70 | SL: ₹22.80 | P&L: -21.65%
+2026-02-10 12:38:17,210 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:38:17,213 - INFO -   Price: ₹25.60 | SL: ₹22.80 | P&L: -21.95%
+2026-02-10 12:38:19,812 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:38:19,815 - INFO -   Price: ₹25.25 | SL: ₹22.80 | P&L: -23.02%
+2026-02-10 12:38:22,456 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:38:22,457 - INFO -   Price: ₹24.90 | SL: ₹22.80 | P&L: -24.09%
+2026-02-10 12:38:25,038 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:38:25,039 - INFO -   Price: ₹25.15 | SL: ₹22.80 | P&L: -23.32%
+2026-02-10 12:38:27,702 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:38:27,705 - INFO -   Price: ₹25.60 | SL: ₹22.80 | P&L: -21.95%
+2026-02-10 12:38:30,379 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:38:30,382 - INFO -   Price: ₹25.55 | SL: ₹22.80 | P&L: -22.10%
+2026-02-10 12:38:33,274 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:38:33,276 - INFO -   Price: ₹25.15 | SL: ₹22.80 | P&L: -23.32%
+2026-02-10 12:38:35,910 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:38:35,913 - INFO -   Price: ₹25.10 | SL: ₹22.80 | P&L: -23.48%
+2026-02-10 12:38:38,595 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:38:38,597 - INFO -   Price: ₹25.10 | SL: ₹22.80 | P&L: -23.48%
+2026-02-10 12:38:41,209 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:38:41,211 - INFO -   Price: ₹25.15 | SL: ₹22.80 | P&L: -23.32%
+2026-02-10 12:38:43,864 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:38:43,866 - INFO -   Price: ₹25.25 | SL: ₹22.80 | P&L: -23.02%
+2026-02-10 12:38:46,464 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:38:46,467 - INFO -   Price: ₹25.10 | SL: ₹22.80 | P&L: -23.48%
+2026-02-10 12:38:49,120 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:38:49,123 - INFO -   Price: ₹25.20 | SL: ₹22.80 | P&L: -23.17%
+2026-02-10 12:38:51,914 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:38:51,915 - INFO -   Price: ₹25.50 | SL: ₹22.80 | P&L: -22.26%
+2026-02-10 12:38:54,837 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:38:54,840 - INFO -   Price: ₹25.25 | SL: ₹22.80 | P&L: -23.02%
+2026-02-10 12:38:57,834 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:38:57,837 - INFO -   Price: ₹25.20 | SL: ₹22.80 | P&L: -23.17%
+2026-02-10 12:39:00,493 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:39:00,495 - INFO -   Price: ₹25.60 | SL: ₹22.80 | P&L: -21.95%
+2026-02-10 12:39:03,135 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:39:03,137 - INFO -   Price: ₹25.65 | SL: ₹22.80 | P&L: -21.80%
+2026-02-10 12:39:05,786 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:39:05,788 - INFO -   Price: ₹25.95 | SL: ₹22.80 | P&L: -20.88%
+2026-02-10 12:39:08,373 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:39:08,376 - INFO -   Price: ₹26.00 | SL: ₹22.80 | P&L: -20.73%
+2026-02-10 12:39:11,010 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:39:11,012 - INFO -   Price: ₹26.35 | SL: ₹22.80 | P&L: -19.66%
+2026-02-10 12:39:13,588 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:39:13,591 - INFO -   Price: ₹26.30 | SL: ₹22.80 | P&L: -19.82%
+2026-02-10 12:39:16,233 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:39:16,236 - INFO -   Price: ₹26.30 | SL: ₹22.80 | P&L: -19.82%
+2026-02-10 12:39:18,909 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:39:18,911 - INFO -   Price: ₹26.15 | SL: ₹22.80 | P&L: -20.27%
+2026-02-10 12:39:21,716 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:39:21,717 - INFO -   Price: ₹26.25 | SL: ₹22.80 | P&L: -19.97%
+2026-02-10 12:39:24,841 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:39:24,843 - INFO -   Price: ₹26.35 | SL: ₹22.80 | P&L: -19.66%
+2026-02-10 12:39:28,020 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:39:28,023 - INFO -   Price: ₹26.15 | SL: ₹22.80 | P&L: -20.27%
+2026-02-10 12:39:30,905 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:39:30,908 - INFO -   Price: ₹26.15 | SL: ₹22.80 | P&L: -20.27%
+2026-02-10 12:39:33,897 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:39:33,900 - INFO -   Price: ₹26.40 | SL: ₹22.80 | P&L: -19.51%
+2026-02-10 12:39:36,940 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:39:36,942 - INFO -   Price: ₹26.40 | SL: ₹22.80 | P&L: -19.51%
+2026-02-10 12:39:40,167 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:39:40,170 - INFO -   Price: ₹26.55 | SL: ₹22.80 | P&L: -19.05%
+2026-02-10 12:39:43,400 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:39:43,403 - INFO -   Price: ₹26.80 | SL: ₹22.80 | P&L: -18.29%
+2026-02-10 12:39:46,266 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:39:46,269 - INFO -   Price: ₹26.70 | SL: ₹22.80 | P&L: -18.60%
+2026-02-10 12:39:49,279 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:39:49,282 - INFO -   Price: ₹27.25 | SL: ₹22.80 | P&L: -16.92%
+2026-02-10 12:39:52,100 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:39:52,103 - INFO -   Price: ₹27.30 | SL: ₹22.80 | P&L: -16.77%
+2026-02-10 12:39:55,869 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:39:55,887 - INFO -   Price: ₹27.25 | SL: ₹22.80 | P&L: -16.92%
+2026-02-10 12:39:59,068 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:39:59,072 - INFO -   Price: ₹27.50 | SL: ₹22.80 | P&L: -16.16%
+2026-02-10 12:40:02,486 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:40:02,490 - INFO -   Price: ₹27.30 | SL: ₹22.80 | P&L: -16.77%
+2026-02-10 12:40:06,563 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:40:06,567 - INFO -   Price: ₹26.60 | SL: ₹22.80 | P&L: -18.90%
+2026-02-10 12:40:09,615 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:40:09,618 - INFO -   Price: ₹26.65 | SL: ₹22.80 | P&L: -18.75%
+2026-02-10 12:40:12,555 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:40:12,557 - INFO -   Price: ₹26.45 | SL: ₹22.80 | P&L: -19.36%
+2026-02-10 12:40:15,567 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:40:15,568 - INFO -   Price: ₹25.90 | SL: ₹22.80 | P&L: -21.04%
+2026-02-10 12:40:18,551 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:40:18,555 - INFO -   Price: ₹26.00 | SL: ₹22.80 | P&L: -20.73%
+2026-02-10 12:40:21,524 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:40:21,526 - INFO -   Price: ₹26.05 | SL: ₹22.80 | P&L: -20.58%
+2026-02-10 12:40:24,855 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:40:24,857 - INFO -   Price: ₹26.55 | SL: ₹22.80 | P&L: -19.05%
+2026-02-10 12:40:28,436 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:40:28,438 - INFO -   Price: ₹27.05 | SL: ₹22.80 | P&L: -17.53%
+2026-02-10 12:40:31,478 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:40:31,482 - INFO -   Price: ₹27.05 | SL: ₹22.80 | P&L: -17.53%
+2026-02-10 12:40:34,107 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:40:34,111 - INFO -   Price: ₹27.00 | SL: ₹22.80 | P&L: -17.68%
+2026-02-10 12:40:36,706 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:40:36,709 - INFO -   Price: ₹27.15 | SL: ₹22.80 | P&L: -17.23%
+2026-02-10 12:40:40,077 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:40:40,079 - INFO -   Price: ₹27.35 | SL: ₹22.80 | P&L: -16.62%
+2026-02-10 12:40:42,841 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:40:42,844 - INFO -   Price: ₹27.40 | SL: ₹22.80 | P&L: -16.46%
+2026-02-10 12:40:45,872 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:40:45,875 - INFO -   Price: ₹27.40 | SL: ₹22.80 | P&L: -16.46%
+2026-02-10 12:40:48,732 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:40:48,734 - INFO -   Price: ₹27.35 | SL: ₹22.80 | P&L: -16.62%
+2026-02-10 12:40:51,475 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:40:51,478 - INFO -   Price: ₹27.30 | SL: ₹22.80 | P&L: -16.77%
+2026-02-10 12:40:54,230 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:40:54,233 - INFO -   Price: ₹27.40 | SL: ₹22.80 | P&L: -16.46%
+2026-02-10 12:40:57,101 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:40:57,104 - INFO -   Price: ₹27.75 | SL: ₹22.80 | P&L: -15.40%
+2026-02-10 12:41:00,206 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:41:00,208 - INFO -   Price: ₹27.70 | SL: ₹22.80 | P&L: -15.55%
+2026-02-10 12:41:02,943 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:41:02,945 - INFO -   Price: ₹27.65 | SL: ₹22.80 | P&L: -15.70%
+2026-02-10 12:41:05,854 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:41:05,856 - INFO -   Price: ₹27.70 | SL: ₹22.80 | P&L: -15.55%
+2026-02-10 12:41:08,645 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:41:08,647 - INFO -   Price: ₹27.60 | SL: ₹22.80 | P&L: -15.85%
+2026-02-10 12:41:11,440 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:41:11,442 - INFO -   Price: ₹27.70 | SL: ₹22.80 | P&L: -15.55%
+2026-02-10 12:41:14,138 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:41:14,141 - INFO -   Price: ₹27.75 | SL: ₹22.80 | P&L: -15.40%
+2026-02-10 12:41:16,904 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:41:16,907 - INFO -   Price: ₹27.90 | SL: ₹22.80 | P&L: -14.94%
+2026-02-10 12:41:19,916 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:41:19,917 - INFO -   Price: ₹27.75 | SL: ₹22.80 | P&L: -15.40%
+2026-02-10 12:41:22,799 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:41:22,800 - INFO -   Price: ₹27.85 | SL: ₹22.80 | P&L: -15.09%
+2026-02-10 12:41:25,768 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:41:25,770 - INFO -   Price: ₹28.25 | SL: ₹22.80 | P&L: -13.87%
+2026-02-10 12:41:28,560 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:41:28,562 - INFO -   Price: ₹28.10 | SL: ₹22.80 | P&L: -14.33%
+2026-02-10 12:41:31,258 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:41:31,261 - INFO -   Price: ₹27.80 | SL: ₹22.80 | P&L: -15.24%
+2026-02-10 12:41:34,001 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:41:34,003 - INFO -   Price: ₹28.05 | SL: ₹22.80 | P&L: -14.48%
+2026-02-10 12:41:36,791 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:41:36,794 - INFO -   Price: ₹28.20 | SL: ₹22.80 | P&L: -14.02%
+2026-02-10 12:41:39,454 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:41:39,457 - INFO -   Price: ₹28.55 | SL: ₹22.80 | P&L: -12.96%
+2026-02-10 12:41:42,355 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:41:42,358 - INFO -   Price: ₹28.45 | SL: ₹22.80 | P&L: -13.26%
+2026-02-10 12:41:46,456 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:41:46,460 - INFO -   Price: ₹28.60 | SL: ₹22.80 | P&L: -12.80%
+2026-02-10 12:41:49,548 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:41:49,551 - INFO -   Price: ₹28.35 | SL: ₹22.80 | P&L: -13.57%
+2026-02-10 12:41:52,412 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:41:52,414 - INFO -   Price: ₹28.25 | SL: ₹22.80 | P&L: -13.87%
+2026-02-10 12:41:55,319 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:41:55,321 - INFO -   Price: ₹28.45 | SL: ₹22.80 | P&L: -13.26%
+2026-02-10 12:41:58,192 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:41:58,195 - INFO -   Price: ₹28.85 | SL: ₹22.80 | P&L: -12.04%
+2026-02-10 12:42:01,123 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:42:01,127 - INFO -   Price: ₹28.90 | SL: ₹22.80 | P&L: -11.89%
+2026-02-10 12:42:04,070 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:42:04,072 - INFO -   Price: ₹29.20 | SL: ₹22.80 | P&L: -10.98%
+2026-02-10 12:42:06,955 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:42:06,958 - INFO -   Price: ₹29.00 | SL: ₹22.80 | P&L: -11.59%
+2026-02-10 12:42:09,713 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:42:09,716 - INFO -   Price: ₹29.20 | SL: ₹22.80 | P&L: -10.98%
+2026-02-10 12:42:12,435 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:42:12,438 - INFO -   Price: ₹29.15 | SL: ₹22.80 | P&L: -11.13%
+2026-02-10 12:42:15,148 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:42:15,150 - INFO -   Price: ₹28.85 | SL: ₹22.80 | P&L: -12.04%
+2026-02-10 12:42:17,869 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:42:17,872 - INFO -   Price: ₹28.85 | SL: ₹22.80 | P&L: -12.04%
+2026-02-10 12:42:20,583 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:42:20,584 - INFO -   Price: ₹28.90 | SL: ₹22.80 | P&L: -11.89%
+2026-02-10 12:42:23,363 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:42:23,365 - INFO -   Price: ₹29.00 | SL: ₹22.80 | P&L: -11.59%
+2026-02-10 12:42:26,079 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:42:26,081 - INFO -   Price: ₹29.20 | SL: ₹22.80 | P&L: -10.98%
+2026-02-10 12:42:28,866 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:42:28,867 - INFO -   Price: ₹29.00 | SL: ₹22.80 | P&L: -11.59%
+2026-02-10 12:42:31,660 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:42:31,663 - INFO -   Price: ₹29.05 | SL: ₹22.80 | P&L: -11.43%
+2026-02-10 12:42:34,440 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:42:34,443 - INFO -   Price: ₹29.10 | SL: ₹22.80 | P&L: -11.28%
+2026-02-10 12:42:37,219 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:42:37,223 - INFO -   Price: ₹28.90 | SL: ₹22.80 | P&L: -11.89%
+2026-02-10 12:42:39,984 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:42:39,985 - INFO -   Price: ₹28.90 | SL: ₹22.80 | P&L: -11.89%
+2026-02-10 12:42:42,743 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:42:42,744 - INFO -   Price: ₹29.10 | SL: ₹22.80 | P&L: -11.28%
+2026-02-10 12:42:45,572 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:42:45,575 - INFO -   Price: ₹29.15 | SL: ₹22.80 | P&L: -11.13%
+2026-02-10 12:42:48,304 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:42:48,307 - INFO -   Price: ₹29.15 | SL: ₹22.80 | P&L: -11.13%
+2026-02-10 12:42:51,095 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:42:51,098 - INFO -   Price: ₹29.35 | SL: ₹22.80 | P&L: -10.52%
+2026-02-10 12:42:53,898 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:42:53,900 - INFO -   Price: ₹29.35 | SL: ₹22.80 | P&L: -10.52%
+2026-02-10 12:42:56,764 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:42:56,767 - INFO -   Price: ₹29.30 | SL: ₹22.80 | P&L: -10.67%
+2026-02-10 12:42:59,498 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:42:59,501 - INFO -   Price: ₹29.10 | SL: ₹22.80 | P&L: -11.28%
+2026-02-10 12:43:02,437 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:43:02,440 - INFO -   Price: ₹28.85 | SL: ₹22.80 | P&L: -12.04%
+2026-02-10 12:43:05,213 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:43:05,216 - INFO -   Price: ₹28.95 | SL: ₹22.80 | P&L: -11.74%
+2026-02-10 12:43:07,969 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:43:07,975 - INFO -   Price: ₹29.00 | SL: ₹22.80 | P&L: -11.59%
+2026-02-10 12:43:11,236 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:43:11,238 - INFO -   Price: ₹29.10 | SL: ₹22.80 | P&L: -11.28%
+2026-02-10 12:43:13,916 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:43:13,918 - INFO -   Price: ₹28.70 | SL: ₹22.80 | P&L: -12.50%
+2026-02-10 12:43:16,743 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:43:16,746 - INFO -   Price: ₹28.25 | SL: ₹22.80 | P&L: -13.87%
+2026-02-10 12:43:19,529 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:43:19,532 - INFO -   Price: ₹28.20 | SL: ₹22.80 | P&L: -14.02%
+2026-02-10 12:43:22,193 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:43:22,195 - INFO -   Price: ₹28.60 | SL: ₹22.80 | P&L: -12.80%
+2026-02-10 12:43:24,869 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:43:24,871 - INFO -   Price: ₹28.50 | SL: ₹22.80 | P&L: -13.11%
+2026-02-10 12:43:27,523 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:43:27,525 - INFO -   Price: ₹27.80 | SL: ₹22.80 | P&L: -15.24%
+2026-02-10 12:43:30,509 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:43:30,512 - INFO -   Price: ₹27.25 | SL: ₹22.80 | P&L: -16.92%
+2026-02-10 12:43:33,529 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:43:33,532 - INFO -   Price: ₹27.05 | SL: ₹22.80 | P&L: -17.53%
+2026-02-10 12:43:36,546 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:43:36,549 - INFO -   Price: ₹27.45 | SL: ₹22.80 | P&L: -16.31%
+2026-02-10 12:43:39,574 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:43:39,576 - INFO -   Price: ₹27.95 | SL: ₹22.80 | P&L: -14.79%
+2026-02-10 12:43:42,493 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:43:42,494 - INFO -   Price: ₹27.55 | SL: ₹22.80 | P&L: -16.01%
+2026-02-10 12:43:45,576 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:43:45,579 - INFO -   Price: ₹27.60 | SL: ₹22.80 | P&L: -15.85%
+2026-02-10 12:43:48,512 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:43:48,516 - INFO -   Price: ₹27.70 | SL: ₹22.80 | P&L: -15.55%
+2026-02-10 12:43:51,455 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:43:51,458 - INFO -   Price: ₹27.60 | SL: ₹22.80 | P&L: -15.85%
+2026-02-10 12:43:54,398 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:43:54,401 - INFO -   Price: ₹28.40 | SL: ₹22.80 | P&L: -13.41%
+2026-02-10 12:43:57,422 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:43:57,424 - INFO -   Price: ₹28.70 | SL: ₹22.80 | P&L: -12.50%
+2026-02-10 12:44:00,604 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:44:00,605 - INFO -   Price: ₹28.80 | SL: ₹22.80 | P&L: -12.20%
+2026-02-10 12:44:03,636 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:44:03,638 - INFO -   Price: ₹29.00 | SL: ₹22.80 | P&L: -11.59%
+2026-02-10 12:44:06,504 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:44:06,505 - INFO -   Price: ₹29.05 | SL: ₹22.80 | P&L: -11.43%
+2026-02-10 12:44:09,341 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:44:09,343 - INFO -   Price: ₹29.25 | SL: ₹22.80 | P&L: -10.82%
+2026-02-10 12:44:12,115 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:44:12,118 - INFO -   Price: ₹29.35 | SL: ₹22.80 | P&L: -10.52%
+2026-02-10 12:44:15,035 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:44:15,037 - INFO -   Price: ₹29.30 | SL: ₹22.80 | P&L: -10.67%
+2026-02-10 12:44:17,870 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:44:17,872 - INFO -   Price: ₹29.10 | SL: ₹22.80 | P&L: -11.28%
+2026-02-10 12:44:20,981 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:44:20,984 - INFO -   Price: ₹29.40 | SL: ₹22.80 | P&L: -10.37%
+2026-02-10 12:44:24,151 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:44:24,154 - INFO -   Price: ₹29.25 | SL: ₹22.80 | P&L: -10.82%
+2026-02-10 12:44:27,555 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:44:27,557 - INFO -   Price: ₹29.40 | SL: ₹22.80 | P&L: -10.37%
+2026-02-10 12:44:30,570 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:44:30,573 - INFO -   Price: ₹29.50 | SL: ₹22.80 | P&L: -10.06%
+2026-02-10 12:44:33,958 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:44:33,960 - INFO -   Price: ₹29.30 | SL: ₹22.80 | P&L: -10.67%
+2026-02-10 12:44:36,870 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:44:36,872 - INFO -   Price: ₹29.65 | SL: ₹22.80 | P&L: -9.60%
+2026-02-10 12:44:39,849 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:44:39,852 - INFO -   Price: ₹29.50 | SL: ₹22.80 | P&L: -10.06%
+2026-02-10 12:44:42,873 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:44:42,876 - INFO -   Price: ₹29.35 | SL: ₹22.80 | P&L: -10.52%
+2026-02-10 12:44:45,772 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:44:45,774 - INFO -   Price: ₹29.50 | SL: ₹22.80 | P&L: -10.06%
+2026-02-10 12:44:48,749 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:44:48,751 - INFO -   Price: ₹29.45 | SL: ₹22.80 | P&L: -10.21%
+2026-02-10 12:44:51,409 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:44:51,412 - INFO -   Price: ₹29.70 | SL: ₹22.80 | P&L: -9.45%
+2026-02-10 12:44:54,198 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:44:54,201 - INFO -   Price: ₹29.70 | SL: ₹22.80 | P&L: -9.45%
+2026-02-10 12:44:57,254 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:44:57,256 - INFO -   Price: ₹29.80 | SL: ₹22.80 | P&L: -9.15%
+2026-02-10 12:45:00,194 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:45:00,197 - INFO -   Price: ₹30.10 | SL: ₹22.80 | P&L: -8.23%
+2026-02-10 12:45:03,330 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:45:03,333 - INFO -   Price: ₹30.20 | SL: ₹22.80 | P&L: -7.93%
+2026-02-10 12:45:06,266 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:45:06,268 - INFO -   Price: ₹30.50 | SL: ₹22.80 | P&L: -7.01%
+2026-02-10 12:45:09,181 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:45:09,184 - INFO -   Price: ₹30.25 | SL: ₹22.80 | P&L: -7.77%
+2026-02-10 12:45:12,046 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:45:12,049 - INFO -   Price: ₹30.65 | SL: ₹22.80 | P&L: -6.55%
+2026-02-10 12:45:15,275 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:45:15,277 - INFO -   Price: ₹30.60 | SL: ₹22.80 | P&L: -6.71%
+2026-02-10 12:45:18,312 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:45:18,315 - INFO -   Price: ₹30.55 | SL: ₹22.80 | P&L: -6.86%
+2026-02-10 12:45:21,303 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:45:21,306 - INFO -   Price: ₹31.45 | SL: ₹22.80 | P&L: -4.12%
+2026-02-10 12:45:24,261 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:45:24,264 - INFO -   Price: ₹31.05 | SL: ₹22.80 | P&L: -5.34%
+2026-02-10 12:45:27,134 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:45:27,137 - INFO -   Price: ₹31.60 | SL: ₹22.80 | P&L: -3.66%
+2026-02-10 12:45:29,890 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:45:29,893 - INFO -   Price: ₹31.00 | SL: ₹22.80 | P&L: -5.49%
+2026-02-10 12:45:32,784 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:45:32,786 - INFO -   Price: ₹31.30 | SL: ₹22.80 | P&L: -4.57%
+2026-02-10 12:45:35,720 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:45:35,722 - INFO -   Price: ₹32.15 | SL: ₹22.80 | P&L: -1.98%
+2026-02-10 12:45:38,636 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:45:38,639 - INFO -   Price: ₹32.10 | SL: ₹22.80 | P&L: -2.13%
+2026-02-10 12:45:41,502 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:45:41,504 - INFO -   Price: ₹31.60 | SL: ₹22.80 | P&L: -3.66%
+2026-02-10 12:45:44,428 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:45:44,431 - INFO -   Price: ₹31.95 | SL: ₹22.80 | P&L: -2.59%
+2026-02-10 12:45:47,205 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:45:47,208 - INFO -   Price: ₹32.00 | SL: ₹22.80 | P&L: -2.44%
+2026-02-10 12:45:50,030 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:45:50,033 - INFO -   Price: ₹32.50 | SL: ₹22.80 | P&L: -0.91%
+2026-02-10 12:45:52,829 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:45:52,831 - INFO -   Price: ₹32.90 | SL: ₹22.80 | P&L: +0.30%
+2026-02-10 12:45:55,544 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:45:55,547 - INFO -   Price: ₹32.85 | SL: ₹22.80 | P&L: +0.15%
+2026-02-10 12:45:58,501 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:45:58,504 - INFO -   Price: ₹33.95 | SL: ₹22.80 | P&L: +3.51%
+2026-02-10 12:46:01,611 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:46:01,614 - INFO -   Price: ₹32.80 | SL: ₹22.80 | P&L: +0.00%
+2026-02-10 12:46:04,533 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:46:04,536 - INFO -   Price: ₹33.05 | SL: ₹22.80 | P&L: +0.76%
+2026-02-10 12:46:07,420 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:46:07,423 - INFO -   Price: ₹33.20 | SL: ₹22.80 | P&L: +1.22%
+2026-02-10 12:46:10,255 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:46:10,257 - INFO -   Price: ₹32.35 | SL: ₹22.80 | P&L: -1.37%
+2026-02-10 12:46:13,061 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:46:13,064 - INFO -   Price: ₹32.65 | SL: ₹22.80 | P&L: -0.46%
+2026-02-10 12:46:15,918 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:46:15,920 - INFO -   Price: ₹32.60 | SL: ₹22.80 | P&L: -0.61%
+2026-02-10 12:46:18,741 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:46:18,743 - INFO -   Price: ₹33.45 | SL: ₹22.80 | P&L: +1.98%
+2026-02-10 12:46:21,733 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:46:21,734 - INFO -   Price: ₹33.45 | SL: ₹22.80 | P&L: +1.98%
+2026-02-10 12:46:24,880 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:46:24,882 - INFO -   Price: ₹33.05 | SL: ₹22.80 | P&L: +0.76%
+2026-02-10 12:46:27,685 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:46:27,687 - INFO -   Price: ₹33.55 | SL: ₹22.80 | P&L: +2.29%
+2026-02-10 12:46:30,588 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:46:30,591 - INFO -   Price: ₹33.45 | SL: ₹22.80 | P&L: +1.98%
+2026-02-10 12:46:33,582 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:46:33,584 - INFO -   Price: ₹33.65 | SL: ₹22.80 | P&L: +2.59%
+2026-02-10 12:46:36,464 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:46:36,466 - INFO -   Price: ₹33.40 | SL: ₹22.80 | P&L: +1.83%
+2026-02-10 12:46:39,305 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:46:39,307 - INFO -   Price: ₹33.70 | SL: ₹22.80 | P&L: +2.74%
+2026-02-10 12:46:42,328 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:46:42,331 - INFO -   Price: ₹33.45 | SL: ₹22.80 | P&L: +1.98%
+2026-02-10 12:46:45,222 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:46:45,224 - INFO -   Price: ₹33.80 | SL: ₹22.80 | P&L: +3.05%
+2026-02-10 12:46:48,200 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:46:48,202 - INFO -   Price: ₹33.40 | SL: ₹22.80 | P&L: +1.83%
+2026-02-10 12:46:51,200 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:46:51,203 - INFO -   Price: ₹33.65 | SL: ₹22.80 | P&L: +2.59%
+2026-02-10 12:46:54,133 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:46:54,136 - INFO -   Price: ₹34.10 | SL: ₹22.80 | P&L: +3.96%
+2026-02-10 12:46:57,091 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:46:57,094 - INFO -   Price: ₹34.10 | SL: ₹22.80 | P&L: +3.96%
+2026-02-10 12:46:59,970 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:46:59,973 - INFO -   Price: ₹33.80 | SL: ₹22.80 | P&L: +3.05%
+2026-02-10 12:47:02,903 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:47:02,905 - INFO - ⚡ TRAILING SL UPDATED: ₹22.80 -> ₹31.18 (Max: ₹34.65)
+2026-02-10 12:47:02,906 - INFO -   Price: ₹34.65 | SL: ₹31.18 | P&L: +5.64%
+2026-02-10 12:47:05,580 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:47:05,583 - INFO - ⚡ TRAILING SL UPDATED: ₹31.18 -> ₹31.37 (Max: ₹34.85)
+2026-02-10 12:47:05,584 - INFO -   Price: ₹34.85 | SL: ₹31.37 | P&L: +6.25%
+2026-02-10 12:47:08,375 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:47:08,378 - INFO -   Price: ₹34.50 | SL: ₹31.37 | P&L: +5.18%
+2026-02-10 12:47:11,235 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:47:11,237 - INFO - ⚡ TRAILING SL UPDATED: ₹31.37 -> ₹31.91 (Max: ₹35.45)
+2026-02-10 12:47:11,238 - INFO -   Price: ₹35.45 | SL: ₹31.91 | P&L: +8.08%
+2026-02-10 12:47:14,243 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:47:14,246 - INFO -   Price: ₹35.35 | SL: ₹31.91 | P&L: +7.77%
+2026-02-10 12:47:17,690 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:47:17,694 - INFO - ⚡ TRAILING SL UPDATED: ₹31.91 -> ₹32.04 (Max: ₹35.60)
+2026-02-10 12:47:17,695 - INFO -   Price: ₹35.60 | SL: ₹32.04 | P&L: +8.54%
+2026-02-10 12:47:20,521 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:47:20,524 - INFO - ⚡ TRAILING SL UPDATED: ₹32.04 -> ₹32.18 (Max: ₹35.75)
+2026-02-10 12:47:20,525 - INFO -   Price: ₹35.75 | SL: ₹32.18 | P&L: +8.99%
+2026-02-10 12:47:23,477 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:47:23,480 - INFO - ⚡ TRAILING SL UPDATED: ₹32.18 -> ₹32.62 (Max: ₹36.25)
+2026-02-10 12:47:23,481 - INFO -   Price: ₹36.25 | SL: ₹32.62 | P&L: +10.52%
+2026-02-10 12:47:26,662 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:47:26,665 - INFO - ⚡ TRAILING SL UPDATED: ₹32.62 -> ₹32.94 (Max: ₹36.60)
+2026-02-10 12:47:26,665 - INFO -   Price: ₹36.60 | SL: ₹32.94 | P&L: +11.59%
+2026-02-10 12:47:29,801 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:47:29,804 - INFO - ⚡ TRAILING SL UPDATED: ₹32.94 -> ₹34.02 (Max: ₹37.80)
+2026-02-10 12:47:29,805 - INFO -   Price: ₹37.80 | SL: ₹34.02 | P&L: +15.24%
+2026-02-10 12:47:32,739 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:47:32,742 - INFO - ⚡ TRAILING SL UPDATED: ₹34.02 -> ₹34.11 (Max: ₹37.90)
+2026-02-10 12:47:32,743 - INFO -   Price: ₹37.90 | SL: ₹34.11 | P&L: +15.55%
+2026-02-10 12:47:35,982 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:47:35,985 - INFO -   Price: ₹36.95 | SL: ₹34.11 | P&L: +12.65%
+2026-02-10 12:47:39,542 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:47:39,545 - INFO -   Price: ₹37.15 | SL: ₹34.11 | P&L: +13.26%
+2026-02-10 12:47:42,594 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:47:42,596 - INFO -   Price: ₹37.00 | SL: ₹34.11 | P&L: +12.80%
+2026-02-10 12:47:45,540 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:47:45,543 - INFO -   Price: ₹37.10 | SL: ₹34.11 | P&L: +13.11%
+2026-02-10 12:47:48,381 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:47:48,384 - INFO -   Price: ₹37.55 | SL: ₹34.11 | P&L: +14.48%
+2026-02-10 12:47:51,360 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:47:51,362 - INFO - ⚡ TRAILING SL UPDATED: ₹34.11 -> ₹34.38 (Max: ₹38.20)
+2026-02-10 12:47:51,363 - INFO -   Price: ₹38.20 | SL: ₹34.38 | P&L: +16.46%
+2026-02-10 12:47:54,352 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:47:54,355 - INFO -   Price: ₹37.85 | SL: ₹34.38 | P&L: +15.40%
+2026-02-10 12:47:57,239 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:47:57,242 - INFO -   Price: ₹37.50 | SL: ₹34.38 | P&L: +14.33%
+2026-02-10 12:48:00,172 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:48:00,175 - INFO - ⚡ TRAILING SL UPDATED: ₹34.38 -> ₹35.59 (Max: ₹39.55)
+2026-02-10 12:48:00,175 - INFO -   Price: ₹39.55 | SL: ₹35.59 | P&L: +20.58%
+2026-02-10 12:48:02,974 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:48:02,977 - INFO -   Price: ₹38.65 | SL: ₹35.59 | P&L: +17.84%
+2026-02-10 12:48:05,752 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:48:05,755 - INFO -   Price: ₹38.55 | SL: ₹35.59 | P&L: +17.53%
+2026-02-10 12:48:08,484 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:48:08,487 - INFO -   Price: ₹38.60 | SL: ₹35.59 | P&L: +17.68%
+2026-02-10 12:48:11,474 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:48:11,477 - INFO -   Price: ₹38.80 | SL: ₹35.59 | P&L: +18.29%
+2026-02-10 12:48:14,527 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:48:14,531 - INFO -   Price: ₹38.70 | SL: ₹35.59 | P&L: +17.99%
+2026-02-10 12:48:17,590 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:48:17,593 - INFO -   Price: ₹38.60 | SL: ₹35.59 | P&L: +17.68%
+2026-02-10 12:48:20,499 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:48:20,502 - INFO -   Price: ₹38.80 | SL: ₹35.59 | P&L: +18.29%
+2026-02-10 12:48:23,501 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:48:23,505 - INFO - ⚡ TRAILING SL UPDATED: ₹35.59 -> ₹36.05 (Max: ₹40.05)
+2026-02-10 12:48:23,505 - INFO -   Price: ₹40.05 | SL: ₹36.05 | P&L: +22.10%
+2026-02-10 12:48:26,638 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:48:26,642 - INFO - ⚡ TRAILING SL UPDATED: ₹36.05 -> ₹36.81 (Max: ₹40.90)
+2026-02-10 12:48:26,643 - INFO -   Price: ₹40.90 | SL: ₹36.81 | P&L: +24.70%
+2026-02-10 12:48:29,511 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:48:29,514 - INFO - ⚡ TRAILING SL UPDATED: ₹36.81 -> ₹37.53 (Max: ₹41.70)
+2026-02-10 12:48:29,514 - INFO -   Price: ₹41.70 | SL: ₹37.53 | P&L: +27.13%
+2026-02-10 12:48:32,486 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:48:32,489 - INFO - ⚡ TRAILING SL UPDATED: ₹37.53 -> ₹38.74 (Max: ₹43.05)
+2026-02-10 12:48:32,489 - INFO -   Price: ₹43.05 | SL: ₹38.74 | P&L: +31.25%
+2026-02-10 12:48:35,405 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:48:35,408 - INFO - ⚡ TRAILING SL UPDATED: ₹38.74 -> ₹39.51 (Max: ₹43.90)
+2026-02-10 12:48:35,408 - INFO -   Price: ₹43.90 | SL: ₹39.51 | P&L: +33.84%
+2026-02-10 12:48:38,470 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:48:38,473 - INFO - ⚡ TRAILING SL UPDATED: ₹39.51 -> ₹43.47 (Max: ₹48.30)
+2026-02-10 12:48:38,473 - INFO -   Price: ₹48.30 | SL: ₹43.47 | P&L: +47.26%
+2026-02-10 12:48:41,415 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:48:41,418 - INFO -   Price: ₹47.25 | SL: ₹43.47 | P&L: +44.05%
+2026-02-10 12:48:44,449 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:48:44,453 - INFO -   Price: ₹45.85 | SL: ₹43.47 | P&L: +39.79%
+2026-02-10 12:48:47,416 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:48:47,418 - INFO -   Price: ₹47.05 | SL: ₹43.47 | P&L: +43.45%
+2026-02-10 12:48:50,601 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:48:50,604 - INFO - ⚡ TRAILING SL UPDATED: ₹43.47 -> ₹43.52 (Max: ₹48.35)
+2026-02-10 12:48:50,605 - INFO -   Price: ₹48.35 | SL: ₹43.52 | P&L: +47.41%
+2026-02-10 12:48:53,649 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:48:53,653 - INFO - ⚡ TRAILING SL UPDATED: ₹43.52 -> ₹43.88 (Max: ₹48.75)
+2026-02-10 12:48:53,654 - INFO -   Price: ₹48.75 | SL: ₹43.88 | P&L: +48.63%
+2026-02-10 12:48:56,676 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:48:56,679 - INFO - ⚡ TRAILING SL UPDATED: ₹43.88 -> ₹44.01 (Max: ₹48.90)
+2026-02-10 12:48:56,679 - INFO -   Price: ₹48.90 | SL: ₹44.01 | P&L: +49.09%
+2026-02-10 12:48:59,609 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:48:59,612 - INFO -   Price: ₹47.90 | SL: ₹44.01 | P&L: +46.04%
+2026-02-10 12:49:02,500 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:49:02,502 - INFO -   Price: ₹46.25 | SL: ₹44.01 | P&L: +41.01%
+2026-02-10 12:49:05,466 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:49:05,470 - INFO -   Price: ₹46.50 | SL: ₹44.01 | P&L: +41.77%
+2026-02-10 12:49:08,684 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:49:08,686 - INFO -   Price: ₹46.25 | SL: ₹44.01 | P&L: +41.01%
+2026-02-10 12:49:11,714 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:49:11,718 - INFO -   Price: ₹45.65 | SL: ₹44.01 | P&L: +39.18%
+2026-02-10 12:49:14,694 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:49:14,697 - INFO -   Price: ₹47.05 | SL: ₹44.01 | P&L: +43.45%
+2026-02-10 12:49:17,576 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:49:17,579 - INFO -   Price: ₹46.85 | SL: ₹44.01 | P&L: +42.84%
+2026-02-10 12:49:20,656 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:49:20,659 - INFO -   Price: ₹47.90 | SL: ₹44.01 | P&L: +46.04%
+2026-02-10 12:49:23,789 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:49:23,791 - INFO -   Price: ₹47.35 | SL: ₹44.01 | P&L: +44.36%
+2026-02-10 12:49:27,127 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:49:27,130 - INFO -   Price: ₹47.70 | SL: ₹44.01 | P&L: +45.43%
+2026-02-10 12:49:30,068 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:49:30,072 - INFO -   Price: ₹46.35 | SL: ₹44.01 | P&L: +41.31%
+2026-02-10 12:49:33,146 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:49:33,149 - INFO -   Price: ₹46.80 | SL: ₹44.01 | P&L: +42.68%
+2026-02-10 12:49:36,129 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:49:36,132 - INFO -   Price: ₹47.00 | SL: ₹44.01 | P&L: +43.29%
+2026-02-10 12:49:39,386 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:49:39,389 - INFO -   Price: ₹46.45 | SL: ₹44.01 | P&L: +41.62%
+2026-02-10 12:49:42,468 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:49:42,471 - INFO -   Price: ₹47.45 | SL: ₹44.01 | P&L: +44.66%
+2026-02-10 12:49:45,500 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:49:45,502 - INFO -   Price: ₹47.75 | SL: ₹44.01 | P&L: +45.58%
+2026-02-10 12:49:48,348 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:49:48,350 - INFO -   Price: ₹47.85 | SL: ₹44.01 | P&L: +45.88%
+2026-02-10 12:49:51,415 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:49:51,417 - INFO -   Price: ₹47.65 | SL: ₹44.01 | P&L: +45.27%
+2026-02-10 12:49:54,524 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:49:54,528 - INFO -   Price: ₹46.30 | SL: ₹44.01 | P&L: +41.16%
+2026-02-10 12:49:57,612 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:49:57,615 - INFO -   Price: ₹46.95 | SL: ₹44.01 | P&L: +43.14%
+2026-02-10 12:50:00,746 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:50:00,747 - INFO -   Price: ₹46.90 | SL: ₹44.01 | P&L: +42.99%
+2026-02-10 12:50:04,021 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:50:04,024 - INFO -   Price: ₹46.65 | SL: ₹44.01 | P&L: +42.23%
+2026-02-10 12:50:07,056 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:50:07,059 - INFO -   Price: ₹46.80 | SL: ₹44.01 | P&L: +42.68%
+2026-02-10 12:50:10,068 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:50:10,071 - INFO -   Price: ₹48.30 | SL: ₹44.01 | P&L: +47.26%
+2026-02-10 12:50:12,933 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:50:12,936 - INFO -   Price: ₹46.75 | SL: ₹44.01 | P&L: +42.53%
+2026-02-10 12:50:15,785 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:50:15,788 - INFO -   Price: ₹46.05 | SL: ₹44.01 | P&L: +40.40%
+2026-02-10 12:50:18,719 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:50:18,722 - INFO -   Price: ₹46.20 | SL: ₹44.01 | P&L: +40.85%
+2026-02-10 12:50:21,859 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:50:21,861 - INFO -   Price: ₹47.40 | SL: ₹44.01 | P&L: +44.51%
+2026-02-10 12:50:24,672 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:50:24,677 - INFO -   Price: ₹47.55 | SL: ₹44.01 | P&L: +44.97%
+2026-02-10 12:50:28,129 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:50:28,132 - INFO -   Price: ₹47.30 | SL: ₹44.01 | P&L: +44.21%
+2026-02-10 12:50:31,252 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:50:31,254 - INFO -   Price: ₹47.10 | SL: ₹44.01 | P&L: +43.60%
+2026-02-10 12:50:34,386 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:50:34,389 - INFO -   Price: ₹47.50 | SL: ₹44.01 | P&L: +44.82%
+2026-02-10 12:50:37,462 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:50:37,465 - INFO -   Price: ₹47.45 | SL: ₹44.01 | P&L: +44.66%
+2026-02-10 12:50:40,283 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:50:40,286 - INFO -   Price: ₹46.85 | SL: ₹44.01 | P&L: +42.84%
+2026-02-10 12:50:43,284 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:50:43,287 - INFO -   Price: ₹47.40 | SL: ₹44.01 | P&L: +44.51%
+2026-02-10 12:50:46,260 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:50:46,263 - INFO -   Price: ₹47.25 | SL: ₹44.01 | P&L: +44.05%
+2026-02-10 12:50:49,227 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:50:49,231 - INFO -   Price: ₹48.00 | SL: ₹44.01 | P&L: +46.34%
+2026-02-10 12:50:53,186 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:50:53,189 - INFO -   Price: ₹46.75 | SL: ₹44.01 | P&L: +42.53%
+2026-02-10 12:50:56,201 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:50:56,204 - INFO -   Price: ₹47.10 | SL: ₹44.01 | P&L: +43.60%
+2026-02-10 12:50:59,245 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:50:59,248 - INFO -   Price: ₹47.00 | SL: ₹44.01 | P&L: +43.29%
+2026-02-10 12:51:02,203 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:51:02,206 - INFO -   Price: ₹47.10 | SL: ₹44.01 | P&L: +43.60%
+2026-02-10 12:51:05,293 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:51:05,296 - INFO -   Price: ₹46.85 | SL: ₹44.01 | P&L: +42.84%
+2026-02-10 12:51:08,415 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:51:08,418 - INFO -   Price: ₹46.95 | SL: ₹44.01 | P&L: +43.14%
+2026-02-10 12:51:11,469 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:51:11,472 - INFO -   Price: ₹48.30 | SL: ₹44.01 | P&L: +47.26%
+2026-02-10 12:51:14,561 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:51:14,563 - INFO - ⚡ TRAILING SL UPDATED: ₹44.01 -> ₹44.33 (Max: ₹49.25)
+2026-02-10 12:51:14,564 - INFO -   Price: ₹49.25 | SL: ₹44.33 | P&L: +50.15%
+2026-02-10 12:51:17,737 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:51:17,740 - INFO - ⚡ TRAILING SL UPDATED: ₹44.33 -> ₹46.31 (Max: ₹51.45)
+2026-02-10 12:51:17,740 - INFO -   Price: ₹51.45 | SL: ₹46.31 | P&L: +56.86%
+2026-02-10 12:51:20,810 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:51:20,813 - INFO - ⚡ TRAILING SL UPDATED: ₹46.31 -> ₹47.30 (Max: ₹52.55)
+2026-02-10 12:51:20,814 - INFO -   Price: ₹52.55 | SL: ₹47.30 | P&L: +60.21%
+2026-02-10 12:51:23,751 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:51:23,754 - INFO -   Price: ₹50.20 | SL: ₹47.30 | P&L: +53.05%
+2026-02-10 12:51:26,720 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:51:26,723 - INFO -   Price: ₹50.50 | SL: ₹47.30 | P&L: +53.96%
+2026-02-10 12:51:30,742 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:51:30,745 - INFO -   Price: ₹51.80 | SL: ₹47.30 | P&L: +57.93%
+2026-02-10 12:51:34,001 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:51:34,003 - INFO -   Price: ₹51.05 | SL: ₹47.30 | P&L: +55.64%
+2026-02-10 12:51:37,220 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:51:37,224 - INFO -   Price: ₹51.70 | SL: ₹47.30 | P&L: +57.62%
+2026-02-10 12:51:40,473 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:51:40,476 - INFO -   Price: ₹51.65 | SL: ₹47.30 | P&L: +57.47%
+2026-02-10 12:51:43,279 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:51:43,281 - INFO -   Price: ₹51.40 | SL: ₹47.30 | P&L: +56.71%
+2026-02-10 12:51:46,408 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:51:46,411 - INFO - ⚡ TRAILING SL UPDATED: ₹47.30 -> ₹47.88 (Max: ₹53.20)
+2026-02-10 12:51:46,411 - INFO -   Price: ₹53.20 | SL: ₹47.88 | P&L: +62.20%
+2026-02-10 12:51:46,412 - INFO - 🎯 TARGET HIT at ₹53.20
+2026-02-10 12:51:47,513 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 12:51:47,516 - INFO - 
+======================================================================
+2026-02-10 12:51:47,517 - INFO - 🚪 POSITION EXIT
+2026-02-10 12:51:47,517 - INFO - ======================================================================
+2026-02-10 12:51:47,518 - INFO - Exit Reason: TARGET_HIT
+2026-02-10 12:51:47,518 - INFO - Entry:       ₹32.80
+2026-02-10 12:51:47,519 - INFO - Exit:        ₹53.00
+2026-02-10 12:51:47,519 - INFO - P&L:         ₹20.20 (+61.59%)
+2026-02-10 12:51:47,520 - INFO - Duration:    27.2 minutes
+2026-02-10 12:51:47,520 - INFO - ======================================================================
+
+2026-02-10 12:51:47,522 - INFO - 📝 Trade logged to trades/trades.csv
+2026-02-10 12:51:49,412 - INFO - 💰 CUMULATIVE DAILY P&L: ₹20.20
+2026-02-10 12:51:49,413 - INFO - 📅 Daily Target Achieved - Stopping for the day 🏆
+2026-02-10 12:51:49,413 - INFO - Trade completed. Waiting for market close...

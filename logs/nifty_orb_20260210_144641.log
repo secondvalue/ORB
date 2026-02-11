@@ -1,0 +1,292 @@
+2026-02-10 14:46:41,848 - INFO - 📅 Auto-calculated Nifty weekly expiry (Tuesday): 2026-02-10 (260210)
+2026-02-10 14:46:41,849 - INFO - Upstox API initialized
+2026-02-10 14:46:41,849 - INFO - Testing API connection...
+2026-02-10 14:46:43,128 - INFO - ✓ API connected. Nifty: 25924.35
+2026-02-10 14:46:43,130 - INFO - Strategy initialized - PAPER TRADING
+2026-02-10 14:46:43,130 - INFO - 
+================================================================================
+2026-02-10 14:46:43,131 - INFO - 🚀 NIFTY 50 ORB STRATEGY - STARTED
+2026-02-10 14:46:43,132 - INFO - ================================================================================
+2026-02-10 14:46:43,132 - INFO - Expiry Date:      260210
+2026-02-10 14:46:43,137 - INFO - ORB Period:       09:15 - 09:30
+2026-02-10 14:46:43,138 - INFO - Stop Loss:        10% (Safety Net)
+2026-02-10 14:46:43,138 - INFO - Target:           10% (Fixed)
+2026-02-10 14:46:43,139 - INFO - Lot Size:         65
+2026-02-10 14:46:43,139 - INFO - Execution Mode:   📝 PAPER TRADING
+2026-02-10 14:46:43,139 - INFO - ================================================================================
+
+2026-02-10 14:46:43,140 - INFO - 📥 Loading option contracts...
+2026-02-10 14:46:43,140 - INFO - Fetching option contracts for expiry: 2026-02-10
+2026-02-10 14:46:44,219 - INFO - ✓ Fetched 196 option contracts
+2026-02-10 14:46:44,221 - INFO - ✓ Ready with 196 contracts
+2026-02-10 14:46:44,222 - INFO - 📊 Calculating ORB levels...
+2026-02-10 14:46:45,301 - INFO - Fetched 331 candles
+2026-02-10 14:46:45,333 - INFO - 
+======================================================================
+2026-02-10 14:46:45,334 - INFO - ✅ ORB LEVELS FORMED
+2026-02-10 14:46:45,334 - INFO - ======================================================================
+2026-02-10 14:46:45,335 - INFO - High:  25934.95
+2026-02-10 14:46:45,335 - INFO - Low:   25870.45
+2026-02-10 14:46:45,336 - INFO - Range: 64.50 (0.25%)
+2026-02-10 14:46:45,336 - INFO - ======================================================================
+
+2026-02-10 14:46:52,303 - INFO - ⏳ Price: 25927.10 | Range: 25870.45-25934.95
+2026-02-10 14:46:59,149 - INFO - ⏳ Price: 25926.90 | Range: 25870.45-25934.95
+2026-02-10 14:47:05,953 - INFO - ⏳ Price: 25927.95 | Range: 25870.45-25934.95
+2026-02-10 14:47:12,813 - INFO - ⏳ Price: 25928.10 | Range: 25870.45-25934.95
+2026-02-10 14:47:19,840 - INFO - ⏳ Price: 25929.85 | Range: 25870.45-25934.95
+2026-02-10 14:47:26,668 - INFO - ⏳ Price: 25930.40 | Range: 25870.45-25934.95
+2026-02-10 14:47:33,569 - INFO - ⏳ Price: 25928.60 | Range: 25870.45-25934.95
+2026-02-10 14:47:41,403 - INFO - ⏳ Price: 25927.65 | Range: 25870.45-25934.95
+2026-02-10 14:47:49,279 - INFO - ⏳ Price: 25928.05 | Range: 25870.45-25934.95
+2026-02-10 14:47:56,692 - INFO - ⏳ Price: 25928.55 | Range: 25870.45-25934.95
+2026-02-10 14:48:03,518 - INFO - ⏳ Price: 25928.35 | Range: 25870.45-25934.95
+2026-02-10 14:48:10,516 - INFO - ⏳ Price: 25932.35 | Range: 25870.45-25934.95
+2026-02-10 14:48:18,351 - INFO - ⏳ Price: 25930.90 | Range: 25870.45-25934.95
+2026-02-10 14:48:26,163 - INFO - ⏳ Price: 25926.65 | Range: 25870.45-25934.95
+2026-02-10 14:48:34,073 - INFO - ⏳ Price: 25929.70 | Range: 25870.45-25934.95
+2026-02-10 14:48:42,058 - INFO - ⏳ Price: 25927.20 | Range: 25870.45-25934.95
+2026-02-10 14:48:49,752 - INFO - ⏳ Price: 25927.40 | Range: 25870.45-25934.95
+2026-02-10 14:48:57,625 - INFO - ⏳ Price: 25926.15 | Range: 25870.45-25934.95
+2026-02-10 14:49:05,424 - INFO - ⏳ Price: 25925.50 | Range: 25870.45-25934.95
+2026-02-10 14:49:13,503 - INFO - ⏳ Price: 25924.50 | Range: 25870.45-25934.95
+2026-02-10 14:49:21,343 - INFO - ⏳ Price: 25928.85 | Range: 25870.45-25934.95
+2026-02-10 14:49:29,317 - INFO - ⏳ Price: 25927.55 | Range: 25870.45-25934.95
+2026-02-10 14:49:37,160 - INFO - ⏳ Price: 25926.05 | Range: 25870.45-25934.95
+2026-02-10 14:49:45,220 - INFO - ⏳ Price: 25925.45 | Range: 25870.45-25934.95
+2026-02-10 14:49:53,281 - INFO - ⏳ Price: 25925.45 | Range: 25870.45-25934.95
+2026-02-10 14:50:01,045 - INFO - ⏳ Price: 25926.45 | Range: 25870.45-25934.95
+2026-02-10 14:50:08,748 - INFO - ⏳ Price: 25927.85 | Range: 25870.45-25934.95
+2026-02-10 14:50:16,736 - INFO - ⏳ Price: 25928.15 | Range: 25870.45-25934.95
+2026-02-10 14:50:24,779 - INFO - ⏳ Price: 25927.95 | Range: 25870.45-25934.95
+2026-02-10 14:50:32,481 - INFO - ⏳ Price: 25927.35 | Range: 25870.45-25934.95
+2026-02-10 14:50:40,742 - INFO - ⏳ Price: 25928.50 | Range: 25870.45-25934.95
+2026-02-10 14:50:48,508 - INFO - ⏳ Price: 25926.15 | Range: 25870.45-25934.95
+2026-02-10 14:50:56,358 - INFO - ⏳ Price: 25926.10 | Range: 25870.45-25934.95
+2026-02-10 14:51:05,040 - INFO - ⏳ Price: 25927.15 | Range: 25870.45-25934.95
+2026-02-10 14:51:12,733 - INFO - ⏳ Price: 25926.90 | Range: 25870.45-25934.95
+2026-02-10 14:51:20,501 - INFO - ⏳ Price: 25925.10 | Range: 25870.45-25934.95
+2026-02-10 14:51:27,738 - INFO - ⏳ Price: 25925.90 | Range: 25870.45-25934.95
+2026-02-10 14:51:35,977 - INFO - ⏳ Price: 25925.65 | Range: 25870.45-25934.95
+2026-02-10 14:51:43,825 - INFO - ⏳ Price: 25926.25 | Range: 25870.45-25934.95
+2026-02-10 14:51:51,532 - INFO - ⏳ Price: 25928.10 | Range: 25870.45-25934.95
+2026-02-10 14:51:59,278 - INFO - ⏳ Price: 25929.15 | Range: 25870.45-25934.95
+2026-02-10 14:52:07,020 - INFO - ⏳ Price: 25930.50 | Range: 25870.45-25934.95
+2026-02-10 14:52:14,868 - INFO - ⏳ Price: 25930.00 | Range: 25870.45-25934.95
+2026-02-10 14:52:22,739 - INFO - ⏳ Price: 25933.15 | Range: 25870.45-25934.95
+2026-02-10 14:52:30,487 - INFO - ⏳ Price: 25934.20 | Range: 25870.45-25934.95
+2026-02-10 14:52:38,314 - INFO - ⏳ Price: 25934.90 | Range: 25870.45-25934.95
+2026-02-10 14:52:46,115 - INFO - ⏳ Price: 25934.25 | Range: 25870.45-25934.95
+2026-02-10 14:52:54,073 - INFO - ⏳ Price: 25932.95 | Range: 25870.45-25934.95
+2026-02-10 14:53:01,970 - INFO - ⏳ Price: 25932.40 | Range: 25870.45-25934.95
+2026-02-10 14:53:09,725 - INFO - 🚀 BULLISH BREAKOUT CONFIRMED (Price: 25935.3 > ORB High: 25934.95)
+2026-02-10 14:53:09,726 - INFO - ✅ CE 25950 -> NIFTY 25950 CE 10 FEB 26
+2026-02-10 14:53:11,790 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 14:53:11,795 - INFO - 
+======================================================================
+2026-02-10 14:53:11,796 - INFO - 🎯 POSITION ENTRY
+2026-02-10 14:53:11,797 - INFO - ======================================================================
+2026-02-10 14:53:11,798 - INFO - Symbol:      NIFTY 25950 CE 10 FEB 26
+2026-02-10 14:53:11,798 - INFO - Instrument:  NSE_FO|42544
+2026-02-10 14:53:11,799 - INFO - Type:        CE (CALL)
+2026-02-10 14:53:11,800 - INFO - Strike:      25950
+2026-02-10 14:53:11,801 - INFO - Spot Price:  25935.3
+2026-02-10 14:53:11,801 - INFO - Entry Price: ₹7.60
+2026-02-10 14:53:11,802 - INFO - Target:      ₹27.60 (+20.00 pts)
+2026-02-10 14:53:11,803 - INFO - Stop Loss:   ₹-2.40 (-10.00 pts)
+2026-02-10 14:53:11,803 - INFO - ℹ️  NOTE: Min SL Floor Applied (10 pts)
+2026-02-10 14:53:11,804 - INFO - ℹ️  NOTE: Min Target Floor Applied (20 pts)
+2026-02-10 14:53:11,805 - INFO - Exit Condition: TARGET 🎯 OR TRAILING SL 🛑
+2026-02-10 14:53:11,805 - INFO - Quantity:    65 lots
+2026-02-10 14:53:11,806 - INFO - Entry Time:  14:53:11
+2026-02-10 14:53:11,807 - INFO - ======================================================================
+
+2026-02-10 14:53:11,807 - INFO - 📝 PAPER TRADE - No real order placed
+2026-02-10 14:53:22,150 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 14:53:22,153 - INFO -   Price: ₹7.10 | SL: ₹-2.40 | P&L: -6.58%
+2026-02-10 14:53:25,516 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 14:53:25,519 - INFO -   Price: ₹6.85 | SL: ₹-2.40 | P&L: -9.87%
+2026-02-10 14:53:29,547 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 14:53:29,550 - INFO -   Price: ₹6.40 | SL: ₹-2.40 | P&L: -15.79%
+2026-02-10 14:53:33,283 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 14:53:33,287 - INFO -   Price: ₹5.95 | SL: ₹-2.40 | P&L: -21.71%
+2026-02-10 14:53:37,209 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 14:53:37,214 - INFO -   Price: ₹5.45 | SL: ₹-2.40 | P&L: -28.29%
+2026-02-10 14:53:40,869 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 14:53:40,873 - INFO -   Price: ₹4.35 | SL: ₹-2.40 | P&L: -42.76%
+2026-02-10 14:53:44,608 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 14:53:44,613 - INFO -   Price: ₹4.60 | SL: ₹-2.40 | P&L: -39.47%
+2026-02-10 14:53:48,294 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 14:53:48,298 - INFO -   Price: ₹4.95 | SL: ₹-2.40 | P&L: -34.87%
+2026-02-10 14:53:52,059 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 14:53:52,063 - INFO -   Price: ₹5.45 | SL: ₹-2.40 | P&L: -28.29%
+2026-02-10 14:53:55,709 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 14:53:55,712 - INFO -   Price: ₹5.70 | SL: ₹-2.40 | P&L: -25.00%
+2026-02-10 14:53:59,530 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 14:53:59,535 - INFO -   Price: ₹5.40 | SL: ₹-2.40 | P&L: -28.95%
+2026-02-10 14:54:03,218 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 14:54:03,223 - INFO -   Price: ₹5.40 | SL: ₹-2.40 | P&L: -28.95%
+2026-02-10 14:54:07,432 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 14:54:07,436 - INFO -   Price: ₹6.10 | SL: ₹-2.40 | P&L: -19.74%
+2026-02-10 14:54:11,691 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 14:54:11,696 - INFO -   Price: ₹6.20 | SL: ₹-2.40 | P&L: -18.42%
+2026-02-10 14:54:15,384 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 14:54:15,387 - INFO -   Price: ₹6.20 | SL: ₹-2.40 | P&L: -18.42%
+2026-02-10 14:54:19,089 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 14:54:19,093 - INFO -   Price: ₹6.45 | SL: ₹-2.40 | P&L: -15.13%
+2026-02-10 14:54:22,821 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 14:54:22,825 - INFO -   Price: ₹6.55 | SL: ₹-2.40 | P&L: -13.82%
+2026-02-10 14:54:26,465 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 14:54:26,468 - INFO -   Price: ₹6.40 | SL: ₹-2.40 | P&L: -15.79%
+2026-02-10 14:54:31,004 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 14:54:31,007 - INFO -   Price: ₹6.35 | SL: ₹-2.40 | P&L: -16.45%
+2026-02-10 14:54:34,771 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 14:54:34,775 - INFO -   Price: ₹6.15 | SL: ₹-2.40 | P&L: -19.08%
+2026-02-10 14:54:38,451 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 14:54:38,455 - INFO -   Price: ₹6.10 | SL: ₹-2.40 | P&L: -19.74%
+2026-02-10 14:54:42,450 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 14:54:42,454 - INFO -   Price: ₹6.10 | SL: ₹-2.40 | P&L: -19.74%
+2026-02-10 14:54:46,337 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 14:54:46,340 - INFO -   Price: ₹6.30 | SL: ₹-2.40 | P&L: -17.11%
+2026-02-10 14:54:49,998 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 14:54:50,002 - INFO -   Price: ₹6.30 | SL: ₹-2.40 | P&L: -17.11%
+2026-02-10 14:54:53,694 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 14:54:53,697 - INFO -   Price: ₹6.35 | SL: ₹-2.40 | P&L: -16.45%
+2026-02-10 14:54:57,390 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 14:54:57,394 - INFO -   Price: ₹6.30 | SL: ₹-2.40 | P&L: -17.11%
+2026-02-10 14:55:01,034 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 14:55:01,037 - INFO -   Price: ₹6.20 | SL: ₹-2.40 | P&L: -18.42%
+2026-02-10 14:55:04,699 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 14:55:04,703 - INFO -   Price: ₹6.80 | SL: ₹-2.40 | P&L: -10.53%
+2026-02-10 14:55:08,417 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 14:55:08,421 - INFO -   Price: ₹6.50 | SL: ₹-2.40 | P&L: -14.47%
+2026-02-10 14:55:12,130 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 14:55:12,134 - INFO -   Price: ₹6.40 | SL: ₹-2.40 | P&L: -15.79%
+2026-02-10 14:55:15,799 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 14:55:15,803 - INFO -   Price: ₹5.85 | SL: ₹-2.40 | P&L: -23.03%
+2026-02-10 14:55:19,803 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 14:55:19,808 - INFO -   Price: ₹5.95 | SL: ₹-2.40 | P&L: -21.71%
+2026-02-10 14:55:23,660 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 14:55:23,665 - INFO -   Price: ₹5.40 | SL: ₹-2.40 | P&L: -28.95%
+2026-02-10 14:55:27,373 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 14:55:27,377 - INFO -   Price: ₹4.90 | SL: ₹-2.40 | P&L: -35.53%
+2026-02-10 14:55:30,985 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 14:55:30,989 - INFO -   Price: ₹5.55 | SL: ₹-2.40 | P&L: -26.97%
+2026-02-10 14:55:34,693 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 14:55:34,697 - INFO -   Price: ₹5.40 | SL: ₹-2.40 | P&L: -28.95%
+2026-02-10 14:55:38,374 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 14:55:38,377 - INFO -   Price: ₹5.45 | SL: ₹-2.40 | P&L: -28.29%
+2026-02-10 14:55:42,154 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 14:55:42,158 - INFO -   Price: ₹4.65 | SL: ₹-2.40 | P&L: -38.82%
+2026-02-10 14:55:45,839 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 14:55:45,843 - INFO -   Price: ₹4.60 | SL: ₹-2.40 | P&L: -39.47%
+2026-02-10 14:55:49,540 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 14:55:49,545 - INFO -   Price: ₹4.95 | SL: ₹-2.40 | P&L: -34.87%
+2026-02-10 14:55:53,540 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 14:55:53,545 - INFO -   Price: ₹5.20 | SL: ₹-2.40 | P&L: -31.58%
+2026-02-10 14:55:57,419 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 14:55:57,423 - INFO -   Price: ₹5.15 | SL: ₹-2.40 | P&L: -32.24%
+2026-02-10 14:56:01,522 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 14:56:01,525 - INFO -   Price: ₹5.05 | SL: ₹-2.40 | P&L: -33.55%
+2026-02-10 14:56:05,326 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 14:56:05,330 - INFO -   Price: ₹4.75 | SL: ₹-2.40 | P&L: -37.50%
+2026-02-10 14:56:09,107 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 14:56:09,111 - INFO -   Price: ₹4.80 | SL: ₹-2.40 | P&L: -36.84%
+2026-02-10 14:56:12,921 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 14:56:12,925 - INFO -   Price: ₹4.95 | SL: ₹-2.40 | P&L: -34.87%
+2026-02-10 14:56:16,855 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 14:56:16,858 - INFO -   Price: ₹5.60 | SL: ₹-2.40 | P&L: -26.32%
+2026-02-10 14:56:20,654 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 14:56:20,658 - INFO -   Price: ₹5.15 | SL: ₹-2.40 | P&L: -32.24%
+2026-02-10 14:56:24,464 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 14:56:24,468 - INFO -   Price: ₹5.10 | SL: ₹-2.40 | P&L: -32.89%
+2026-02-10 14:56:28,186 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 14:56:28,190 - INFO -   Price: ₹4.95 | SL: ₹-2.40 | P&L: -34.87%
+2026-02-10 14:56:32,230 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 14:56:32,235 - INFO -   Price: ₹4.90 | SL: ₹-2.40 | P&L: -35.53%
+2026-02-10 14:56:36,074 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 14:56:36,077 - INFO -   Price: ₹5.40 | SL: ₹-2.40 | P&L: -28.95%
+2026-02-10 14:56:39,755 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 14:56:39,759 - INFO -   Price: ₹5.60 | SL: ₹-2.40 | P&L: -26.32%
+2026-02-10 14:56:43,466 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 14:56:43,470 - INFO -   Price: ₹5.65 | SL: ₹-2.40 | P&L: -25.66%
+2026-02-10 14:56:48,400 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 14:56:48,405 - INFO -   Price: ₹5.40 | SL: ₹-2.40 | P&L: -28.95%
+2026-02-10 14:56:52,344 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 14:56:52,348 - INFO -   Price: ₹6.05 | SL: ₹-2.40 | P&L: -20.39%
+2026-02-10 14:56:56,263 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 14:56:56,267 - INFO -   Price: ₹6.50 | SL: ₹-2.40 | P&L: -14.47%
+2026-02-10 14:57:00,956 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 14:57:00,959 - INFO -   Price: ₹6.70 | SL: ₹-2.40 | P&L: -11.84%
+2026-02-10 14:57:04,944 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 14:57:04,948 - INFO -   Price: ₹6.35 | SL: ₹-2.40 | P&L: -16.45%
+2026-02-10 14:57:09,013 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 14:57:09,017 - INFO -   Price: ₹6.20 | SL: ₹-2.40 | P&L: -18.42%
+2026-02-10 14:57:12,980 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 14:57:12,985 - INFO -   Price: ₹6.40 | SL: ₹-2.40 | P&L: -15.79%
+2026-02-10 14:57:16,977 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 14:57:16,981 - INFO -   Price: ₹6.50 | SL: ₹-2.40 | P&L: -14.47%
+2026-02-10 14:57:20,848 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 14:57:20,852 - INFO -   Price: ₹6.30 | SL: ₹-2.40 | P&L: -17.11%
+2026-02-10 14:57:24,565 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 14:57:24,568 - INFO -   Price: ₹6.25 | SL: ₹-2.40 | P&L: -17.76%
+2026-02-10 14:57:28,342 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 14:57:28,346 - INFO -   Price: ₹6.00 | SL: ₹-2.40 | P&L: -21.05%
+2026-02-10 14:57:32,311 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 14:57:32,314 - INFO -   Price: ₹6.90 | SL: ₹-2.40 | P&L: -9.21%
+2026-02-10 14:57:36,046 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 14:57:36,050 - INFO -   Price: ₹7.70 | SL: ₹-2.40 | P&L: +1.32%
+2026-02-10 14:57:39,874 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 14:57:39,877 - INFO -   Price: ₹7.75 | SL: ₹-2.40 | P&L: +1.97%
+2026-02-10 14:57:43,576 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 14:57:43,580 - INFO - ⚡ TRAILING SL UPDATED: ₹-2.40 -> ₹7.38 (Max: ₹8.20)
+2026-02-10 14:57:43,580 - INFO -   Price: ₹8.20 | SL: ₹7.38 | P&L: +7.89%
+2026-02-10 14:57:47,803 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 14:57:47,807 - INFO -   Price: ₹7.95 | SL: ₹7.38 | P&L: +4.61%
+2026-02-10 14:57:51,698 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 14:57:51,703 - INFO -   Price: ₹7.80 | SL: ₹7.38 | P&L: +2.63%
+2026-02-10 14:57:55,522 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 14:57:55,525 - INFO -   Price: ₹7.65 | SL: ₹7.38 | P&L: +0.66%
+2026-02-10 14:57:59,663 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 14:57:59,667 - INFO -   Price: ₹6.15 | SL: ₹7.38 | P&L: -19.08%
+2026-02-10 14:57:59,668 - WARNING - 🛑 STOP LOSS HIT at ₹6.15
+2026-02-10 14:58:01,894 - INFO - ✓ Using first available quote: NSE_FO:NIFTY2621025950CE
+2026-02-10 14:58:01,897 - INFO - 
+======================================================================
+2026-02-10 14:58:01,898 - INFO - 🚪 POSITION EXIT
+2026-02-10 14:58:01,899 - INFO - ======================================================================
+2026-02-10 14:58:01,900 - INFO - Exit Reason: STOP_LOSS
+2026-02-10 14:58:01,900 - INFO - Entry:       ₹7.60
+2026-02-10 14:58:01,901 - INFO - Exit:        ₹6.50
+2026-02-10 14:58:01,902 - INFO - P&L:         ₹-1.10 (-14.47%)
+2026-02-10 14:58:01,902 - INFO - Duration:    4.8 minutes
+2026-02-10 14:58:01,903 - INFO - ======================================================================
+
+2026-02-10 14:58:01,905 - INFO - 📝 Trade logged to trades/trades.csv
+2026-02-10 14:58:04,434 - INFO - 💰 CUMULATIVE DAILY P&L: ₹-1.10
+2026-02-10 14:58:04,435 - INFO - 🔄 Stop Loss Hit - Resuming monitoring for re-entry...
+2026-02-10 14:58:04,435 - INFO - Trade completed. Waiting for market close...
+2026-02-10 14:58:08,301 - INFO - ⏳ Price: 25938.60 | Range: 25870.45-25934.95
+2026-02-10 14:58:16,417 - INFO - ⏳ Price: 25938.60 | Range: 25870.45-25934.95
+2026-02-10 14:58:24,253 - INFO - ⏳ Price: 25937.70 | Range: 25870.45-25934.95
+2026-02-10 14:58:31,943 - INFO - ⏳ Price: 25937.10 | Range: 25870.45-25934.95
+2026-02-10 14:58:38,915 - INFO - ⏳ Price: 25938.30 | Range: 25870.45-25934.95
+2026-02-10 14:58:45,822 - INFO - ⏳ Price: 25938.35 | Range: 25870.45-25934.95
+2026-02-10 14:58:52,979 - INFO - ⏳ Price: 25939.25 | Range: 25870.45-25934.95
+2026-02-10 14:58:59,784 - INFO - ⏳ Price: 25938.85 | Range: 25870.45-25934.95
+2026-02-10 14:59:06,655 - INFO - ⏳ Price: 25940.35 | Range: 25870.45-25934.95
+2026-02-10 14:59:13,506 - INFO - ⏳ Price: 25942.15 | Range: 25870.45-25934.95
+2026-02-10 14:59:20,320 - INFO - ⏳ Price: 25944.40 | Range: 25870.45-25934.95
+2026-02-10 14:59:27,198 - INFO - ⏳ Price: 25942.65 | Range: 25870.45-25934.95
+2026-02-10 14:59:34,218 - INFO - ⏳ Price: 25941.90 | Range: 25870.45-25934.95
+2026-02-10 14:59:41,092 - INFO - ⏳ Price: 25942.85 | Range: 25870.45-25934.95
+2026-02-10 14:59:48,068 - INFO - ⏳ Price: 25941.55 | Range: 25870.45-25934.95
+2026-02-10 14:59:54,881 - INFO - ⏳ Price: 25941.70 | Range: 25870.45-25934.95
+2026-02-10 15:00:01,865 - INFO - ⏳ Price: 25942.90 | Range: 25870.45-25934.95
+2026-02-10 15:00:08,778 - INFO - ⏳ Price: 25948.75 | Range: 25870.45-25934.95
+2026-02-10 15:00:15,629 - INFO - ⏳ Price: 25951.55 | Range: 25870.45-25934.95
+2026-02-10 15:00:22,537 - INFO - ⏳ Price: 25950.70 | Range: 25870.45-25934.95
+2026-02-10 15:00:29,639 - INFO - ⏳ Price: 25950.70 | Range: 25870.45-25934.95
+2026-02-10 15:00:36,495 - INFO - ⏳ Price: 25948.25 | Range: 25870.45-25934.95
+2026-02-10 15:00:43,736 - INFO - ⏳ Price: 25943.25 | Range: 25870.45-25934.95
+2026-02-10 15:00:50,462 - INFO - ⏳ Price: 25940.20 | Range: 25870.45-25934.95

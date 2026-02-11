@@ -1,0 +1,58 @@
+name: Nifty ORB Strategy
+
+on:
+  schedule:
+    # Runs at 9:14 AM IST (03:44 UTC) Mon-Fri
+    - cron: '44 3 * * 1-5'
+  workflow_dispatch:
+    inputs:
+      execute_trades:
+        description: 'Set to true to execute REAL trades (requires valid token)'
+        required: false
+        default: 'false'
+
+jobs:
+  run-strategy:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Set up Python 3.10
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.10'
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+
+    - name: Inject Configuration (Secrets)
+      env:
+        ACCESS_TOKEN: ${{ secrets.UPSTOX_ACCESS_TOKEN }}
+        DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+      run: |
+        # If secrets are provided, replace them in the file using sed
+        if [ -n "$ACCESS_TOKEN" ]; then
+          sed -i "s/'ACCESS_TOKEN': .*/'ACCESS_TOKEN': '$ACCESS_TOKEN',/" nifty-orb-strategy.py
+          echo "✅ Injected Access Token"
+        fi
+        
+        if [ -n "$DISCORD_WEBHOOK_URL" ]; then
+          sed -i "s|'DISCORD_WEBHOOK_URL': .*|'DISCORD_WEBHOOK_URL': '$DISCORD_WEBHOOK_URL',|" nifty-orb-strategy.py
+          echo "✅ Injected Discord Webhook"
+        fi
+        
+        # Determine Execution Mode (Live vs Paper)
+        # Default is False (Paper) unless manually triggered with 'true'
+        EXECUTE_TRADES="${{ github.event.inputs.execute_trades }}"
+        if [ "$EXECUTE_TRADES" == "true" ]; then
+           sed -i "s/'EXECUTE_TRADES': False/'EXECUTE_TRADES': True/" nifty-orb-strategy.py
+           echo "⚠️  LIVE TRADING ENABLED"
+        fi
+
+    - name: Run Strategy
+      run: python nifty-orb-strategy.py
+      continue-on-error: true # Allow workflow to finish even if strategy exits with error
