@@ -42,7 +42,7 @@ import os
 
 CONFIG = {
     # Upstox API Credentials
-    'ACCESS_TOKEN': 'eyJ0eXAiOiJKV1QiLCJrZXlfaWQiOiJza192MS4wIiwiYWxnIjoiSFMyNTYifQ.eyJzdWIiOiI1NUJBOVgiLCJqdGkiOiI2OThiZjllYTgwMDBiMjQwYTAwNjVjMjkiLCJpc011bHRpQ2xpZW50IjpmYWxzZSwiaXNQbHVzUGxhbiI6ZmFsc2UsImlhdCI6MTc3MDc4MTE2MiwiaXNzIjoidWRhcGktZ2F0ZXdheS1zZXJ2aWNlIiwiZXhwIjoxNzcwODQ3MjAwfQ.324BdTSN83_xD4UwIlgVtBwM4lFjVgKBHUShpNiDko8',
+    'ACCESS_TOKEN': 'eyJ0eXAiOiJKV1QiLCJrZXlfaWQiOiJza192MS4wIiwiYWxnIjoiSFMyNTYifQ.eyJzdWIiOiI1NUJBOVgiLCJqdGkiOiI2OThlOWU3N2UyNGM4NDExZmY2NTY0YWYiLCJpc011bHRpQ2xpZW50IjpmYWxzZSwiaXNQbHVzUGxhbiI6ZmFsc2UsImlhdCI6MTc3MDk1NDM1OSwiaXNzIjoidWRhcGktZ2F0ZXdheS1zZXJ2aWNlIiwiZXhwIjoxNzcxMDIwMDAwfQ.kWNvVW58esFcFD_Xha2wdJynYtSzkgxtxyrfLAnaRs8',
     
     # Trading Parameters
     # EXPIRY_DATE auto-calculated for Tuesday (Nifty weekly expiry)
@@ -54,10 +54,14 @@ CONFIG = {
     'ORB_END_TIME': '09:30',
     
     # Risk Management
-    'SL_PERCENT': 0.10,       # 10% Stop Loss (Safety Net)
-    'TARGET_PERCENT': 0.10,   # 10% Target
-    'MIN_SL_POINTS': 10,      # Minimum SL points (absolute floor)
-    'MIN_TARGET_POINTS': 20,  # Minimum Target points (absolute floor)
+    # SL/Target are now purely ATR based
+    
+    # ATR Risk Management
+    'ATR_PERIOD': 14,
+    'ATR_MULTIPLIER_SL': 0.5,    # Tighter SL for Intraday (approx 75-100 pts)
+    'ATR_MULTIPLIER_TARGET': 1.0, # Realistic Intraday Target (approx 150-200 pts)
+    'OPTION_DELTA': 0.5,      # Approximation for ATM delta
+
     
     # -------------------------------------------------------------------------
     # IMPROVED RISK MANAGEMENT
@@ -96,7 +100,7 @@ if sys.platform == 'win32':
 
 # Custom IST Time for Logging
 def ist_converter(*args):
-    utc_dt = datetime.datetime.utcnow()
+    utc_dt = datetime.datetime.now(datetime.UTC)
     ist_dt = utc_dt + datetime.timedelta(hours=5, minutes=30)
     return ist_dt.timetuple()
 
@@ -183,14 +187,14 @@ class UpstoxAPI:
                         for key in response_data.keys():
                             if instrument_num in key or key.endswith(instrument_num):
                                 quote_data = response_data.get(key)
-                                logger.info(f"✓ Found quote using alternate key: {key}")
+                                logger.debug(f"✓ Found quote using alternate key: {key}")
                                 break
                     
                     # 4. If still not found, just return the first quote data
                     if not quote_data and response_data:
                         first_key = list(response_data.keys())[0]
                         quote_data = response_data[first_key]
-                        logger.info(f"✓ Using first available quote: {first_key}")
+                        logger.debug(f"✓ Using first available quote: {first_key}")
                     
                     if quote_data:
                         return quote_data
@@ -270,6 +274,42 @@ class UpstoxAPI:
             
         except Exception as e:
             logger.error(f"Error in get_intraday_candles: {e}")
+            return None
+    
+    def get_historical_candles(self, symbol: str, interval: str, from_date: str, to_date: str) -> Optional[List]:
+        """
+        Get historical candle data
+        
+        Args:
+            symbol: Trading symbol (e.g., "NSE_INDEX|Nifty 50")
+            interval: Candle interval (1minute, 30minute, day, etc.)
+            from_date: Start date (YYYY-MM-DD)
+            to_date: End date (YYYY-MM-DD)
+        
+        Returns:
+            List of candles or None
+        """
+        try:
+            encoded_symbol = quote(symbol, safe='')
+            url = f"https://api.upstox.com/v2/historical-candle/{encoded_symbol}/{interval}/{to_date}/{from_date}"
+            
+            response = requests.get(url, headers=self.headers, timeout=15)
+            
+            if response.status_code == 200:
+                data = response.json()
+                if data.get('status') == 'success':
+                    candles = data.get('data', {}).get('candles', [])
+                    logger.info(f"Fetched {len(candles)} historical candles ({interval})")
+                    return candles
+                else:
+                    logger.error(f"API error: {data.get('message')}")
+            else:
+                logger.error(f"HTTP {response.status_code}: {response.text[:500]}")
+            
+            return None
+            
+        except Exception as e:
+            logger.error(f"Error in get_historical_candles: {e}")
             return None
     
     def place_order(self, symbol: str, quantity: int, 
@@ -359,7 +399,7 @@ def encode_symbol(sym: str) -> str:
 
 def get_ist_time() -> datetime.datetime:
     """Get current time in IST (UTC+5:30)"""
-    utc_now = datetime.datetime.utcnow()
+    utc_now = datetime.datetime.now(datetime.UTC)
     ist_now = utc_now + datetime.timedelta(hours=5, minutes=30)
     return ist_now
 
@@ -482,10 +522,6 @@ class NiftyORBStrategy:
         if not config.get('ACCESS_TOKEN'):
             raise ValueError("ACCESS_TOKEN not set in config")
             
-        self.sl_percent = config['SL_PERCENT']
-        self.target_percent = config['TARGET_PERCENT']
-        self.min_sl_points = config.get('MIN_SL_POINTS', 10)
-        self.min_target_points = config.get('MIN_TARGET_POINTS', 20)
         self.lot_size = config['LOT_SIZE']
         self.execute_trades = config['EXECUTE_TRADES']
         
@@ -493,6 +529,13 @@ class NiftyORBStrategy:
         self.max_trades = config.get('MAX_TRADES_PER_DAY', 2)
         self.max_daily_loss = abs(config.get('MAX_DAILY_LOSS', 2000)) # Ensure positive
         self.trailing_start_percent = config.get('TRAILING_START_PERCENT', 0.05)
+
+        # ATR Parameters
+        self.atr_period = config.get('ATR_PERIOD', 14)
+        self.atr_multiplier_sl = config.get('ATR_MULTIPLIER_SL', 1.5)
+        self.atr_multiplier_target = config.get('ATR_MULTIPLIER_TARGET', 3.0)
+        self.option_delta = config.get('OPTION_DELTA', 0.5)
+
         
         # State variables
         self.orb_high = None
@@ -503,7 +546,9 @@ class NiftyORBStrategy:
         self.trade_count = 0
         self.total_pnl = 0.0 # Track daily P&L
         self.trade_completed = False
+        self.trade_completed = False
         self.option_contracts = []  # Store contracts for lookup
+        self.daily_atr = None       # Store calculated Daily ATR
         
         # Reporting Config
         self.csv_filename = config.get('CSV_FILENAME', 'trades.csv')
@@ -654,6 +699,51 @@ class NiftyORBStrategy:
             logger.error(f"Error calculating ORB: {e}")
             return None
     
+    def calculate_atr(self, candles: List, period: int = 14) -> Optional[float]:
+        """
+        Calculate Average True Range (ATR) using Wilder's Smoothing
+        """
+        if not candles or len(candles) < period + 1:
+            logger.warning(f"Not enough candles for ATR (Need {period+1}, Got {len(candles) if candles else 0})")
+            return None
+            
+        try:
+            # Upstox returns list of lists: [timestamp, open, high, low, close, volume, oi]
+            df = pd.DataFrame(candles, columns=['timestamp', 'open', 'high', 'low', 'close', 'volume', 'oi'])
+            
+            # Explicitly sort by timestamp ascending
+            df['timestamp'] = pd.to_datetime(df['timestamp'])
+            df.sort_values('timestamp', inplace=True)
+            df.reset_index(drop=True, inplace=True)
+            
+            # Ensure columns exist (redundant now but good for safety if format changes)
+            required_cols = ['high', 'low', 'close']
+            if not all(col in df.columns for col in required_cols):
+                logger.error("Candle data missing required columns")
+                return None
+            
+            # Helper for True Range
+            df['high_low'] = df['high'] - df['low']
+            df['high_close'] = (df['high'] - df['close'].shift(1)).abs()
+            df['low_close'] = (df['low'] - df['close'].shift(1)).abs()
+            
+            df['tr'] = df[['high_low', 'high_close', 'low_close']].max(axis=1)
+            
+            # Wilder's Smoothing (RMA)
+            # First value is SMA of TR
+            # Subsequent values: ((Previous ATR * (period - 1)) + Current TR) / period
+            
+            # Pandas ewm adjustment for Wilder's: alpha = 1/period
+            atr = df['tr'].ewm(alpha=1/period, min_periods=period, adjust=False).mean()
+            
+            current_atr = atr.iloc[-1]
+            logger.info(f"📊 Calculated ATR ({period}): {current_atr:.2f}")
+            return current_atr
+            
+        except Exception as e:
+            logger.error(f"Error calculating ATR: {e}")
+            return None
+    
     # Indicators Removed (VWAP/Supertrend)
     
     
@@ -701,6 +791,9 @@ class NiftyORBStrategy:
             True if position entered successfully, False otherwise
         """
         try:
+            # 0. Update ATR dynamically before entry
+            self.update_atr()
+
             # Calculate ATM strike
             strike = self.get_atm_strike(spot_price)
             
@@ -720,20 +813,33 @@ class NiftyORBStrategy:
                 logger.error("Invalid option price received")
                 return False
             
-            # Calculate levels (Dynamic with Points Floor)
+            # Calculate levels (Dynamic with ATR or Fixed %)
             entry_price = option_price
             
-            # 1. Calculate Distances
-            sl_dist = entry_price * self.sl_percent
-            target_dist = entry_price * self.target_percent
             
-            # 2. Apply Minimum Floor
-            actual_sl_dist = max(sl_dist, self.min_sl_points)
-            actual_target_dist = max(target_dist, self.min_target_points)
+            # ATR Based Risk Management
+            if self.daily_atr:
+                # Option Volatility Estimate = Nifty ATR * Delta
+                # Delta is typically 0.5 for ATM options
+                option_volatility = self.daily_atr * self.option_delta
+                
+                sl_dist = option_volatility * self.atr_multiplier_sl
+                target_dist = option_volatility * self.atr_multiplier_target
+                
+                logger.info(f"📊 Using ATR Based Risk Management (ATR: {self.daily_atr:.2f})")
+                logger.info(f"   Option Volatility Est: {option_volatility:.2f} (Delta: {self.option_delta})")
+                logger.info(f"   ATR SL Dist: {sl_dist:.2f} (x{self.atr_multiplier_sl})")
+                logger.info(f"   ATR Target Dist: {target_dist:.2f} (x{self.atr_multiplier_target})")
+                
+                
+            else:
+                # ATR IS MANDATORY NOW
+                logger.error("❌ ATR not available. Cannot calculate Risk Management. Entry Aborted.")
+                return False
             
-            # 3. Set Final Levels
-            stop_loss = entry_price - actual_sl_dist
-            target = entry_price + actual_target_dist
+            # 2. Set Final Levels (Pure ATR)
+            stop_loss = entry_price - sl_dist
+            target = entry_price + target_dist
             
             # Create position object
             self.position = {
@@ -743,7 +849,9 @@ class NiftyORBStrategy:
                 'strike': strike,
                 'entry_price': entry_price,
                 'stop_loss': stop_loss,
+                'stop_loss': stop_loss,
                 'target': target,
+                'atr_sl_dist': sl_dist, # Store for Trailing SL
 
                 'max_price': entry_price, # Track High for Trailing SL
                 'entry_time': get_ist_time(),
@@ -761,12 +869,8 @@ class NiftyORBStrategy:
             logger.info(f"Strike:      {strike}")
             logger.info(f"Spot Price:  {spot_price}")
             logger.info(f"Entry Price: ₹{entry_price:.2f}")
-            logger.info(f"Target:      ₹{target:.2f} (+{actual_target_dist:.2f} pts)")
-            logger.info(f"Stop Loss:   ₹{stop_loss:.2f} (-{actual_sl_dist:.2f} pts)")
-            if actual_sl_dist > sl_dist:
-                logger.info(f"ℹ️  NOTE: Min SL Floor Applied ({self.min_sl_points} pts)")
-            if actual_target_dist > target_dist:
-                logger.info(f"ℹ️  NOTE: Min Target Floor Applied ({self.min_target_points} pts)")
+            logger.info(f"Target:      ₹{target:.2f} (+{target_dist:.2f} pts)")
+            logger.info(f"Stop Loss:   ₹{stop_loss:.2f} (-{sl_dist:.2f} pts)")
             logger.info(f"Exit Condition: TARGET 🎯 OR TRAILING SL 🛑")
             logger.info(f"Quantity:    {self.lot_size} lots")
             logger.info(f"Entry Time:  {self.position['entry_time'].strftime('%H:%M:%S')}")
@@ -799,7 +903,7 @@ class NiftyORBStrategy:
                 f"**Strike:** {strike} {option_type}\n"
                 f"**Price:** ₹{entry_price:.2f}\n"
                 f"**Spot:** {spot_price}\n"
-                f"**Stop Loss:** {self.sl_percent*100:.0f}%"
+                f"**Stop Loss:** -{sl_dist:.2f} pts (ATR)"
             )
             self.send_discord_alert("🚀 TRADE ENTRY", discord_desc, 3447003) # Blue
             
@@ -839,19 +943,45 @@ class NiftyORBStrategy:
             trailing_activation_price = entry_price * (1 + self.trailing_start_percent)
             
             if self.position['max_price'] >= trailing_activation_price:
-                # SL is SL_PERCENT below the Max Price reached
-                calculated_sl = self.position['max_price'] * (1 - self.sl_percent)
+                # 1. Standard ATR Trailing
+                # SL is ATR Distance below the Max Price reached
+                atr_trailing_sl = self.position['max_price'] - self.position['atr_sl_dist']
+                
+                # 2. Profit Locking Tiers (Secure Gains)
+                # Calculate max profit percentage reached
+                max_pnl_percent = (self.position['max_price'] - entry_price) / entry_price
+                
+                profit_lock_sl = 0.0
+                tier_hit = False
+                
+                # Tier 2: 20% Profit -> Lock 15% (Aggressive)
+                if max_pnl_percent >= 0.20:
+                    profit_lock_sl = entry_price * 1.15
+                    tier_hit = True
+                # Tier 1: 8% Profit -> Lock 5% (Conservative)
+                elif max_pnl_percent >= 0.08:
+                    profit_lock_sl = entry_price * 1.05
+                    tier_hit = True
+                
+                # 3. Combine: Take the HIGHER of ATR Trailing or Profit Lock
+                calculated_sl = max(atr_trailing_sl, profit_lock_sl)
                 
                 # --------------------------------------------------------
                 # BREAKEVEN LOGIC: If profit > 5%, ensure SL >= Entry Price
                 # --------------------------------------------------------
-                new_sl = max(calculated_sl, entry_price)
+                if not tier_hit:
+                    # Only apply simple breakeven if no higher tier was hit
+                    calculated_sl = max(calculated_sl, entry_price)
                 
                 # Update SL only if it moves UP (Never move SL down)
-                if new_sl > self.position['stop_loss']:
+                if calculated_sl > self.position['stop_loss']:
                     old_sl = self.position['stop_loss']
-                    self.position['stop_loss'] = new_sl
-                    logger.info(f"⚡ TRAILING SL UPDATED: ₹{old_sl:.2f} -> ₹{new_sl:.2f} (Max: ₹{self.position['max_price']:.2f})")
+                    self.position['stop_loss'] = calculated_sl
+                    
+                    log_msg = f"⚡ TRAILING SL UPDATED: ₹{old_sl:.2f} -> ₹{calculated_sl:.2f} (Max: ₹{self.position['max_price']:.2f})"
+                    if tier_hit:
+                        log_msg += f" [PROFIT LOCKED 🔒]"
+                    logger.info(log_msg)
 
             # Calculate P&L
             pnl = current_price - entry_price
@@ -997,8 +1127,7 @@ class NiftyORBStrategy:
         logger.info("="*80)
         logger.info(f"Expiry Date:      {expiry_date}")
         logger.info(f"ORB Period:       {self.config['ORB_START_TIME']} - {self.config['ORB_END_TIME']}")
-        logger.info(f"Stop Loss:        {self.sl_percent*100:.0f}% (Safety Net)")
-        logger.info(f"Target:           {self.target_percent*100:.0f}% (Fixed)")
+        logger.info(f"Risk Mode:        Pure ATR (SL x{self.atr_multiplier_sl}, Target x{self.atr_multiplier_target})")
         logger.info(f"Lot Size:         {self.lot_size}")
         logger.info(f"Execution Mode:   {'🔴 LIVE TRADING' if self.execute_trades else '📝 PAPER TRADING'}")
         logger.info("="*80 + "\n")
@@ -1011,6 +1140,10 @@ class NiftyORBStrategy:
             return
         
         logger.info(f"✓ Ready with {len(self.option_contracts)} contracts")
+        
+        # Calculate Daily ATR
+        # Calculate Daily ATR
+        self.update_atr()
         
         try:
             while True:
@@ -1130,6 +1263,81 @@ class NiftyORBStrategy:
             logger.info("="*80)
             logger.info(f"Total Trades: {self.trade_count}")
             logger.info("="*80 + "\n")
+            logger.info(f"Total Trades: {self.trade_count}")
+            logger.info("="*80 + "\n")
+
+    def update_atr(self):
+        """
+        Fetch historical + intraday data and calculate dynamic 5-minute ATR
+        """
+        logger.info("📊 Updating ATR with latest market data...")
+        try:
+            # 1. Fetch Historical Data (Last 5 days, excluding today)
+            to_date = dt.now().strftime('%Y-%m-%d')
+            from_date = (dt.now() - timedelta(days=5)).strftime('%Y-%m-%d')
+            
+            historical_candles = self.api.get_historical_candles(
+                symbol=self.nifty_symbol,
+                interval='1minute',
+                from_date=from_date,
+                to_date=to_date
+            ) or []
+            
+            # 2. Fetch Intraday Data (Today)
+            intraday_candles = self.api.get_intraday_candles(
+                symbol=self.nifty_symbol,
+                unit='minutes',
+                interval=1
+            ) or []
+            
+            # 3. Merge Datasets
+            all_candles = historical_candles + intraday_candles
+            
+            if not all_candles:
+                logger.warning("⚠️ No candle data available for ATR")
+                return
+
+            # 4. Process Data (Sort & Resample)
+            df = pd.DataFrame(all_candles, columns=['timestamp', 'open', 'high', 'low', 'close', 'volume', 'oi'])
+            df['timestamp'] = pd.to_datetime(df['timestamp'])
+            
+            # Remove duplicates if any
+            df.drop_duplicates(subset=['timestamp'], inplace=True)
+            
+            # Sort
+            df.sort_values('timestamp', inplace=True)
+            df.set_index('timestamp', inplace=True)
+            
+            # Resample to 5-minute candles
+            ohlc_dict = {
+                'open': 'first',
+                'high': 'max',
+                'low': 'min',
+                'close': 'last',
+                'volume': 'sum',
+                'oi': 'last'
+            }
+            
+            df_5min = df.resample('5min').agg(ohlc_dict).dropna()
+            
+            # Log the last candle time to confirm freshness
+            last_candle_time = df_5min.index[-1]
+            logger.info(f"   Latest candle used for ATR: {last_candle_time}")
+            
+            # Convert back to list for calculation
+            df_5min.reset_index(inplace=True)
+            resampled_candles = df_5min.values.tolist()
+            
+            # 5. Calculate ATR
+            self.daily_atr = self.calculate_atr(resampled_candles, period=self.atr_period)
+            
+            if self.daily_atr:
+                logger.info(f"✅ Dynamic ATR ({self.atr_period} periods, 5-min) updated: {self.daily_atr:.2f}")
+            else:
+                logger.warning("⚠️ Failed to calculate Dynamic ATR")
+                
+        except Exception as e:
+            logger.error(f"Error updating ATR: {e}")
 
 # ============================================================================
 # MAIN EXECUTION
