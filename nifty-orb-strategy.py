@@ -42,7 +42,11 @@ import os
 
 CONFIG = {
     # Upstox API Credentials
-    'ACCESS_TOKEN': 'eyJ0eXAiOiJKV1QiLCJrZXlfaWQiOiJza192MS4wIiwiYWxnIjoiSFMyNTYifQ.eyJzdWIiOiI1NUJBOVgiLCJqdGkiOiI2OThlOWU3N2UyNGM4NDExZmY2NTY0YWYiLCJpc011bHRpQ2xpZW50IjpmYWxzZSwiaXNQbHVzUGxhbiI6ZmFsc2UsImlhdCI6MTc3MDk1NDM1OSwiaXNzIjoidWRhcGktZ2F0ZXdheS1zZXJ2aWNlIiwiZXhwIjoxNzcxMDIwMDAwfQ.kWNvVW58esFcFD_Xha2wdJynYtSzkgxtxyrfLAnaRs8',
+    # Live Token (Required for Market Data & Quotes)
+    'ACCESS_TOKEN': 'eyJ0eXAiOiJKV1QiLCJrZXlfaWQiOiJza192MS4wIiwiYWxnIjoiSFMyNTYifQ.eyJzdWIiOiI1NUJBOVgiLCJqdGkiOiI2OTlmYmZmMzVjNTdjODY5OTEwOTQwNTMiLCJpc011bHRpQ2xpZW50IjpmYWxzZSwiaXNQbHVzUGxhbiI6ZmFsc2UsImlhdCI6MTc3MjA3NzA0MywiaXNzIjoidWRhcGktZ2F0ZXdheS1zZXJ2aWNlIiwiZXhwIjoxNzcyMTQzMjAwfQ.2E8d3YOSEjvDBabg2LqOxEgi0I66Tpm3-E2uXXTpano',
+    
+    # Sandbox Token (Required if USE_SANDBOX_API is True for Orders)
+    'SANDBOX_TOKEN': 'eyJ0eXAiOiJKV1QiLCJrZXlfaWQiOiJza192MS4wIiwiYWxnIjoiSFMyNTYifQ.eyJzdWIiOiI1NUJBOVgiLCJqdGkiOiI2OTljMTk5ODk1M2M5YjFjMDIxNjRjMzAiLCJpc011bHRpQ2xpZW50IjpmYWxzZSwiaXNQbHVzUGxhbiI6dHJ1ZSwiaWF0IjoxNzcxODM3ODQ4LCJpc3MiOiJ1ZGFwaS1nYXRld2F5LXNlcnZpY2UiLCJleHAiOjE3NzQzODk2MDB9.2pU16hshwl2MEdLtm8h3XOc6axRlCTmAO0VSKtnYhbo',
     
     # Trading Parameters
     # EXPIRY_DATE auto-calculated for Tuesday (Nifty weekly expiry)
@@ -52,27 +56,29 @@ CONFIG = {
     'ORB_MINUTES': 15,        # Opening range duration in minutes
     'ORB_START_TIME': '09:15',
     'ORB_END_TIME': '09:30',
+    'ORB_BUFFER_POINTS': 10,  # Points required beyond ORB High/Low to confirm breakout
     
     # Risk Management
     # SL/Target are now purely ATR based
     
-    # ATR Risk Management
-    'ATR_PERIOD': 14,
-    'ATR_MULTIPLIER_SL': 0.5,    # Tighter SL for Intraday (approx 75-100 pts)
-    'ATR_MULTIPLIER_TARGET': 1.0, # Realistic Intraday Target (approx 150-200 pts)
-    'OPTION_DELTA': 0.5,      # Approximation for ATM delta
+    # Rs-Based Risk Management
+    'PROFIT_TARGET_RS': 1000,
+    'TRAILING_STEP_RS': 500,
+    'PROFIT_LOCK_ACTIVATION_RS': 700,
+    'PROFIT_LOCK_AMOUNT_RS': 200,
+    'INITIAL_STOP_LOSS_RS': -1000,
 
     
     # -------------------------------------------------------------------------
     # IMPROVED RISK MANAGEMENT
     # -------------------------------------------------------------------------
-    'MAX_TRADES_PER_DAY': 2,    # Stop after 2 trades (Win or Loss)
-    'MAX_DAILY_LOSS': 2000,     # Stop trading if cumulative loss exceeds ₹2000
-    'TRAILING_START_PERCENT': 0.05, # Only start trailing SL after 5% profit
+    'MAX_TRADES_PER_DAY': 1,    # Stop after 1 trades (Win or Loss)
+    'MAX_DAILY_LOSS': 1000,     # Stop trading if cumulative loss exceeds ₹1000
     # -------------------------------------------------------------------------
     
     # Execution
     'EXECUTE_TRADES': False,   # Set to True for live trading, False for paper trading
+    'USE_SANDBOX_API': True,   # Set to True to use Upstox Sandbox (https://api-sandbox.upstox.com)
     
     # Reporting
     'CSV_FILENAME': 'trades/trades.csv',
@@ -130,20 +136,33 @@ logger = logging.getLogger(__name__)
 class UpstoxAPI:
     """Wrapper class for Upstox API interactions"""
     
-    def __init__(self, access_token: str):
+    def __init__(self, access_token: str, sandbox_token: str = None, use_sandbox: bool = False):
         """
         Initialize Upstox API client
         
         Args:
-            access_token: Upstox API access token
+            access_token: Upstox LIVE API access token (For Quotes & Data)
+            sandbox_token: Upstox SANDBOX access token (For Orders)
+            use_sandbox: Use sandbox environment
         """
         self.access_token = access_token
+        self.sandbox_token = sandbox_token
+        self.use_sandbox = use_sandbox
         self.base_url = "https://api.upstox.com/v2"
+        self.sandbox_url = "https://api-sandbox.upstox.com/v2"
+        
+        # Headers for Live endpoints
         self.headers = {
             'Accept': 'application/json',
-            'Authorization': f'Bearer {access_token}'
+            'Authorization': f'Bearer {self.access_token}'
         }
-        logger.info("Upstox API initialized")
+        
+        # Headers for Sandbox endpoints
+        self.sandbox_headers = {
+            'Accept': 'application/json',
+            'Authorization': f'Bearer {self.sandbox_token}' if self.sandbox_token else ''
+        }
+        logger.info(f"Upstox API initialized (Sandbox Enabled for Orders: {self.use_sandbox})")
     
     def get_quote(self, symbol: str) -> Optional[Dict]:
         """
@@ -248,7 +267,7 @@ class UpstoxAPI:
             interval_str = f"{interval}{unit_clean}"
             
             # V2 intraday endpoint (Standard)
-            url = f"https://api.upstox.com/v2/historical-candle/intraday/{encoded_symbol}/{interval_str}"
+            url = f"{self.base_url}/historical-candle/intraday/{encoded_symbol}/{interval_str}"
             
             response = requests.get(url, headers=self.headers, timeout=15)
             
@@ -291,7 +310,7 @@ class UpstoxAPI:
         """
         try:
             encoded_symbol = quote(symbol, safe='')
-            url = f"https://api.upstox.com/v2/historical-candle/{encoded_symbol}/{interval}/{to_date}/{from_date}"
+            url = f"{self.base_url}/historical-candle/{encoded_symbol}/{interval}/{to_date}/{from_date}"
             
             response = requests.get(url, headers=self.headers, timeout=15)
             
@@ -315,7 +334,9 @@ class UpstoxAPI:
     def place_order(self, symbol: str, quantity: int, 
                    transaction_type: str = 'BUY',
                    order_type: str = 'MARKET',
-                   product: str = 'I') -> Optional[Dict]:
+                   product: str = 'I',
+                   price: float = 0.0,
+                   trigger_price: float = 0.0) -> Optional[Dict]:
         """
         Place an order on Upstox
         
@@ -330,19 +351,19 @@ class UpstoxAPI:
             Order response or None
         """
         try:
-            url = f"{self.base_url}/order/place"
+            url = f"{self.sandbox_url if self.use_sandbox else self.base_url}/order/place"
             
             payload = {
                 'quantity': quantity,
                 'product': product,
                 'validity': 'DAY',
-                'price': 0,
+                'price': price,
                 'tag': 'ORB_Strategy',
                 'instrument_token': symbol,
                 'order_type': order_type,
                 'transaction_type': transaction_type,
                 'disclosed_quantity': 0,
-                'trigger_price': 0,
+                'trigger_price': trigger_price,
                 'is_amo': False
             }
             
@@ -350,7 +371,7 @@ class UpstoxAPI:
             
             response = requests.post(
                 url, 
-                headers=self.headers, 
+                headers=self.sandbox_headers if self.use_sandbox else self.headers, 
                 json=payload, 
                 timeout=10
             )
@@ -370,10 +391,49 @@ class UpstoxAPI:
         except Exception as e:
             logger.error(f"Exception in place_order: {e}")
             return None
+
+    def modify_order(self, order_id: str, new_trigger_price: float, new_price: float) -> bool:
+        """
+        Modify an open trigger/SL order on Upstox.
+        """
+        try:
+            url = f"{self.sandbox_url if self.use_sandbox else self.base_url}/order/modify"
+            
+            payload = {
+                'order_id': order_id,
+                'trigger_price': new_trigger_price,
+                'price': new_price,
+                'validity': 'DAY',
+                'order_type': 'SL'
+            }
+            
+            response = requests.put(
+                url, 
+                headers=self.sandbox_headers if self.use_sandbox else self.headers, 
+                json=payload, 
+                timeout=10
+            )
+            
+            if response.status_code == 200:
+                result = response.json()
+                if result.get('status') == 'success':
+                    logger.debug(f"✓ Order {order_id} modified successfully to Trigger: {new_trigger_price:.2f}")
+                    return True
+                else:
+                    logger.error(f"Order modify rejected: {result.get('message')}")
+            else:
+                logger.error(f"Order modify failed: {response.status_code} - {response.text}")
+            
+            return False
+            
+        except Exception as e:
+            logger.error(f"Exception in modify_order: {e}")
+            return False
     
     def get_positions(self) -> Optional[Dict]:
         """Get current positions"""
         try:
+            # Note: Sandbox may not support positions, defaulting to live to avoid crashing
             url = f"{self.base_url}/portfolio/short-term-positions"
             
             response = requests.get(url, headers=self.headers, timeout=10)
@@ -456,41 +516,70 @@ def get_next_weekly_expiry_full(weekday_target=1) -> str:
     
     return expiry.strftime('%Y-%m-%d')
 
-def get_option_contracts(access_token: str, nifty_symbol: str) -> List[Dict]:
+def get_option_contracts(api: UpstoxAPI, nifty_symbol: str) -> List[Dict]:
     """
-    Fetch option contracts from Upstox API for current weekly expiry
+    Fetch option contracts from Upstox API matching current weekly expiry (Tuesday)
+    Uses robust fallback to fetch all expiries and select the nearest one if needed.
     
     Args:
-        access_token: Upstox API access token
+        api: UpstoxAPI instance
         nifty_symbol: Nifty symbol (e.g., 'NSE_INDEX|Nifty 50')
     
     Returns:
-        List of option contracts
+        List of option contracts formatted for strategy use
     """
     try:
         expiry_date = get_next_weekly_expiry_full()  # YYYY-MM-DD format
         encoded_symbol = encode_symbol(nifty_symbol)
         
-        url = f"https://api.upstox.com/v2/option/contract?instrument_key={encoded_symbol}&expiry_date={expiry_date}"
+        url = f"{api.base_url}/option/contract?instrument_key={encoded_symbol}&expiry_date={expiry_date}"
         headers = {
             "accept": "application/json",
-            "Authorization": f"Bearer {access_token}"
+            "Authorization": f"Bearer {api.access_token}"
         }
         
-        logger.info(f"Fetching option contracts for expiry: {expiry_date}")
+        logger.info(f"Fetching option contracts for {expiry_date}...")
         response = requests.get(url, headers=headers, timeout=10)
         
+        contracts = []
         if response.status_code == 200:
             data = response.json()
             contracts = data.get('data', [])
-            logger.info(f"✓ Fetched {len(contracts)} option contracts")
-            return contracts
+            logger.info(f"✓ Fetched {len(contracts)} option contracts for {expiry_date}")
         else:
-            logger.error(f"Failed to fetch contracts: {response.status_code}")
+            logger.error(f"Failed to fetch contracts for precise expiry: {response.status_code} - {response.text[:200]}")
+            
+        if not contracts:
+            logger.warning(f"No contracts for {expiry_date}, fetching all expiries...")
+            url2 = f"{api.base_url}/option/contract?instrument_key={encoded_symbol}"
+            r2 = requests.get(url2, headers=headers, timeout=10)
+            
+            if r2.status_code == 200:
+                data2 = r2.json()
+                all_contracts = data2.get('data') or []
+                logger.info(f"Total contracts available: {len(all_contracts)}")
+                
+                if all_contracts:
+                    # Sort expiries using set to remove duplicates
+                    expiries = sorted(list(set([c.get('expiry') for c in all_contracts if c.get('expiry')])))
+                    if expiries:
+                        logger.info(f"Available expiries: {expiries[:5]}")
+                        nearest = expiries[0]
+                        contracts = [c for c in all_contracts if c.get('expiry') == nearest]
+                        logger.info(f"Using nearest expiry: {nearest} ({len(contracts)} contracts)")
+            else:
+                logger.error(f"All expiries API failed: {r2.status_code} - {r2.text[:200]}")
+                
+        if not contracts:
+            logger.error("No contracts found after all attempts!")
             return []
             
+        # The strategy requires these fields, which are already present in v2/option/contract format
+        # Filter near ATM if we wanted, but ORB strategy expects full chain and finds ATM later
+        return contracts
+            
     except Exception as e:
-        logger.error(f"Error fetching option contracts: {e}")
+        logger.error(f"Error fetching option contracts: {e}", exc_info=True)
         return []
 
 # ============================================================================
@@ -518,6 +607,7 @@ class NiftyORBStrategy:
         self.orb_minutes = config['ORB_MINUTES']
         self.orb_start = dt.strptime(config['ORB_START_TIME'], '%H:%M').time()
         self.orb_end = dt.strptime(config['ORB_END_TIME'], '%H:%M').time()
+        self.orb_buffer = config.get('ORB_BUFFER_POINTS', 10)
         # Validate critical config
         if not config.get('ACCESS_TOKEN'):
             raise ValueError("ACCESS_TOKEN not set in config")
@@ -528,13 +618,13 @@ class NiftyORBStrategy:
         # Risk Management (New)
         self.max_trades = config.get('MAX_TRADES_PER_DAY', 2)
         self.max_daily_loss = abs(config.get('MAX_DAILY_LOSS', 2000)) # Ensure positive
-        self.trailing_start_percent = config.get('TRAILING_START_PERCENT', 0.05)
 
-        # ATR Parameters
-        self.atr_period = config.get('ATR_PERIOD', 14)
-        self.atr_multiplier_sl = config.get('ATR_MULTIPLIER_SL', 1.5)
-        self.atr_multiplier_target = config.get('ATR_MULTIPLIER_TARGET', 3.0)
-        self.option_delta = config.get('OPTION_DELTA', 0.5)
+        # Rs-Based Risk Parameters
+        self.profit_target_rs = config.get('PROFIT_TARGET_RS', 1000)
+        self.trailing_step_rs = config.get('TRAILING_STEP_RS', 500)
+        self.profit_lock_activation_rs = config.get('PROFIT_LOCK_ACTIVATION_RS', 700)
+        self.profit_lock_amount_rs = config.get('PROFIT_LOCK_AMOUNT_RS', 200)
+        self.initial_sl_rs = config.get('INITIAL_STOP_LOSS_RS', -1000)
 
         
         # State variables
@@ -546,9 +636,7 @@ class NiftyORBStrategy:
         self.trade_count = 0
         self.total_pnl = 0.0 # Track daily P&L
         self.trade_completed = False
-        self.trade_completed = False
         self.option_contracts = []  # Store contracts for lookup
-        self.daily_atr = None       # Store calculated Daily ATR
         
         # Reporting Config
         self.csv_filename = config.get('CSV_FILENAME', 'trades.csv')
@@ -589,7 +677,7 @@ class NiftyORBStrategy:
                     "title": title,
                     "description": description,
                     "color": color,
-                    "timestamp": dt.utcnow().isoformat()
+                    "timestamp": dt.now(datetime.UTC).isoformat()
                 }]
             }
             
@@ -699,50 +787,7 @@ class NiftyORBStrategy:
             logger.error(f"Error calculating ORB: {e}")
             return None
     
-    def calculate_atr(self, candles: List, period: int = 14) -> Optional[float]:
-        """
-        Calculate Average True Range (ATR) using Wilder's Smoothing
-        """
-        if not candles or len(candles) < period + 1:
-            logger.warning(f"Not enough candles for ATR (Need {period+1}, Got {len(candles) if candles else 0})")
-            return None
-            
-        try:
-            # Upstox returns list of lists: [timestamp, open, high, low, close, volume, oi]
-            df = pd.DataFrame(candles, columns=['timestamp', 'open', 'high', 'low', 'close', 'volume', 'oi'])
-            
-            # Explicitly sort by timestamp ascending
-            df['timestamp'] = pd.to_datetime(df['timestamp'])
-            df.sort_values('timestamp', inplace=True)
-            df.reset_index(drop=True, inplace=True)
-            
-            # Ensure columns exist (redundant now but good for safety if format changes)
-            required_cols = ['high', 'low', 'close']
-            if not all(col in df.columns for col in required_cols):
-                logger.error("Candle data missing required columns")
-                return None
-            
-            # Helper for True Range
-            df['high_low'] = df['high'] - df['low']
-            df['high_close'] = (df['high'] - df['close'].shift(1)).abs()
-            df['low_close'] = (df['low'] - df['close'].shift(1)).abs()
-            
-            df['tr'] = df[['high_low', 'high_close', 'low_close']].max(axis=1)
-            
-            # Wilder's Smoothing (RMA)
-            # First value is SMA of TR
-            # Subsequent values: ((Previous ATR * (period - 1)) + Current TR) / period
-            
-            # Pandas ewm adjustment for Wilder's: alpha = 1/period
-            atr = df['tr'].ewm(alpha=1/period, min_periods=period, adjust=False).mean()
-            
-            current_atr = atr.iloc[-1]
-            logger.info(f"📊 Calculated ATR ({period}): {current_atr:.2f}")
-            return current_atr
-            
-        except Exception as e:
-            logger.error(f"Error calculating ATR: {e}")
-            return None
+
     
     # Indicators Removed (VWAP/Supertrend)
     
@@ -756,7 +801,7 @@ class NiftyORBStrategy:
             return None
         
         # Reset Logic: If price is inside the range, we are ready for a new breakout
-        if self.orb_low < current_price < self.orb_high:
+        if self.orb_low <= current_price <= self.orb_high:
             if not self.waiting_for_breakout:
                 logger.info("Values returned to ORB Range - Signal RE-ARMED ⚠️")
                 self.waiting_for_breakout = True
@@ -764,15 +809,18 @@ class NiftyORBStrategy:
 
         # Breakout Trigger
         if self.waiting_for_breakout:
-            # Bullish breakout: Price > ORB High
-            if current_price > self.orb_high:
-                logger.info(f"🚀 BULLISH BREAKOUT CONFIRMED (Price: {current_price} > ORB High: {self.orb_high})")
+            buy_trigger = self.orb_high + self.orb_buffer
+            sell_trigger = self.orb_low - self.orb_buffer
+            
+            # Bullish breakout: Price > ORB High + Buffer
+            if current_price > buy_trigger:
+                logger.info(f"🚀 BULLISH BREAKOUT CONFIRMED (Price: {current_price} > Trigger: {buy_trigger} [ORB High: {self.orb_high} + {self.orb_buffer} Buffer])")
                 self.waiting_for_breakout = False # Consumed
                 return 'CE'
             
-            # Bearish breakout: Price < ORB Low
-            elif current_price < self.orb_low:
-                logger.info(f"📉 BEARISH BREAKOUT CONFIRMED (Price: {current_price} < ORB Low: {self.orb_low})")
+            # Bearish breakout: Price < ORB Low - Buffer
+            elif current_price < sell_trigger:
+                logger.info(f"📉 BEARISH BREAKOUT CONFIRMED (Price: {current_price} < Trigger: {sell_trigger} [ORB Low: {self.orb_low} - {self.orb_buffer} Buffer])")
                 self.waiting_for_breakout = False # Consumed
                 return 'PE'
         
@@ -791,9 +839,6 @@ class NiftyORBStrategy:
             True if position entered successfully, False otherwise
         """
         try:
-            # 0. Update ATR dynamically before entry
-            self.update_atr()
-
             # Calculate ATM strike
             strike = self.get_atm_strike(spot_price)
             
@@ -813,33 +858,15 @@ class NiftyORBStrategy:
                 logger.error("Invalid option price received")
                 return False
             
-            # Calculate levels (Dynamic with ATR or Fixed %)
+            # Calculate levels (Rs Based)
             entry_price = option_price
             
+            # 2. Set Final Levels
+            sl_points = abs(self.initial_sl_rs) / self.lot_size
+            stop_loss = entry_price - sl_points
             
-            # ATR Based Risk Management
-            if self.daily_atr:
-                # Option Volatility Estimate = Nifty ATR * Delta
-                # Delta is typically 0.5 for ATM options
-                option_volatility = self.daily_atr * self.option_delta
-                
-                sl_dist = option_volatility * self.atr_multiplier_sl
-                target_dist = option_volatility * self.atr_multiplier_target
-                
-                logger.info(f"📊 Using ATR Based Risk Management (ATR: {self.daily_atr:.2f})")
-                logger.info(f"   Option Volatility Est: {option_volatility:.2f} (Delta: {self.option_delta})")
-                logger.info(f"   ATR SL Dist: {sl_dist:.2f} (x{self.atr_multiplier_sl})")
-                logger.info(f"   ATR Target Dist: {target_dist:.2f} (x{self.atr_multiplier_target})")
-                
-                
-            else:
-                # ATR IS MANDATORY NOW
-                logger.error("❌ ATR not available. Cannot calculate Risk Management. Entry Aborted.")
-                return False
-            
-            # 2. Set Final Levels (Pure ATR)
-            stop_loss = entry_price - sl_dist
-            target = entry_price + target_dist
+            # No fixed target price because we trail
+            target = float('inf')
             
             # Create position object
             self.position = {
@@ -849,14 +876,12 @@ class NiftyORBStrategy:
                 'strike': strike,
                 'entry_price': entry_price,
                 'stop_loss': stop_loss,
-                'stop_loss': stop_loss,
                 'target': target,
-                'atr_sl_dist': sl_dist, # Store for Trailing SL
-
                 'max_price': entry_price, # Track High for Trailing SL
                 'entry_time': get_ist_time(),
                 'spot_price': spot_price,
-                'quantity': self.lot_size
+                'quantity': self.lot_size,
+                'sl_order_id': None  # Track real order id in Exchange
             }
             
             # Log entry details
@@ -869,15 +894,16 @@ class NiftyORBStrategy:
             logger.info(f"Strike:      {strike}")
             logger.info(f"Spot Price:  {spot_price}")
             logger.info(f"Entry Price: ₹{entry_price:.2f}")
-            logger.info(f"Target:      ₹{target:.2f} (+{target_dist:.2f} pts)")
-            logger.info(f"Stop Loss:   ₹{stop_loss:.2f} (-{sl_dist:.2f} pts)")
-            logger.info(f"Exit Condition: TARGET 🎯 OR TRAILING SL 🛑")
+            logger.info(f"Target Mode: Trailing every ₹{self.trailing_step_rs} after ₹{self.profit_target_rs}")
+            logger.info(f"Stop Loss:   ₹{stop_loss:.2f} (₹{self.initial_sl_rs})")
+            logger.info(f"Exit Condition: TRAILING SL 🛑")
             logger.info(f"Quantity:    {self.lot_size} lots")
             logger.info(f"Entry Time:  {self.position['entry_time'].strftime('%H:%M:%S')}")
             logger.info("="*70 + "\n")
             
-            # Place order if live trading
-            if self.execute_trades:
+            # Place order (Live or Sandbox)
+            # Use real API if execute trades is true or if we are configured to use Sandbox
+            if self.execute_trades or getattr(self.api, 'use_sandbox', False):
                 order = self.api.place_order(
                     symbol=instrument_key,
                     quantity=self.lot_size,
@@ -887,15 +913,57 @@ class NiftyORBStrategy:
                 )
                 
                 if order:
-                    self.position['order_id'] = order.get('order_id')
-                    logger.info(f"✓ Live order executed: {order}")
+                    # Sandbox sometimes returns order_ref_id instead of order_id
+                    order_data = order.get('data', {})
+                    self.position['order_id'] = order_data.get('order_id') or order_data.get('order_ref_id')
+                    logger.info(f"✓ {'Live' if self.execute_trades else 'Sandbox'} Entry Order executed: {order}")
+                    
+                    # IMMEDIATELY PLACE SL ORDER IN EXCHANGE
+                    if self.execute_trades or getattr(self.api, 'use_sandbox', False):
+                        sl_order = self.api.place_order(
+                            symbol=instrument_key,
+                            quantity=self.lot_size,
+                            transaction_type='SELL',
+                            order_type='SL',  # Stop Loss Limit Option
+                            product='I',
+                            price=round(stop_loss - 0.5, 2),
+                            trigger_price=round(stop_loss, 2)
+                        )
+                        
+                        if sl_order:
+                            # Extract the actual payload dictionary, modify requests need it
+                            sl_order_data = sl_order.get('data', {})
+                            self.position['sl_order_id'] = sl_order_data.get('order_id') or sl_order_data.get('order_ref_id')
+                            logger.info(f"✓ {'Live' if self.execute_trades else 'Sandbox'} SL Order initialized at exchange at ₹{stop_loss:.2f}")
+                            
+                            # Set actual trigger params locally:
+                            # Required by many exchanges: Limit needs to be slightly lower than Trigger for SELL SL
+                            payload_for_sl = {
+                                'order_id': self.position['sl_order_id'],
+                                'new_trigger_price': round(stop_loss, 2),
+                                'new_price': round(stop_loss - 0.5, 2)
+                            }
+                            
+                            self.api.modify_order(**payload_for_sl)
+                            
+                        else:
+                            logger.error("✗ Failed to execute safety SL order in Upstox! Closing manually...")
+                            # If SL fails, immediately exit the live/sandbox trade as a safety measure
+                            self.api.place_order(symbol=instrument_key, quantity=self.lot_size, transaction_type='SELL', order_type='MARKET')
+                            self.position = None
+                            return False
+                    else:
+                        self.position['sl_order_id'] = None
+                        logger.info(f"✓ Sandbox SL Local tracking initialized at ₹{stop_loss:.2f}")
+
                 else:
-                    logger.error("✗ Failed to execute order")
+                    logger.error("✗ Failed to execute entry order")
                     self.position = None
                     return False
             else:
-                logger.info("📝 PAPER TRADE - No real order placed")
-            
+                self.position['order_id'] = f"mock_{int(time.time())}"
+                self.position['sl_order_id'] = f"mock_sl_{int(time.time())}"
+                logger.info(f"📝 PAPER TRADE - Mock Order ID: {self.position['order_id']}")
             self.trade_count += 1
             
             # Send Discord Alert (Entry)
@@ -903,7 +971,7 @@ class NiftyORBStrategy:
                 f"**Strike:** {strike} {option_type}\n"
                 f"**Price:** ₹{entry_price:.2f}\n"
                 f"**Spot:** {spot_price}\n"
-                f"**Stop Loss:** -{sl_dist:.2f} pts (ATR)"
+                f"**Stop Loss:** ₹{self.initial_sl_rs} Rs"
             )
             self.send_discord_alert("🚀 TRADE ENTRY", discord_desc, 3447003) # Blue
             
@@ -936,67 +1004,54 @@ class NiftyORBStrategy:
             if current_price > self.position['max_price']:
                 self.position['max_price'] = current_price
                 
-            # Calculate Dynamic Trailing SL
-            # ---------------------------------------------------------------------
-            # RISK UPGRADE: Only trail if we are in significant profit
-            # ---------------------------------------------------------------------
-            trailing_activation_price = entry_price * (1 + self.trailing_start_percent)
+            # Rs-Based Risk Management
+            max_pnl_rs = (self.position['max_price'] - entry_price) * self.lot_size
+            current_pnl_rs = (current_price - entry_price) * self.lot_size
             
-            if self.position['max_price'] >= trailing_activation_price:
-                # 1. Standard ATR Trailing
-                # SL is ATR Distance below the Max Price reached
-                atr_trailing_sl = self.position['max_price'] - self.position['atr_sl_dist']
+            calculated_sl = self.position['stop_loss']
+            tier_hit = False
+            lock_msg = ""
+            
+            # 1. Trailing every 500 after reaching 1000
+            if max_pnl_rs >= self.profit_target_rs:
+                # Continuous trailing 500 Rs behind the max price
+                locked_profit_rs = max_pnl_rs - self.trailing_step_rs
+                calculated_sl = entry_price + (locked_profit_rs / self.lot_size)
+                tier_hit = True
+                lock_msg = "[TRAILING 📈]"
                 
-                # 2. Profit Locking Tiers (Secure Gains)
-                # Calculate max profit percentage reached
-                max_pnl_percent = (self.position['max_price'] - entry_price) / entry_price
-                
-                profit_lock_sl = 0.0
-                tier_hit = False
-                
-                # Tier 2: 20% Profit -> Lock 15% (Aggressive)
-                if max_pnl_percent >= 0.20:
-                    profit_lock_sl = entry_price * 1.15
-                    tier_hit = True
-                # Tier 1: 8% Profit -> Lock 5% (Conservative)
-                elif max_pnl_percent >= 0.08:
-                    profit_lock_sl = entry_price * 1.05
-                    tier_hit = True
-                
-                # 3. Combine: Take the HIGHER of ATR Trailing or Profit Lock
-                calculated_sl = max(atr_trailing_sl, profit_lock_sl)
-                
-                # --------------------------------------------------------
-                # BREAKEVEN LOGIC: If profit > 5%, ensure SL >= Entry Price
-                # --------------------------------------------------------
-                if not tier_hit:
-                    # Only apply simple breakeven if no higher tier was hit
-                    calculated_sl = max(calculated_sl, entry_price)
+            # 2. Lock 200 if it reaches 700
+            elif max_pnl_rs >= self.profit_lock_activation_rs:
+                locked_profit_rs = self.profit_lock_amount_rs
+                calculated_sl = entry_price + (locked_profit_rs / self.lot_size)
+                tier_hit = True
+                lock_msg = "[PROFIT LOCKED 🔒]"
                 
                 # Update SL only if it moves UP (Never move SL down)
-                if calculated_sl > self.position['stop_loss']:
-                    old_sl = self.position['stop_loss']
-                    self.position['stop_loss'] = calculated_sl
-                    
-                    log_msg = f"⚡ TRAILING SL UPDATED: ₹{old_sl:.2f} -> ₹{calculated_sl:.2f} (Max: ₹{self.position['max_price']:.2f})"
-                    if tier_hit:
-                        log_msg += f" [PROFIT LOCKED 🔒]"
-                    logger.info(log_msg)
+            if calculated_sl > self.position['stop_loss']:
+                old_sl = self.position['stop_loss']
+                new_sl = round(calculated_sl, 2)
+                self.position['stop_loss'] = new_sl
+                logger.info(f"⚡ TRAILING SL UPDATED: ₹{old_sl:.2f} -> ₹{new_sl:.2f} (Max PnL: ₹{max_pnl_rs:.2f}) {lock_msg}")
+                
+                # Update Actual SL Order in Exchange
+                if (self.execute_trades or getattr(self.api, 'use_sandbox', False)) and self.position.get('sl_order_id'):
+                    # Limit price is 50 paise lower to guarantee execution on sharp drops
+                    self.api.modify_order(
+                        order_id=self.position['sl_order_id'], 
+                        new_trigger_price=new_sl, 
+                        new_price=round(new_sl - 0.5, 2)
+                    )
 
-            # Calculate P&L
-            pnl = current_price - entry_price
-            pnl_percent = (pnl / entry_price)
+            pnl_percent = (current_price - entry_price) / entry_price
             
-            logger.info(f"  Price: ₹{current_price:.2f} | SL: ₹{self.position['stop_loss']:.2f} | P&L: {pnl_percent*100:+.2f}%")
+            logger.info(f"  Price: ₹{current_price:.2f} | SL: ₹{self.position['stop_loss']:.2f} | PnL: ₹{current_pnl_rs:.2f} ({pnl_percent*100:+.2f}%)")
             
-            # 1. Check Target
-            if current_price >= self.position['target']:
-                 logger.info(f"🎯 TARGET HIT at ₹{current_price:.2f}")
-                 return 'TARGET_HIT'
-
-            # 2. Check Stop Loss (Trailing)
+            # Target check is removed because exit is handled fully by trailing SL
+            
+            # 2. Check Stop Loss (Trailing or Initial)
             if current_price <= self.position['stop_loss']:
-                logger.warning(f"🛑 STOP LOSS HIT at ₹{current_price:.2f}")
+                logger.warning(f"🛑 STOP LOSS/TRAILING SL HIT at ₹{current_price:.2f} (PnL: ₹{current_pnl_rs:.2f})")
                 return 'STOP_LOSS'
             
             return None
@@ -1036,8 +1091,9 @@ class NiftyORBStrategy:
             logger.info(f"Duration:    {(exit_time - self.position['entry_time']).total_seconds() / 60:.1f} minutes")
             logger.info("="*70 + "\n")
             
-            # Place sell order if live trading
-            if self.execute_trades:
+            # Place sell order if live trading (MANUAL EXITS OR PAPER TRACKING)
+            # If the Stop loss trigger directly hit, Upstox fired it. Only actively close here if it hasn't fired.
+            if (self.execute_trades or getattr(self.api, 'use_sandbox', False)) and exit_reason != 'STOP_LOSS':
                 order = self.api.place_order(
                     symbol=self.position['symbol'],
                     quantity=self.lot_size,
@@ -1049,7 +1105,10 @@ class NiftyORBStrategy:
                 if order:
                     logger.info(f"✓ Exit order executed: {order}")
                 else:
-                    logger.error("✗ Failed to execute exit order")
+                    logger.error("✗ Failed to execute manual exit order")
+                    
+            elif (self.execute_trades or getattr(self.api, 'use_sandbox', False)) and exit_reason == 'STOP_LOSS':
+                logger.info("✓ Trusting Exchange SL trigger executed our order.")
             
             # Log to CSV
             trade_record = {
@@ -1087,30 +1146,15 @@ class NiftyORBStrategy:
             self.total_pnl += pnl
             logger.info(f"💰 CUMULATIVE DAILY P&L: ₹{self.total_pnl:.2f}")
 
-            # Check Daily Loss Limit
-            if self.total_pnl <= -self.max_daily_loss:
-                self.trade_completed = True
-                logger.warning(f"🛑 MAX DAILY LOSS HIT (₹{self.total_pnl:.2f}) - Stopping for the day")
-                return
-
-            # Check Max Trades Limit
             if self.trade_count >= self.max_trades:
+                logger.info(f"📅 Reached max trades for the day ({self.max_trades}).")
                 self.trade_completed = True
-                logger.warning(f"🛑 MAX TRADES LIMIT REACHED ({self.trade_count}) - Stopping for the day")
-                return
-            
-            # Logic: Stop if Target Hit, Continue if SL Hit
-            if exit_reason == 'TARGET_HIT':
+                logger.info("Exiting bot completely for the day. 🛑")
+                sys.exit(0)
+            elif self.total_pnl <= -self.max_daily_loss:
+                logger.warning(f"� Max daily loss hit (₹{-self.max_daily_loss}). Exiting bot completely for safety. 🛑")
                 self.trade_completed = True
-                logger.info("📅 Daily Target Achieved - Stopping for the day 🏆")
-            elif exit_reason == 'STOP_LOSS':
-                self.trade_completed = False
-                logger.info("🔄 Stop Loss Hit - Resuming monitoring for re-entry...")
-                # Note: waiting_for_breakout will be set to True automatically 
-                # when price returns to range in check_breakout
-            else:
-                # For Manual/Market Close exits, stop
-                self.trade_completed = True
+                sys.exit(0)
             
         except Exception as e:
             logger.error(f"Error exiting position: {e}")
@@ -1127,23 +1171,20 @@ class NiftyORBStrategy:
         logger.info("="*80)
         logger.info(f"Expiry Date:      {expiry_date}")
         logger.info(f"ORB Period:       {self.config['ORB_START_TIME']} - {self.config['ORB_END_TIME']}")
-        logger.info(f"Risk Mode:        Pure ATR (SL x{self.atr_multiplier_sl}, Target x{self.atr_multiplier_target})")
+        logger.info(f"Risk Mode:        Rs Based (Trail/Lock: {self.profit_target_rs}/{self.trailing_step_rs} & {self.profit_lock_activation_rs}/{self.profit_lock_amount_rs})")
         logger.info(f"Lot Size:         {self.lot_size}")
         logger.info(f"Execution Mode:   {'🔴 LIVE TRADING' if self.execute_trades else '📝 PAPER TRADING'}")
         logger.info("="*80 + "\n")
         
         # Load Option Contracts
-        logger.info("📥 Loading option contracts...")
-        self.option_contracts = get_option_contracts(self.api.access_token, self.nifty_symbol)
+        logger.info("📥 Loading option contracts (Using Live Token)...")
+        # We pass access_token string to force the live connection in get_option_contracts
+        self.option_contracts = get_option_contracts(self.api, self.nifty_symbol)
         if not self.option_contracts:
             logger.error("❌ Failed to load option contracts! Strategy cannot run.")
             return
         
         logger.info(f"✓ Ready with {len(self.option_contracts)} contracts")
-        
-        # Calculate Daily ATR
-        # Calculate Daily ATR
-        self.update_atr()
         
         try:
             while True:
@@ -1263,81 +1304,8 @@ class NiftyORBStrategy:
             logger.info("="*80)
             logger.info(f"Total Trades: {self.trade_count}")
             logger.info("="*80 + "\n")
-            logger.info(f"Total Trades: {self.trade_count}")
-            logger.info("="*80 + "\n")
 
-    def update_atr(self):
-        """
-        Fetch historical + intraday data and calculate dynamic 5-minute ATR
-        """
-        logger.info("📊 Updating ATR with latest market data...")
-        try:
-            # 1. Fetch Historical Data (Last 5 days, excluding today)
-            to_date = dt.now().strftime('%Y-%m-%d')
-            from_date = (dt.now() - timedelta(days=5)).strftime('%Y-%m-%d')
-            
-            historical_candles = self.api.get_historical_candles(
-                symbol=self.nifty_symbol,
-                interval='1minute',
-                from_date=from_date,
-                to_date=to_date
-            ) or []
-            
-            # 2. Fetch Intraday Data (Today)
-            intraday_candles = self.api.get_intraday_candles(
-                symbol=self.nifty_symbol,
-                unit='minutes',
-                interval=1
-            ) or []
-            
-            # 3. Merge Datasets
-            all_candles = historical_candles + intraday_candles
-            
-            if not all_candles:
-                logger.warning("⚠️ No candle data available for ATR")
-                return
 
-            # 4. Process Data (Sort & Resample)
-            df = pd.DataFrame(all_candles, columns=['timestamp', 'open', 'high', 'low', 'close', 'volume', 'oi'])
-            df['timestamp'] = pd.to_datetime(df['timestamp'])
-            
-            # Remove duplicates if any
-            df.drop_duplicates(subset=['timestamp'], inplace=True)
-            
-            # Sort
-            df.sort_values('timestamp', inplace=True)
-            df.set_index('timestamp', inplace=True)
-            
-            # Resample to 5-minute candles
-            ohlc_dict = {
-                'open': 'first',
-                'high': 'max',
-                'low': 'min',
-                'close': 'last',
-                'volume': 'sum',
-                'oi': 'last'
-            }
-            
-            df_5min = df.resample('5min').agg(ohlc_dict).dropna()
-            
-            # Log the last candle time to confirm freshness
-            last_candle_time = df_5min.index[-1]
-            logger.info(f"   Latest candle used for ATR: {last_candle_time}")
-            
-            # Convert back to list for calculation
-            df_5min.reset_index(inplace=True)
-            resampled_candles = df_5min.values.tolist()
-            
-            # 5. Calculate ATR
-            self.daily_atr = self.calculate_atr(resampled_candles, period=self.atr_period)
-            
-            if self.daily_atr:
-                logger.info(f"✅ Dynamic ATR ({self.atr_period} periods, 5-min) updated: {self.daily_atr:.2f}")
-            else:
-                logger.warning("⚠️ Failed to calculate Dynamic ATR")
-                
-        except Exception as e:
-            logger.error(f"Error updating ATR: {e}")
 
 # ============================================================================
 # MAIN EXECUTION
@@ -1347,9 +1315,13 @@ def main():
     """Main entry point"""
     
     # Validate configuration
-    if CONFIG['ACCESS_TOKEN'] == 'your_upstox_access_token_here':
-        logger.error("❌ Please set your Upstox access token in CONFIG")
+    if CONFIG['ACCESS_TOKEN'] == 'EY....(YOUR LIVE TOKEN)....':
+        logger.error("❌ Please set your Upstox LIVE access_token in CONFIG")
         return
+        
+    use_sandbox = CONFIG.get('USE_SANDBOX_API', False)
+    if use_sandbox and (not CONFIG.get('SANDBOX_TOKEN') or CONFIG['SANDBOX_TOKEN'] == 'EY....(YOUR SANDBOX TOKEN)....'):
+        logger.warning("⚠️ USE_SANDBOX_API is true but SANDBOX_TOKEN is missing. Orders will fail in Sandbox.")
     
     # Auto-calculate Tuesday expiry for Nifty weekly options
     expiry_date = get_next_weekly_expiry()  # YYMMDD format
@@ -1358,7 +1330,11 @@ def main():
     
     # Initialize API
     try:
-        api = UpstoxAPI(CONFIG['ACCESS_TOKEN'])
+        api = UpstoxAPI(
+            access_token=CONFIG['ACCESS_TOKEN'], 
+            sandbox_token=CONFIG.get('SANDBOX_TOKEN', ''),
+            use_sandbox=use_sandbox
+        )
         
         # Test API connection
         logger.info("Testing API connection...")
@@ -1399,7 +1375,8 @@ if __name__ == "__main__":
     print("  2. Expiry auto-calculated for Tuesday (Nifty weekly expiry)")
     print("  3. Verify LOT_SIZE is current (default: 25)")
     print("  4. EXECUTE_TRADES is False by default (paper trading)")
-    print("  5. Set EXECUTE_TRADES=True only when ready for live trading")
+    print("  5. Set USE_SANDBOX_API=True if you want to use the Upstox Sandbox for API calls")
+    print("  6. Set EXECUTE_TRADES=True only when ready for live trading")
     print("\n" + "="*80 + "\n")
     
     # Confirmation for live trading
