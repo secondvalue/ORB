@@ -429,6 +429,40 @@ class UpstoxAPI:
         except Exception as e:
             logger.error(f"Exception in modify_order: {e}")
             return False
+            
+    def cancel_order(self, order_id: str) -> bool:
+        """
+        Cancel an open order on Upstox.
+        """
+        try:
+            url = f"{self.sandbox_url if self.use_sandbox else self.base_url}/order/cancel"
+            
+            params = {
+                'order_id': order_id
+            }
+            
+            response = requests.delete(
+                url, 
+                headers=self.sandbox_headers if self.use_sandbox else self.headers, 
+                params=params, 
+                timeout=10
+            )
+            
+            if response.status_code == 200:
+                result = response.json()
+                if result.get('status') == 'success':
+                    logger.info(f"✓ Order {order_id} cancelled successfully")
+                    return True
+                else:
+                    logger.error(f"Order cancel rejected: {result.get('message')}")
+            else:
+                logger.error(f"Order cancel failed: {response.status_code} - {response.text}")
+            
+            return False
+            
+        except Exception as e:
+            logger.error(f"Exception in cancel_order: {e}")
+            return False
     
     def get_positions(self) -> Optional[Dict]:
         """Get current positions"""
@@ -1094,6 +1128,13 @@ class NiftyORBStrategy:
             # Place sell order if live trading (MANUAL EXITS OR PAPER TRACKING)
             # If the Stop loss trigger directly hit, Upstox fired it. Only actively close here if it hasn't fired.
             if (self.execute_trades or getattr(self.api, 'use_sandbox', False)) and exit_reason != 'STOP_LOSS':
+                
+                # FIRST: CANCEL THE HANGING STOP LOSS ORDER
+                if self.position.get('sl_order_id'):
+                    logger.info("Canceling floating Stop Loss order first...")
+                    self.api.cancel_order(self.position['sl_order_id'])
+
+                # SECOND: PLACE MARKET SELL
                 order = self.api.place_order(
                     symbol=self.position['symbol'],
                     quantity=self.lot_size,
@@ -1103,7 +1144,7 @@ class NiftyORBStrategy:
                 )
                 
                 if order:
-                    logger.info(f"✓ Exit order executed: {order}")
+                    logger.info(f"✓ Exit market order executed: {order}")
                 else:
                     logger.error("✗ Failed to execute manual exit order")
                     
