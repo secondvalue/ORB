@@ -106,7 +106,7 @@ if sys.platform == 'win32':
 
 # Custom IST Time for Logging
 def ist_converter(*args):
-    utc_dt = datetime.datetime.now(datetime.UTC)
+    utc_dt = datetime.datetime.now(datetime.timezone.utc)
     ist_dt = utc_dt + datetime.timedelta(hours=5, minutes=30)
     return ist_dt.timetuple()
 
@@ -493,7 +493,7 @@ def encode_symbol(sym: str) -> str:
 
 def get_ist_time() -> datetime.datetime:
     """Get current time in IST (UTC+5:30)"""
-    utc_now = datetime.datetime.now(datetime.UTC)
+    utc_now = datetime.datetime.now(datetime.timezone.utc)
     ist_now = utc_now + datetime.timedelta(hours=5, minutes=30)
     return ist_now
 
@@ -711,7 +711,7 @@ class NiftyORBStrategy:
                     "title": title,
                     "description": description,
                     "color": color,
-                    "timestamp": dt.now(datetime.UTC).isoformat()
+                    "timestamp": dt.now(datetime.timezone.utc).isoformat()
                 }]
             }
             
