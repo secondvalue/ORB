@@ -1002,12 +1002,17 @@ class NiftyORBStrategy:
             
             # Send Discord Alert (Entry)
             discord_desc = (
+                f"**Nifty ORB**\n"
+                f"**Range:** {self.orb_low:.2f} ↔ {self.orb_high:.2f}\n"
+                f"──────────────\n"
                 f"**Strike:** {strike} {option_type}\n"
-                f"**Price:** ₹{entry_price:.2f}\n"
-                f"**Spot:** {spot_price}\n"
-                f"**Stop Loss:** ₹{self.initial_sl_rs} Rs"
+                f"**Spot:** {spot_price:.2f}\n"
+                f"**Entry:** ₹{entry_price:.2f}\n"
+                f"**SL:** ₹{stop_loss:.2f}\n"
+                f"──────────────\n"
+                f"**Order ID:** {self.position.get('order_id', 'N/A')}\n"
             )
-            self.send_discord_alert("🚀 TRADE ENTRY", discord_desc, 3447003) # Blue
+            self.send_discord_alert("🚀 NEW TRADE ENTRY", discord_desc, 3447003) # Blue
             
             return True
             
@@ -1172,9 +1177,14 @@ class NiftyORBStrategy:
             color = 5763719 if is_profit else 15548997 # Green / Red
             
             discord_desc = (
+                f"**Nifty ORB**\n"
+                f"──────────────\n"
                 f"**Strike:** {self.position['strike']} {self.position['option_type']}\n"
-                f"**P&L:** ₹{pnl:.2f} ({pnl_percent:.2f}%)\n"
-                f"**Exit Price:** ₹{exit_price:.2f}\n"
+                f"**Entry:** ₹{self.position['entry_price']:.2f}\n"
+                f"**Exit:** ₹{exit_price:.2f}\n"
+                f"──────────────\n"
+                f"**P&L:** ₹{pnl * self.lot_size:.2f} ({pnl_percent:.2f}%)\n"
+                f"**Points:** {'+' if is_profit else ''}{pnl:.2f}\n"
                 f"**Reason:** {exit_reason}"
             )
             title = "💰 PROFIT BOOKED" if is_profit else "🛑 STOP LOSS HIT"
