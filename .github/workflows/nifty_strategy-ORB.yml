@@ -50,3 +50,13 @@ jobs:
     - name: Run Strategy
       run: python nifty-orb-strategy.py
       continue-on-error: true # Allow workflow to finish even if strategy exits with error
+
+    - name: Upload Logs and Trades
+      uses: actions/upload-artifact@v4
+      if: always() # Run even if the previous steps failed
+      with:
+        name: trading-logs-${{ github.run_id }}
+        path: |
+          logs/
+          trades/
+        retention-days: 14
