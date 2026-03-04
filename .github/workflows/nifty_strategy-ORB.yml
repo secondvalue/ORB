@@ -12,6 +12,11 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v3
 
+    - name: Clean previous run data
+      run: |
+        rm -rf logs/* trades/* || true
+        mkdir -p logs trades
+
     - name: Display IST time
       run: |
         echo "==========================================="
