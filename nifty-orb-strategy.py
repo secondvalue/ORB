@@ -1153,7 +1153,7 @@ class NiftyORBStrategy:
             
             # Log to CSV
             trade_record = {
-                'Date': exit_time.strftime('%Y-%m-%d'),
+                'Date': exit_time.strftime('%d-%b-%y'),  # e.g., 04-Mar-26 (Shorter to avoid Excel ########)
                 'Symbol': self.position['trading_symbol'],
                 'Type': self.position['option_type'],
                 'Strike': self.position['strike'],
