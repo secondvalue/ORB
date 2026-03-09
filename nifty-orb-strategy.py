@@ -43,7 +43,7 @@ import os
 CONFIG = {
     # Upstox API Credentials
     # Live Token (Required for Market Data & Quotes)
-    'ACCESS_TOKEN': 'eyJ0eXAiOiJKV1QiLCJrZXlfaWQiOiJza192MS4wIiwiYWxnIjoiSFMyNTYifQ.eyJzdWIiOiI1NUJBOVgiLCJqdGkiOiI2OWFhNGQ4OTZiNmFjNTcxZGJkYjExZTkiLCJpc011bHRpQ2xpZW50IjpmYWxzZSwiaXNQbHVzUGxhbiI6ZmFsc2UsImlhdCI6MTc3Mjc2ODY0OSwiaXNzIjoidWRhcGktZ2F0ZXdheS1zZXJ2aWNlIiwiZXhwIjoxNzcyODM0NDAwfQ.f9Kvv9vn6_myo9N1Rp_KRridgTNPOBmii4Kd7rAN9QA',
+    'ACCESS_TOKEN': 'eyJ0eXAiOiJKV1QiLCJrZXlfaWQiOiJza192MS4wIiwiYWxnIjoiSFMyNTYifQ.eyJzdWIiOiI1NUJBOVgiLCJqdGkiOiI2OWFlNDFjMjBiODJjODY2NzhiOWE5YjYiLCJpc011bHRpQ2xpZW50IjpmYWxzZSwiaXNQbHVzUGxhbiI6ZmFsc2UsImlhdCI6MTc3MzAyNzc3OCwiaXNzIjoidWRhcGktZ2F0ZXdheS1zZXJ2aWNlIiwiZXhwIjoxNzczMDkzNjAwfQ.wgj12OBpFS0saZTy0-0DDA8qAAsgJH2X3_vb2OhCxus',
     
     # Sandbox Token (Required if USE_SANDBOX_API is True for Orders)
     'SANDBOX_TOKEN': 'eyJ0eXAiOiJKV1QiLCJrZXlfaWQiOiJza192MS4wIiwiYWxnIjoiSFMyNTYifQ.eyJzdWIiOiI1NUJBOVgiLCJqdGkiOiI2OTljMTk5ODk1M2M5YjFjMDIxNjRjMzAiLCJpc011bHRpQ2xpZW50IjpmYWxzZSwiaXNQbHVzUGxhbiI6dHJ1ZSwiaWF0IjoxNzcxODM3ODQ4LCJpc3MiOiJ1ZGFwaS1nYXRld2F5LXNlcnZpY2UiLCJleHAiOjE3NzQzODk2MDB9.2pU16hshwl2MEdLtm8h3XOc6axRlCTmAO0VSKtnYhbo',
@@ -56,7 +56,7 @@ CONFIG = {
     'ORB_MINUTES': 15,        # Opening range duration in minutes
     'ORB_START_TIME': '09:15',
     'ORB_END_TIME': '09:30',
-    'ORB_BUFFER_POINTS': 10,  # Points required beyond ORB High/Low to confirm breakout
+    'ORB_BUFFER_POINTS': 15,  # Points required beyond ORB High/Low to confirm breakout
     
     # Risk Management
     # SL/Target are now purely ATR based
