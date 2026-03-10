@@ -77,8 +77,8 @@ CONFIG = {
     # -------------------------------------------------------------------------
     
     # Execution
-    'EXECUTE_TRADES': True,   # Set to True for live trading, False for paper trading
-    'USE_SANDBOX_API': False,   # Set to True to use Upstox Sandbox (https://api-sandbox.upstox.com)
+    'EXECUTE_TRADES': False,   # Set to True for live trading, False for paper trading
+    'USE_SANDBOX_API': True,   # Set to True to use Upstox Sandbox (https://api-sandbox.upstox.com)
     
     # Reporting
     'CSV_FILENAME': 'trades/trades.csv',
