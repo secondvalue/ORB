@@ -56,7 +56,7 @@ CONFIG = {
     'ORB_MINUTES': 15,        # Opening range duration in minutes
     'ORB_START_TIME': '09:15',
     'ORB_END_TIME': '09:30',
-    'ORB_BUFFER_POINTS': 15,  # Points required beyond ORB High/Low to confirm breakout
+    'ORB_BUFFER_POINTS': 13,  # Points required beyond ORB High/Low to confirm breakout
     
     # Risk Management
     # SL/Target are now purely ATR based
@@ -66,7 +66,7 @@ CONFIG = {
     'TRAILING_STEP_RS': 500,
     'PROFIT_LOCK_ACTIVATION_RS': 700,
     'PROFIT_LOCK_AMOUNT_RS': 350,
-    'INITIAL_STOP_LOSS_RS': -1000,
+    'INITIAL_STOP_LOSS_RS': -500,
 
     
     # -------------------------------------------------------------------------
@@ -77,8 +77,8 @@ CONFIG = {
     # -------------------------------------------------------------------------
     
     # Execution
-    'EXECUTE_TRADES': False,   # Set to True for live trading, False for paper trading
-    'USE_SANDBOX_API': True,   # Set to True to use Upstox Sandbox (https://api-sandbox.upstox.com)
+    'EXECUTE_TRADES': True,   # Set to True for live trading, False for paper trading
+    'USE_SANDBOX_API': False,   # Set to True to use Upstox Sandbox (https://api-sandbox.upstox.com)
     
     # Reporting
     'CSV_FILENAME': 'trades/trades.csv',
