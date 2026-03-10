@@ -899,9 +899,9 @@ class NiftyORBStrategy:
             # Calculate levels (Rs Based)
             entry_price = option_price
             
-            # 2. Set Final Levels
+            # 2. Set Final Levels (round to 0.05 tick immediately so all values are consistent)
             sl_points = abs(self.initial_sl_rs) / self.lot_size
-            stop_loss = entry_price - sl_points
+            stop_loss = round_to_tick(entry_price - sl_points)
             
             # No fixed target price because we trail
             target = float('inf')
