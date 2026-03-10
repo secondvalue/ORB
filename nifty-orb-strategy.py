@@ -491,6 +491,10 @@ def encode_symbol(sym: str) -> str:
     """URL encode symbol for API calls"""
     return sym.replace('|', '%7C').replace(' ', '%20')
 
+def round_to_tick(price: float, tick: float = 0.05) -> float:
+    """Round price to nearest valid tick size (NSE options tick = 0.05)"""
+    return round(round(price / tick) * tick, 2)
+
 def get_ist_time() -> datetime.datetime:
     """Get current time in IST (UTC+5:30)"""
     utc_now = datetime.datetime.now(datetime.timezone.utc)
@@ -954,28 +958,29 @@ class NiftyORBStrategy:
                     
                     # IMMEDIATELY PLACE SL ORDER IN EXCHANGE
                     if self.execute_trades or getattr(self.api, 'use_sandbox', False):
+                        sl_trigger = round_to_tick(stop_loss)           # e.g. 77.95
+                        sl_limit   = round_to_tick(stop_loss - 0.50)    # e.g. 77.45 (0.5 below trigger)
                         sl_order = self.api.place_order(
                             symbol=instrument_key,
                             quantity=self.lot_size,
                             transaction_type='SELL',
                             order_type='SL',  # Stop Loss Limit Option
                             product='I',
-                            price=round(stop_loss - 0.5, 2),
-                            trigger_price=round(stop_loss, 2)
+                            price=sl_limit,
+                            trigger_price=sl_trigger
                         )
                         
                         if sl_order:
                             # Extract the actual payload dictionary, modify requests need it
                             sl_order_data = sl_order.get('data', {})
                             self.position['sl_order_id'] = sl_order_data.get('order_id') or sl_order_data.get('order_ref_id')
-                            logger.info(f"✓ {'Live' if self.execute_trades else 'Sandbox'} SL Order initialized at exchange at ₹{stop_loss:.2f}")
+                            logger.info(f"✓ {'Live' if self.execute_trades else 'Sandbox'} SL Order placed at exchange | Trigger: ₹{sl_trigger} | Limit: ₹{sl_limit}")
                             
-                            # Set actual trigger params locally:
-                            # Required by many exchanges: Limit needs to be slightly lower than Trigger for SELL SL
+                            # Confirm trigger/limit via modify (some brokers need this)
                             payload_for_sl = {
                                 'order_id': self.position['sl_order_id'],
-                                'new_trigger_price': round(stop_loss, 2),
-                                'new_price': round(stop_loss - 0.5, 2)
+                                'new_trigger_price': sl_trigger,
+                                'new_price': sl_limit
                             }
                             
                             self.api.modify_order(**payload_for_sl)
@@ -1069,17 +1074,17 @@ class NiftyORBStrategy:
                 # Update SL only if it moves UP (Never move SL down)
             if calculated_sl > self.position['stop_loss']:
                 old_sl = self.position['stop_loss']
-                new_sl = round(calculated_sl, 2)
+                new_sl = round_to_tick(calculated_sl)     # Snap to valid 0.05 tick
                 self.position['stop_loss'] = new_sl
                 logger.info(f"⚡ TRAILING SL UPDATED: ₹{old_sl:.2f} -> ₹{new_sl:.2f} (Max PnL: ₹{max_pnl_rs:.2f}) {lock_msg}")
                 
                 # Update Actual SL Order in Exchange
                 if (self.execute_trades or getattr(self.api, 'use_sandbox', False)) and self.position.get('sl_order_id'):
-                    # Limit price is 50 paise lower to guarantee execution on sharp drops
+                    new_limit = round_to_tick(new_sl - 0.50)   # 0.5 below trigger, also tick-aligned
                     self.api.modify_order(
                         order_id=self.position['sl_order_id'], 
                         new_trigger_price=new_sl, 
-                        new_price=round(new_sl - 0.5, 2)
+                        new_price=new_limit
                     )
 
             pnl_percent = (current_price - entry_price) / entry_price
@@ -1430,12 +1435,8 @@ if __name__ == "__main__":
     print("  6. Set EXECUTE_TRADES=True only when ready for live trading")
     print("\n" + "="*80 + "\n")
     
-    # Confirmation for live trading
+    # Live trading warning (no interactive prompt - supports GitHub Actions)
     if CONFIG['EXECUTE_TRADES']:
-        print("⚠️  ⚠️  ⚠️  LIVE TRADING MODE ENABLED ⚠️  ⚠️  ⚠️")
-        response = input("Are you sure you want to execute real trades? (yes/no): ")
-        if response.lower() != 'yes':
-            print("Exiting for safety. Set EXECUTE_TRADES=False for paper trading.")
-            exit()
+        print("⚠️  ⚠️  ⚠️  LIVE TRADING MODE ENABLED - Starting automatically ⚠️  ⚠️  ⚠️")
     
     main()
