@@ -56,7 +56,7 @@ CONFIG = {
     'ORB_MINUTES': 15,        # Opening range duration in minutes
     'ORB_START_TIME': '09:15',
     'ORB_END_TIME': '09:30',
-    'ORB_BUFFER_POINTS': 13,  # Points required beyond ORB High/Low to confirm breakout
+    'ORB_BUFFER_POINTS': 12,  # Points required beyond ORB High/Low to confirm breakout
     
     # Risk Management
     # SL/Target are now purely ATR based
