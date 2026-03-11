@@ -43,7 +43,7 @@ import os
 CONFIG = {
     # Upstox API Credentials
     # Live Token (Required for Market Data & Quotes)
-    'ACCESS_TOKEN': 'eyJ0eXAiOiJKV1QiLCJrZXlfaWQiOiJza192MS4wIiwiYWxnIjoiSFMyNTYifQ.eyJzdWIiOiI1NUJBOVgiLCJqdGkiOiI2OWFmOTIxOTQzYjZkMDE2NzhiODJkZjYiLCJpc011bHRpQ2xpZW50IjpmYWxzZSwiaXNQbHVzUGxhbiI6ZmFsc2UsImlhdCI6MTc3MzExMzg4MSwiaXNzIjoidWRhcGktZ2F0ZXdheS1zZXJ2aWNlIiwiZXhwIjoxNzczMTgwMDAwfQ.NZ-svaK4i3EMGbBrrheYJRrGihX3LI2--s3GDMT1cTo',
+    'ACCESS_TOKEN': 'eyJ0eXAiOiJKV1QiLCJrZXlfaWQiOiJza192MS4wIiwiYWxnIjoiSFMyNTYifQ.eyJzdWIiOiI1NUJBOVgiLCJqdGkiOiI2OWIwZTQwMTdjNGZkYzc2ZWM2NWJlYzIiLCJpc011bHRpQ2xpZW50IjpmYWxzZSwiaXNQbHVzUGxhbiI6ZmFsc2UsImlhdCI6MTc3MzIwMDM4NSwiaXNzIjoidWRhcGktZ2F0ZXdheS1zZXJ2aWNlIiwiZXhwIjoxNzczMjY2NDAwfQ.nwbr33SdWjHHJ6MlTGrcJLzqIv5ForLvGM_1sxomtL8',
     
     # Sandbox Token (Required if USE_SANDBOX_API is True for Orders)
     'SANDBOX_TOKEN': 'eyJ0eXAiOiJKV1QiLCJrZXlfaWQiOiJza192MS4wIiwiYWxnIjoiSFMyNTYifQ.eyJzdWIiOiI1NUJBOVgiLCJqdGkiOiI2OTljMTk5ODk1M2M5YjFjMDIxNjRjMzAiLCJpc011bHRpQ2xpZW50IjpmYWxzZSwiaXNQbHVzUGxhbiI6dHJ1ZSwiaWF0IjoxNzcxODM3ODQ4LCJpc3MiOiJ1ZGFwaS1nYXRld2F5LXNlcnZpY2UiLCJleHAiOjE3NzQzODk2MDB9.2pU16hshwl2MEdLtm8h3XOc6axRlCTmAO0VSKtnYhbo',
@@ -77,8 +77,8 @@ CONFIG = {
     # -------------------------------------------------------------------------
     
     # Execution
-    'EXECUTE_TRADES': False,   # Set to True for live trading, False for paper trading
-    'USE_SANDBOX_API': True,   # Set to True to use Upstox Sandbox (https://api-sandbox.upstox.com)
+    'EXECUTE_TRADES': True,   # Set to True for live trading, False for paper trading
+    'USE_SANDBOX_API': False,   # Set to True to use Upstox Sandbox (https://api-sandbox.upstox.com)
     
     # Reporting
     'CSV_FILENAME': 'trades/trades.csv',
