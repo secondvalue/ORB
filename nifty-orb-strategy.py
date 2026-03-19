@@ -43,7 +43,7 @@ import os
 CONFIG = {
     # Upstox API Credentials
     # Live Token (Required for Market Data & Quotes)
-    'ACCESS_TOKEN': 'eyJ0eXAiOiJKV1QiLCJrZXlfaWQiOiJza192MS4wIiwiYWxnIjoiSFMyNTYifQ.eyJzdWIiOiI1NUJBOVgiLCJqdGkiOiI2OWJhMWQxZGMwMmJlNDcxNTVmMDE5YTEiLCJpc011bHRpQ2xpZW50IjpmYWxzZSwiaXNQbHVzUGxhbiI6ZmFsc2UsImlhdCI6MTc3MzgwNDgyOSwiaXNzIjoidWRhcGktZ2F0ZXdheS1zZXJ2aWNlIiwiZXhwIjoxNzczODcxMjAwfQ.lJB-NuvWGRzy-JQ9yREUOxnWTYNbXTlTPfzIHPFeSoU',
+    'ACCESS_TOKEN': 'eyJ0eXAiOiJKV1QiLCJrZXlfaWQiOiJza192MS4wIiwiYWxnIjoiSFMyNTYifQ.eyJzdWIiOiI1NUJBOVgiLCJqdGkiOiI2OWJiNmZmMWFhYWQwYzdmODdiNWM1ODciLCJpc011bHRpQ2xpZW50IjpmYWxzZSwiaXNQbHVzUGxhbiI6ZmFsc2UsImlhdCI6MTc3Mzg5MTU2OSwiaXNzIjoidWRhcGktZ2F0ZXdheS1zZXJ2aWNlIiwiZXhwIjoxNzczOTU3NjAwfQ.L_kK6XxZ8s8pLTOrhGZAwFwKSr1aVNi0Ey_5t4HDA38',
     
     # Sandbox Token (Required if USE_SANDBOX_API is True for Orders)
     'SANDBOX_TOKEN': 'eyJ0eXAiOiJKV1QiLCJrZXlfaWQiOiJza192MS4wIiwiYWxnIjoiSFMyNTYifQ.eyJzdWIiOiI1NUJBOVgiLCJqdGkiOiI2OTljMTk5ODk1M2M5YjFjMDIxNjRjMzAiLCJpc011bHRpQ2xpZW50IjpmYWxzZSwiaXNQbHVzUGxhbiI6dHJ1ZSwiaWF0IjoxNzcxODM3ODQ4LCJpc3MiOiJ1ZGFwaS1nYXRld2F5LXNlcnZpY2UiLCJleHAiOjE3NzQzODk2MDB9.2pU16hshwl2MEdLtm8h3XOc6axRlCTmAO0VSKtnYhbo',
@@ -66,7 +66,7 @@ CONFIG = {
     'TRAILING_STEP_RS': 500,
     'PROFIT_LOCK_ACTIVATION_RS': 700,
     'PROFIT_LOCK_AMOUNT_RS': 350,
-    'INITIAL_STOP_LOSS_RS': -500,
+    'INITIAL_STOP_LOSS_RS': -1000,
 
     
     # -------------------------------------------------------------------------
