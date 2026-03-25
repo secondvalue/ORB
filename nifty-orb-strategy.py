@@ -43,10 +43,10 @@ import os
 CONFIG = {
     # Upstox API Credentials
     # Live Token (Required for Market Data & Quotes)
-    'ACCESS_TOKEN': 'eyJ0eXAiOiJKV1QiLCJrZXlfaWQiOiJza192MS4wIiwiYWxnIjoiSFMyNTYifQ.eyJzdWIiOiI1NUJBOVgiLCJqdGkiOiI2OWMyMDg1ZTU4ZWM4NDE4NDVhYWNiNjAiLCJpc011bHRpQ2xpZW50IjpmYWxzZSwiaXNQbHVzUGxhbiI6ZmFsc2UsImlhdCI6MTc3NDMyMzgwNiwiaXNzIjoidWRhcGktZ2F0ZXdheS1zZXJ2aWNlIiwiZXhwIjoxNzc0Mzg5NjAwfQ.Fn6YnSSILStalLY0XPTl1jk7aaDu2JCaSXmfyxchfD4',
+    'ACCESS_TOKEN': 'eyJ0eXAiOiJKV1QiLCJrZXlfaWQiOiJza192MS4wIiwiYWxnIjoiSFMyNTYifQ.eyJzdWIiOiI1NUJBOVgiLCJqdGkiOiI2OWMzNTdmMzk4MGMyODExZDNlOTg0ZDEiLCJpc011bHRpQ2xpZW50IjpmYWxzZSwiaXNQbHVzUGxhbiI6ZmFsc2UsImlhdCI6MTc3NDQwOTcxNSwiaXNzIjoidWRhcGktZ2F0ZXdheS1zZXJ2aWNlIiwiZXhwIjoxNzc0NDc2MDAwfQ.SfGkNRxsXD-17c7UcfG4s-ZY9SrRA3v-1YGYjP0DK0U',
     
     # Sandbox Token (Required if USE_SANDBOX_API is True for Orders)
-    'SANDBOX_TOKEN': 'eyJ0eXAiOiJKV1QiLCJrZXlfaWQiOiJza192MS4wIiwiYWxnIjoiSFMyNTYifQ.eyJzdWIiOiI1NUJBOVgiLCJqdGkiOiI2OTljMTk5ODk1M2M5YjFjMDIxNjRjMzAiLCJpc011bHRpQ2xpZW50IjpmYWxzZSwiaXNQbHVzUGxhbiI6dHJ1ZSwiaWF0IjoxNzcxODM3ODQ4LCJpc3MiOiJ1ZGFwaS1nYXRld2F5LXNlcnZpY2UiLCJleHAiOjE3NzQzODk2MDB9.2pU16hshwl2MEdLtm8h3XOc6axRlCTmAO0VSKtnYhbo',
+    'SANDBOX_TOKEN': 'eyJ0eXAiOiJKV1QiLCJrZXlfaWQiOiJza192MS4wIiwiYWxnIjoiSFMyNTYifQ.eyJzdWIiOiI1NUJBOVgiLCJqdGkiOiI2OWMzNTc5OTAwZDhjZDA4MDY5N2U4YTYiLCJpc011bHRpQ2xpZW50IjpmYWxzZSwiaXNQbHVzUGxhbiI6dHJ1ZSwiaWF0IjoxNzc0NDA5NjI1LCJpc3MiOiJ1ZGFwaS1nYXRld2F5LXNlcnZpY2UiLCJleHAiOjE3NzY5ODE2MDB9.8sjFGQR5TUAOf7S0fjegqSk7-sGyJl54SOBiUM81fWQ',
     
     # Trading Parameters
     # EXPIRY_DATE auto-calculated for Tuesday (Nifty weekly expiry)
@@ -78,7 +78,7 @@ CONFIG = {
     
     # Execution
     'EXECUTE_TRADES': False,   # Set to True for live trading, False for paper trading
-    'USE_SANDBOX_API': False,   # Set to True to use Upstox Sandbox (https://api-sandbox.upstox.com)
+    'USE_SANDBOX_API': True,   # Set to True to use Upstox Sandbox (https://api-sandbox.upstox.com)
     
     # Reporting
     'CSV_FILENAME': 'trades/trades.csv',
