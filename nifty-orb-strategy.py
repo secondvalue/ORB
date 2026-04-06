@@ -43,7 +43,7 @@ import os
 CONFIG = {
     # Upstox API Credentials
     # Live Token (Required for Market Data & Quotes)
-    'ACCESS_TOKEN': 'eyJ0eXAiOiJKV1QiLCJrZXlfaWQiOiJza192MS4wIiwiYWxnIjoiSFMyNTYifQ.eyJzdWIiOiI1NUJBOVgiLCJqdGkiOiI2OWM5ZjNhNGMyNjljNzRkMGRiYWJjYjYiLCJpc011bHRpQ2xpZW50IjpmYWxzZSwiaXNQbHVzUGxhbiI6ZmFsc2UsImlhdCI6MTc3NDg0Mjc4OSwiaXNzIjoidWRhcGktZ2F0ZXdheS1zZXJ2aWNlIiwiZXhwIjoxNzc0OTA4MDAwfQ.oH4JzQa8rXFSafFn-SIaXusXEBc2e-B8Ig8Jqc5VMig',
+    'ACCESS_TOKEN': 'eyJ0eXAiOiJKV1QiLCJrZXlfaWQiOiJza192MS4wIiwiYWxnIjoiSFMyNTYifQ.eyJzdWIiOiI1NUJBOVgiLCJqdGkiOiI2OWNiNGU0MDBiMWUyZTJmOTIyM2QyNDciLCJpc011bHRpQ2xpZW50IjpmYWxzZSwiaXNQbHVzUGxhbiI6ZmFsc2UsImlzRXh0ZW5kZWQiOnRydWUsImlhdCI6MTc3NDkzMTUyMCwiaXNzIjoidWRhcGktZ2F0ZXdheS1zZXJ2aWNlIiwiZXhwIjoxODA2NTMwNDAwfQ.A1hgGsocgq4Els_7j1gyCZ_xzgStnAgtgYH7thv_gKg',
     
     # Sandbox Token (Required if USE_SANDBOX_API is True for Orders)
     'SANDBOX_TOKEN': 'eyJ0eXAiOiJKV1QiLCJrZXlfaWQiOiJza192MS4wIiwiYWxnIjoiSFMyNTYifQ.eyJzdWIiOiI1NUJBOVgiLCJqdGkiOiI2OWMzNTc5OTAwZDhjZDA4MDY5N2U4YTYiLCJpc011bHRpQ2xpZW50IjpmYWxzZSwiaXNQbHVzUGxhbiI6dHJ1ZSwiaWF0IjoxNzc0NDA5NjI1LCJpc3MiOiJ1ZGFwaS1nYXRld2F5LXNlcnZpY2UiLCJleHAiOjE3NzY5ODE2MDB9.8sjFGQR5TUAOf7S0fjegqSk7-sGyJl54SOBiUM81fWQ',
@@ -681,6 +681,10 @@ class NiftyORBStrategy:
         self.discord_url = config.get('DISCORD_WEBHOOK_URL', '')
         
         self.waiting_for_breakout = True # Needs to be inside range to arm the trigger
+        self.breakout_direction = None   # Track if we are in pullback phase (CE/PE)
+        self.ema_period = 20             # 20 EMA for First Pullback logic
+        self.last_ema = None
+        self.last_ema_time = dt.fromtimestamp(0)
         
         logger.info(f"Strategy initialized - {'LIVE TRADING' if self.execute_trades else 'PAPER TRADING'}")
 
@@ -830,38 +834,92 @@ class NiftyORBStrategy:
     # Indicators Removed (VWAP/Supertrend)
     
     
+    def calculate_ema(self, candles: List, period: int = 20) -> Optional[float]:
+        try:
+            if not candles or len(candles) < period:
+                return None
+            df = pd.DataFrame(candles, columns=['timestamp', 'open', 'high', 'low', 'close', 'volume', 'oi'])
+            df['close'] = pd.to_numeric(df['close'])
+            ema_series = df['close'].ewm(span=period, adjust=False).mean()
+            return float(ema_series.iloc[-1])
+        except Exception as e:
+            logger.error(f"Error calculating EMA: {e}")
+            return None
+
+    def get_current_ema(self) -> Optional[float]:
+        now = dt.now()
+        # Fetch candles only once every 30 seconds to respect API rate limits
+        if (now - self.last_ema_time).total_seconds() > 30 or self.last_ema is None:
+            candles = self.api.get_intraday_candles(symbol=self.nifty_symbol, unit='minutes', interval=1)
+            ema = self.calculate_ema(candles, self.ema_period)
+            if ema is not None:
+                self.last_ema = ema
+                self.last_ema_time = now
+        return self.last_ema
+
     def check_breakout(self, current_price: float) -> Optional[str]:
         """
-        Check if price has broken out of ORB range
-        Logic: Requires price to be inside range (or reset) before triggering
+        First Pullback Logic: 
+        1. Confirms breakout
+        2. Waits for Pullback to 20 EMA
         """
         if not self.orb_formed:
             return None
-        
-        # Reset Logic: If price is inside the range, we are ready for a new breakout
-        if self.orb_low <= current_price <= self.orb_high:
-            if not self.waiting_for_breakout:
-                logger.info("Values returned to ORB Range - Signal RE-ARMED ⚠️")
-                self.waiting_for_breakout = True
-            return None
 
-        # Breakout Trigger
+        # 1. Breakout Phase
         if self.waiting_for_breakout:
             buy_trigger = self.orb_high + self.orb_buffer
             sell_trigger = self.orb_low - self.orb_buffer
             
-            # Bullish breakout: Price > ORB High + Buffer
+            # Bullish breakout
             if current_price > buy_trigger:
-                logger.info(f"🚀 BULLISH BREAKOUT CONFIRMED (Price: {current_price} > Trigger: {buy_trigger} [ORB High: {self.orb_high} + {self.orb_buffer} Buffer])")
-                self.waiting_for_breakout = False # Consumed
-                return 'CE'
+                logger.info(f"🚀 BULLISH BREAKOUT CONFIRMED! Transitioning to Pullback Phase...")
+                self.waiting_for_breakout = False
+                self.breakout_direction = 'CE'
+                return None
             
-            # Bearish breakout: Price < ORB Low - Buffer
+            # Bearish breakout
             elif current_price < sell_trigger:
-                logger.info(f"📉 BEARISH BREAKOUT CONFIRMED (Price: {current_price} < Trigger: {sell_trigger} [ORB Low: {self.orb_low} - {self.orb_buffer} Buffer])")
-                self.waiting_for_breakout = False # Consumed
-                return 'PE'
-        
+                logger.info(f"📉 BEARISH BREAKOUT CONFIRMED! Transitioning to Pullback Phase...")
+                self.waiting_for_breakout = False
+                self.breakout_direction = 'PE'
+                return None
+                
+            return None
+
+        # 2. Pullback Phase
+        if self.breakout_direction and not self.waiting_for_breakout:
+            ema = self.get_current_ema()
+            
+            if ema is None:
+                return None
+                
+            # Allow a small 5 point buffer around EMA for the touch
+            touch_buffer = 5.0
+
+            if self.breakout_direction == 'CE':
+                # Price must pull back DOWN to support the EMA
+                if current_price <= (ema + touch_buffer):
+                    logger.info(f"✅ CALL PULLBACK TRIGGERED! Price touched 20-EMA ({ema:.2f}). Executing Trade.")
+                    self.breakout_direction = None 
+                    self.waiting_for_breakout = True
+                    return 'CE'
+                else:
+                    # Provide an occasional status log so we know it's tracking
+                    if int(time.time()) % 10 == 0:
+                        logger.info(f"⏳ Waiting for Call Pullback | Spot: {current_price:.2f} | 20-EMA: {ema:.2f} (Target: {ema+touch_buffer:.2f})")
+                    
+            elif self.breakout_direction == 'PE':
+                # Price must pull back UP to resistance the EMA
+                if current_price >= (ema - touch_buffer):
+                    logger.info(f"✅ PUT PULLBACK TRIGGERED! Price touched 20-EMA ({ema:.2f}). Executing Trade.")
+                    self.breakout_direction = None
+                    self.waiting_for_breakout = True
+                    return 'PE'
+                else:
+                    if int(time.time()) % 10 == 0:
+                        logger.info(f"⏳ Waiting for Put Pullback | Spot: {current_price:.2f} | 20-EMA: {ema:.2f} (Target: {ema-touch_buffer:.2f})")
+                    
         return None
     
     def enter_position(self, option_type: str, spot_price: float, expiry: str) -> bool:
