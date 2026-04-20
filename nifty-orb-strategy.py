@@ -682,9 +682,13 @@ class NiftyORBStrategy:
         
         self.waiting_for_breakout = True # Needs to be inside range to arm the trigger
         self.breakout_direction = None   # Track if we are in pullback phase (CE/PE)
+        self.pullback_armed = False      # Track if price touched EMA zone
+        self.armed_direction = None      # 'CE' or 'PE'
+        
         self.ema_period = 20             # 20 EMA for First Pullback logic
         self.last_ema = None
-        self.last_ema_time = dt.fromtimestamp(0)
+        self.last_vwap = None
+        self.last_indicator_time = dt.fromtimestamp(0)
         
         logger.info(f"Strategy initialized - {'LIVE TRADING' if self.execute_trades else 'PAPER TRADING'}")
 
@@ -839,6 +843,10 @@ class NiftyORBStrategy:
             if not candles or len(candles) < period:
                 return None
             df = pd.DataFrame(candles, columns=['timestamp', 'open', 'high', 'low', 'close', 'volume', 'oi'])
+            # Upstox returns newest candles first; we must sort chronologically to calculate EMA correctly
+            df['timestamp'] = pd.to_datetime(df['timestamp'])
+            df = df.sort_values('timestamp').reset_index(drop=True)
+            
             df['close'] = pd.to_numeric(df['close'])
             ema_series = df['close'].ewm(span=period, adjust=False).mean()
             return float(ema_series.iloc[-1])
@@ -846,16 +854,56 @@ class NiftyORBStrategy:
             logger.error(f"Error calculating EMA: {e}")
             return None
 
-    def get_current_ema(self) -> Optional[float]:
+    def calculate_vwap(self, candles: List) -> Optional[float]:
+        try:
+            if not candles:
+                return None
+            df = pd.DataFrame(candles, columns=['timestamp', 'open', 'high', 'low', 'close', 'volume', 'oi'])
+            df['timestamp'] = pd.to_datetime(df['timestamp'])
+            
+            # Sort chronologically for cumulative VWAP
+            df = df.sort_values('timestamp').reset_index(drop=True)
+            
+            # Use only current day for Intraday VWAP
+            if not df.empty:
+                latest_date = df['timestamp'].max().date()
+                df = df[df['timestamp'].dt.date == latest_date]
+            
+            if df.empty:
+                return None
+                
+            df['high'] = pd.to_numeric(df['high'])
+            df['low'] = pd.to_numeric(df['low'])
+            df['close'] = pd.to_numeric(df['close'])
+            df['volume'] = pd.to_numeric(df['volume'])
+            
+            df['typical_price'] = (df['high'] + df['low'] + df['close']) / 3
+            df['vol_price'] = df['volume'] * df['typical_price']
+            
+            cumulative_vol = df['volume'].sum()
+            cumulative_vol_price = df['vol_price'].sum()
+            
+            # Fallback to simple average (TWAP) if dealing with spot index where volume is 0
+            if cumulative_vol == 0:
+                return float(df['typical_price'].mean())
+                
+            return float(cumulative_vol_price / cumulative_vol)
+        except Exception as e:
+            logger.error(f"Error calculating VWAP: {e}")
+            return None
+
+    def update_indicators(self) -> tuple[Optional[float], Optional[float]]:
         now = dt.now()
         # Fetch candles only once every 30 seconds to respect API rate limits
-        if (now - self.last_ema_time).total_seconds() > 30 or self.last_ema is None:
+        if (now - self.last_indicator_time).total_seconds() > 30 or self.last_ema is None or self.last_vwap is None:
             candles = self.api.get_intraday_candles(symbol=self.nifty_symbol, unit='minutes', interval=1)
             ema = self.calculate_ema(candles, self.ema_period)
-            if ema is not None:
+            vwap = self.calculate_vwap(candles)
+            if ema is not None and vwap is not None:
                 self.last_ema = ema
-                self.last_ema_time = now
-        return self.last_ema
+                self.last_vwap = vwap
+                self.last_indicator_time = now
+        return self.last_ema, self.last_vwap
 
     def check_breakout(self, current_price: float) -> Optional[str]:
         """
@@ -876,6 +924,8 @@ class NiftyORBStrategy:
                 logger.info(f"🚀 BULLISH BREAKOUT CONFIRMED! Transitioning to Pullback Phase...")
                 self.waiting_for_breakout = False
                 self.breakout_direction = 'CE'
+                self.pullback_armed = False
+                self.armed_direction = None
                 return None
             
             # Bearish breakout
@@ -883,42 +933,123 @@ class NiftyORBStrategy:
                 logger.info(f"📉 BEARISH BREAKOUT CONFIRMED! Transitioning to Pullback Phase...")
                 self.waiting_for_breakout = False
                 self.breakout_direction = 'PE'
+                self.pullback_armed = False
+                self.armed_direction = None
                 return None
                 
             return None
 
         # 2. Pullback Phase
         if self.breakout_direction and not self.waiting_for_breakout:
-            ema = self.get_current_ema()
+            ema, vwap = self.update_indicators()
             
-            if ema is None:
+            if ema is None or vwap is None:
                 return None
                 
-            # Allow a small 5 point buffer around EMA for the touch
+            # Allow a tight buffer around EMA for the touch (Must drop into this zone to arm)
             touch_buffer = 5.0
+            bounce_required = 10.0  # Must bounce to this many points away from EMA to confirm and fire
 
+
+            # -------------------------------------------------------------
+            # CALL (CE) PULLBACK LOGIC
+            # -------------------------------------------------------------
             if self.breakout_direction == 'CE':
-                # Price must pull back DOWN to support the EMA
-                if current_price <= (ema + touch_buffer):
-                    logger.info(f"✅ CALL PULLBACK TRIGGERED! Price touched 20-EMA ({ema:.2f}). Executing Trade.")
-                    self.breakout_direction = None 
-                    self.waiting_for_breakout = True
-                    return 'CE'
-                else:
-                    # Provide an occasional status log so we know it's tracking
+                if ema <= self.orb_high:
                     if int(time.time()) % 10 == 0:
-                        logger.info(f"⏳ Waiting for Call Pullback | Spot: {current_price:.2f} | 20-EMA: {ema:.2f} (Target: {ema+touch_buffer:.2f})")
-                    
-            elif self.breakout_direction == 'PE':
-                # Price must pull back UP to resistance the EMA
-                if current_price >= (ema - touch_buffer):
-                    logger.info(f"✅ PUT PULLBACK TRIGGERED! Price touched 20-EMA ({ema:.2f}). Executing Trade.")
+                        logger.warning(
+                            f"⛔ CE Pullback BLOCKED — 20-EMA ({ema:.2f}) is still inside/below ORB High "
+                            f"({self.orb_high:.2f}). Waiting for EMA to confirm uptrend."
+                        )
+                    return None
+
+                # VWAP Trend Guard: If price drops below VWAP, trend is broken. Reject trade completely.
+                if current_price < vwap:
+                    logger.warning(f"❌ CE Pullback FAILED — Price ({current_price:.2f}) fell below VWAP ({vwap:.2f})! Trend broken. Resetting.")
+                    self.waiting_for_breakout = True
                     self.breakout_direction = None
-                    self.waiting_for_breakout = True
-                    return 'PE'
-                else:
+                    self.pullback_armed = False
+                    return None
+
+                # Step 1: Arm the Pullback if price touches the EMA Zone Safely (Bounded Check)
+                if not self.pullback_armed:
+                    if (ema - touch_buffer) <= current_price <= (ema + touch_buffer):
+                        self.pullback_armed = True
+                        self.armed_direction = 'CE'
+                        logger.info(f"✅ CALL PULLBACK ARMED: Price ({current_price:.2f}) safely touched EMA zone ({ema:.2f}). Waiting for {bounce_required}pt bounce...")
+                    else:
+                        if int(time.time()) % 10 == 0:
+                            logger.info(f"⏳ Waiting for Call touch | Spot: {current_price:.2f} | EMA: {ema:.2f} | VWAP: {vwap:.2f}")
+
+                # Step 2: Fire if price bounces UP from the armed zone
+                elif self.pullback_armed and self.armed_direction == 'CE':
+                    # If it drops completely through the EMA buffer to the downside, the arm was a fakeout
+                    if current_price < (ema - touch_buffer):
+                        logger.warning(f"⚠️ CALL PULLBACK ABORTED: Price crashed through the EMA support zone!")
+                        self.pullback_armed = False
+                        self.armed_direction = None
+                        return None
+                        
+                    # If it bounces up required points from EMA, Fire!
+                    if current_price >= (ema + bounce_required):
+                        logger.info(f"🚀 CALL PULLBACK CONFIRMED! Bounced up to {current_price:.2f}. Executing Trade.")
+                        self.breakout_direction = None 
+                        self.pullback_armed = False
+                        self.waiting_for_breakout = True
+                        return 'CE'
+                    else:
+                        if int(time.time()) % 10 == 0:
+                            logger.info(f"⏳ Armed for Call | Spot: {current_price:.2f} | Need Bounce to {ema+bounce_required:.2f}")
+
+            # -------------------------------------------------------------
+            # PUT (PE) PULLBACK LOGIC
+            # -------------------------------------------------------------
+            elif self.breakout_direction == 'PE':
+                if ema >= self.orb_low:
                     if int(time.time()) % 10 == 0:
-                        logger.info(f"⏳ Waiting for Put Pullback | Spot: {current_price:.2f} | 20-EMA: {ema:.2f} (Target: {ema-touch_buffer:.2f})")
+                        logger.warning(
+                            f"⛔ PE Pullback BLOCKED — 20-EMA ({ema:.2f}) is still inside/above ORB Low "
+                            f"({self.orb_low:.2f}). Waiting for EMA to confirm downtrend."
+                        )
+                    return None
+
+                # VWAP Trend Guard: If price rises above VWAP, trend is broken. Reject trade completely.
+                if current_price > vwap:
+                    logger.warning(f"❌ PE Pullback FAILED — Price ({current_price:.2f}) broke above VWAP ({vwap:.2f})! Trend broken. Resetting.")
+                    self.waiting_for_breakout = True
+                    self.breakout_direction = None
+                    self.pullback_armed = False
+                    return None
+
+                # Step 1: Arm the Pullback if price touches the EMA Zone Safely (Bounded Check)
+                if not self.pullback_armed:
+                    if (ema - touch_buffer) <= current_price <= (ema + touch_buffer):
+                        self.pullback_armed = True
+                        self.armed_direction = 'PE'
+                        logger.info(f"✅ PUT PULLBACK ARMED: Price ({current_price:.2f}) safely touched EMA zone ({ema:.2f}). Waiting for {bounce_required}pt drop...")
+                    else:
+                        if int(time.time()) % 10 == 0:
+                            logger.info(f"⏳ Waiting for Put touch | Spot: {current_price:.2f} | EMA: {ema:.2f} | VWAP: {vwap:.2f}")
+
+                # Step 2: Fire if price bounces DOWN from the armed zone
+                elif self.pullback_armed and self.armed_direction == 'PE':
+                    # If it rips completely through the EMA buffer to the upside, the arm was a fakeout
+                    if current_price > (ema + touch_buffer):
+                        logger.warning(f"⚠️ PUT PULLBACK ABORTED: Price ripped through the EMA resistance zone!")
+                        self.pullback_armed = False
+                        self.armed_direction = None
+                        return None
+                        
+                    # If it bounces down required points from EMA, Fire!
+                    if current_price <= (ema - bounce_required):
+                        logger.info(f"🚀 PUT PULLBACK CONFIRMED! Bounced down to {current_price:.2f}. Executing Trade.")
+                        self.breakout_direction = None 
+                        self.pullback_armed = False
+                        self.waiting_for_breakout = True
+                        return 'PE'
+                    else:
+                        if int(time.time()) % 10 == 0:
+                            logger.info(f"⏳ Armed for Put | Spot: {current_price:.2f} | Need Drop to {ema-bounce_required:.2f}")
                     
         return None
     
@@ -1129,10 +1260,10 @@ class NiftyORBStrategy:
                 tier_hit = True
                 lock_msg = "[PROFIT LOCKED 🔒]"
                 
-                # Update SL only if it moves UP (Never move SL down)
-            if calculated_sl > self.position['stop_loss']:
+            # Update SL only if the tick-aligned value moves UP (Never move SL down)
+            new_sl = round_to_tick(calculated_sl)
+            if new_sl > self.position['stop_loss']:
                 old_sl = self.position['stop_loss']
-                new_sl = round_to_tick(calculated_sl)     # Snap to valid 0.05 tick
                 self.position['stop_loss'] = new_sl
                 logger.info(f"⚡ TRAILING SL UPDATED: ₹{old_sl:.2f} -> ₹{new_sl:.2f} (Max PnL: ₹{max_pnl_rs:.2f}) {lock_msg}")
                 
@@ -1266,7 +1397,7 @@ class NiftyORBStrategy:
                 logger.info("Exiting bot completely for the day. 🛑")
                 sys.exit(0)
             elif self.total_pnl <= -self.max_daily_loss:
-                logger.warning(f"� Max daily loss hit (₹{-self.max_daily_loss}). Exiting bot completely for safety. 🛑")
+                logger.warning(f"  Max daily loss hit (₹{-self.max_daily_loss}). Exiting bot completely for safety. 🛑")
                 self.trade_completed = True
                 sys.exit(0)
             
